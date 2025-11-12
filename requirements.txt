@@ -1,0 +1,23 @@
+# Core dependencies
+python-dateutil>=2.8.2
+pytz>=2024.1
+
+# API and HTTP
+requests>=2.31.0
+urllib3>=2.0.0
+
+# Data manipulation
+numpy>=1.24.0
+pandas>=2.0.0
+
+# GUI framework (for future phases)
+PySide6>=6.6.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# JSON schema validation
+jsonschema>=4.20.0
+
+# Utilities
+tqdm>=4.66.0
