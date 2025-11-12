@@ -6,6 +6,7 @@ and can be run with: pytest -m api
 """
 
 import pytest
+import requests
 import requests_mock
 
 from src.data.espn_api import ESPNAPIClient, ESPNAPIError

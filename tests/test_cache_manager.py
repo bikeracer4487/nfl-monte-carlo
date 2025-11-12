@@ -43,6 +43,9 @@ class TestCacheManager:
         # Save schedule
         cache_manager.save_schedule([sample_game], season=2025)
 
+        # Wait for cache to age
+        time.sleep(0.002)
+
         # Check with very short max age
         assert cache_manager.is_schedule_cached(season=2025, max_age_seconds=0.001) is False
 

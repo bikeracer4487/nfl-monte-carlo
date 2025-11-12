@@ -289,8 +289,8 @@ class CacheManager:
                 raise ValueError(f"Invalid cache type: {cache_type}")
 
             filepath = cache_map[cache_type]
-            if "*" in str(filepath):
-                # Handle schedule cache with wildcard
+            if "{season}" in str(filepath):
+                # Handle schedule cache with season placeholder
                 for f in self.cache_dir.glob("schedule_*.json"):
                     f.unlink()
                     self.logger.info(f"Cleared cache: {f.name}")
@@ -300,7 +300,7 @@ class CacheManager:
         else:
             # Clear all except overrides
             for name, filepath in cache_map.items():
-                if "*" in str(filepath):
+                if "{season}" in str(filepath):
                     for f in self.cache_dir.glob("schedule_*.json"):
                         f.unlink()
                 elif filepath.exists():
