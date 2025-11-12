@@ -49,6 +49,21 @@ class ESPNAPIClient:
         self.session.mount("http://", adapter)
         self.session.mount("https://", adapter)
 
+    # NFL team division/conference mapping (stable structure)
+    TEAM_DIVISIONS = {
+        "ARI": ("NFC", "West"), "ATL": ("NFC", "South"), "BAL": ("AFC", "North"),
+        "BUF": ("AFC", "East"), "CAR": ("NFC", "South"), "CHI": ("NFC", "North"),
+        "CIN": ("AFC", "North"), "CLE": ("AFC", "North"), "DAL": ("NFC", "East"),
+        "DEN": ("AFC", "West"), "DET": ("NFC", "North"), "GB": ("NFC", "North"),
+        "HOU": ("AFC", "South"), "IND": ("AFC", "South"), "JAX": ("AFC", "South"),
+        "KC": ("AFC", "West"), "LAC": ("AFC", "West"), "LAR": ("NFC", "West"),
+        "LV": ("AFC", "West"), "MIA": ("AFC", "East"), "MIN": ("NFC", "North"),
+        "NE": ("AFC", "East"), "NO": ("NFC", "South"), "NYG": ("NFC", "East"),
+        "NYJ": ("AFC", "East"), "PHI": ("NFC", "East"), "PIT": ("AFC", "North"),
+        "SEA": ("NFC", "West"), "SF": ("NFC", "West"), "TB": ("NFC", "South"),
+        "TEN": ("AFC", "South"), "WSH": ("NFC", "East"),
+    }
+
     def fetch_teams(self) -> list[Team]:
         """
         Fetch all NFL teams.
@@ -80,14 +95,18 @@ class ESPNAPIClient:
             for team_item in teams_data:
                 team_data = team_item.get("team", {})
 
+                # Get conference and division from mapping
+                abbreviation = team_data.get("abbreviation", "")
+                conf, div = self.TEAM_DIVISIONS.get(abbreviation, ("", ""))
+
                 team = Team(
                     id=team_data.get("id", ""),
-                    abbreviation=team_data.get("abbreviation", ""),
+                    abbreviation=abbreviation,
                     name=team_data.get("name", ""),
                     display_name=team_data.get("displayName", ""),
                     location=team_data.get("location", ""),
-                    conference=team_data.get("groups", {}).get("id", "").split("/")[-1].upper() if team_data.get("groups") else "",
-                    division=team_data.get("groups", {}).get("name", "").split()[-1] if team_data.get("groups") else "",
+                    conference=conf,
+                    division=div,
                     color=team_data.get("color"),
                     logo_url=team_data.get("logos", [{}])[0].get("href")
                     if team_data.get("logos")
@@ -217,7 +236,18 @@ class ESPNAPIClient:
             date = datetime.fromisoformat(date_str.replace("Z", "+00:00"))
 
             season = game_data.get("season", {}).get("year", 2025)
-            week = game_data.get("week", {}).get("number", 1)
+
+            # Extract week number from $ref URL
+            try:
+                week_ref = game_data.get("week", {}).get("$ref", "")
+                if week_ref and "/weeks/" in week_ref:
+                    week = int(week_ref.split("/weeks/")[-1].split("?")[0])
+                else:
+                    self.logger.warning(f"Could not extract week from game {game_id}")
+                    week = 1
+            except (ValueError, IndexError) as e:
+                self.logger.warning(f"Failed to parse week number for game {game_id}: {e}")
+                week = 1
 
             competitions = game_data.get("competitions", [])
             if not competitions:
@@ -285,7 +315,18 @@ class ESPNAPIClient:
             date = datetime.fromisoformat(date_str.replace("Z", "+00:00"))
 
             season = event.get("season", {}).get("year", 2025)
-            week = event.get("week", {}).get("number", 1)
+
+            # Extract week number from $ref URL
+            try:
+                week_ref = event.get("week", {}).get("$ref", "")
+                if week_ref and "/weeks/" in week_ref:
+                    week = int(week_ref.split("/weeks/")[-1].split("?")[0])
+                else:
+                    self.logger.warning(f"Could not extract week from game {game_id}")
+                    week = 1
+            except (ValueError, IndexError) as e:
+                self.logger.warning(f"Failed to parse week number for game {game_id}: {e}")
+                week = 1
 
             competitions = event.get("competitions", [])
             if not competitions:
