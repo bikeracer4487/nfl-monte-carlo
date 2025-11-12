@@ -127,6 +127,9 @@ class ESPNAPIClient:
         """
         Fetch complete season schedule.
 
+        Uses Site API to fetch all weeks of the season, which includes
+        proper completion status for games that have been played.
+
         Args:
             season: Season year (default: 2025)
 
@@ -137,42 +140,40 @@ class ESPNAPIClient:
             ESPNAPIError: If API call fails
         """
         self.logger.info(f"Fetching {season} NFL schedule from ESPN")
-        url = (
-            f"{self.core_api_url}/sports/football/leagues/nfl/"
-            f"seasons/{season}/types/2/events"
-        )
-        params = {"limit": 1000}
 
-        try:
-            response_data = self._make_request(url, params)
+        all_games = []
 
-            items = response_data.get("items", [])
-            if not items:
-                self.logger.warning("No games found in schedule")
-                return []
+        # Fetch each week of the regular season (weeks 1-18)
+        for week in range(1, 19):
+            try:
+                url = f"{self.base_url}/sports/football/nfl/scoreboard"
+                params = {
+                    "limit": 100,
+                    "dates": season,
+                    "seasontype": 2,  # Regular season
+                    "week": week
+                }
 
-            games = []
-            for item in items:
-                # Each item has a $ref URL to the detailed game data
-                game_url = item.get("$ref", "")
-                if game_url:
+                response_data = self._make_request(url, params)
+                events = response_data.get("events", [])
+
+                for event in events:
                     try:
-                        game = self._fetch_game_details(game_url)
+                        game = self._parse_scoreboard_game(event)
                         if game:
-                            games.append(game)
+                            all_games.append(game)
                     except Exception as e:
                         self.logger.warning(
-                            f"Failed to fetch game details from {game_url}: {e}"
+                            f"Failed to parse game in week {week}: {e}"
                         )
                         continue
 
-            self.logger.info(f"Successfully fetched {len(games)} games")
-            return games
+            except Exception as e:
+                self.logger.warning(f"Failed to fetch week {week}: {e}")
+                continue
 
-        except requests.RequestException as e:
-            raise ESPNAPIError(f"Failed to fetch schedule: {e}") from e
-        except (KeyError, ValueError) as e:
-            raise ESPNAPIError(f"Failed to parse schedule data: {e}") from e
+        self.logger.info(f"Successfully fetched {len(all_games)} games")
+        return all_games
 
     def fetch_scoreboard(self, week: Optional[int] = None) -> list[Game]:
         """

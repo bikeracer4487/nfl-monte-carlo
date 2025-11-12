@@ -102,6 +102,35 @@ class Game:
         else:
             return None  # Tie
 
+    def get_winner(self) -> str:
+        """
+        Return "home", "away", or "tie" for game outcome.
+
+        Returns:
+            "home" if home team won
+            "away" if away team won
+            "tie" if game tied or not yet completed
+        """
+        if not self.is_completed:
+            return "tie"
+
+        home = (
+            self.override_home_score if self.is_overridden else self.home_score
+        )
+        away = (
+            self.override_away_score if self.is_overridden else self.away_score
+        )
+
+        if home is None or away is None:
+            return "tie"
+
+        if home > away:
+            return "home"
+        elif away > home:
+            return "away"
+        else:
+            return "tie"
+
     def get_effective_scores(self) -> tuple[Optional[int], Optional[int]]:
         """
         Return effective scores (override or actual).
