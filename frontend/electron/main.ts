@@ -2,6 +2,7 @@ import { app, BrowserWindow } from 'electron';
 import path from 'path';
 import { spawn, ChildProcess } from 'child_process';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -36,13 +37,37 @@ function createWindow() {
 
 function startPythonBackend() {
   if (process.env.NODE_ENV === 'development') {
-    const backendPath = path.join(__dirname, '../../backend/api/server.py');
-    console.log('Starting Python backend...', backendPath);
+    // Navigate from dist-electron/main.js to project root
+    // dist-electron -> frontend -> root
+    const rootDir = path.join(__dirname, '../../'); 
+    const backendPath = path.join(rootDir, 'backend/api/server.py');
     
-    // Spawn python process
-    // Assuming python3 is in path and venv is active or requirements are installed
-    pythonProcess = spawn('python3', [backendPath], {
-      cwd: path.join(__dirname, '../../'),
+    console.log('Project Root:', rootDir);
+    console.log('Backend Script:', backendPath);
+    
+    // Determine python executable
+    let pythonExecutable = 'python'; // Default fallback for Windows
+    
+    // Check for venv
+    const venvPythonWin = path.join(rootDir, 'venv', 'Scripts', 'python.exe');
+    const venvPythonUnix = path.join(rootDir, 'venv', 'bin', 'python');
+    
+    if (process.platform === 'win32') {
+        if (fs.existsSync(venvPythonWin)) {
+            pythonExecutable = venvPythonWin;
+        }
+    } else {
+        if (fs.existsSync(venvPythonUnix)) {
+            pythonExecutable = venvPythonUnix;
+        } else {
+            pythonExecutable = 'python3';
+        }
+    }
+
+    console.log(`Starting Python backend with: ${pythonExecutable}`);
+    
+    pythonProcess = spawn(pythonExecutable, [backendPath], {
+      cwd: rootDir,
       stdio: 'inherit' // Pipe output to console
     });
 
