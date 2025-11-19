@@ -3,9 +3,6 @@ import path from 'path';
 import { spawn, ChildProcess } from 'child_process';
 import fs from 'fs';
 
-const __dirname = path.dirname(__filename);
-
-
 // Important: Disable node integration and enable context isolation for security
 // and to prevent conflicts with global 'module' or 'exports'.
 let mainWindow: BrowserWindow | null;
@@ -16,7 +13,7 @@ function createWindow() {
     width: 1280,
     height: 800,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, 'preload.cjs'),
       nodeIntegration: false,
       contextIsolation: true,
     },
