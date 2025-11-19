@@ -15,7 +15,7 @@ import numpy as np
 from ..data.models import Game, Team, Standing
 from ..utils.logger import setup_logger
 from .probabilities import get_game_probabilities
-from .scores import generate_game_score
+from .scores import generate_game_score, DEFAULT_POINTS_MEAN
 from .standings import calculate_standings
 from .tiebreakers import seed_conference_playoffs, determine_division_winners
 
@@ -200,12 +200,28 @@ def simulate_season(
         # Home wins = 1, Away wins = 0
         home_wins_matrix = (random_matrix < probs_matrix).astype(int)
 
+        # Generate ALL random scores at once (vectorized)
+        # Generate random poisson scores for all games in all simulations
+        home_scores_matrix = np.random.poisson(DEFAULT_POINTS_MEAN, size=(num_simulations, len(remaining_games)))
+        away_scores_matrix = np.random.poisson(DEFAULT_POINTS_MEAN, size=(num_simulations, len(remaining_games)))
+
+        # Fix scores to match winners
+        # 1. Where home won but score <= away score
+        fix_home_wins = (home_wins_matrix == 1) & (away_scores_matrix >= home_scores_matrix)
+        home_scores_matrix[fix_home_wins] = away_scores_matrix[fix_home_wins] + 1
+
+        # 2. Where away won (home_wins == 0) but score <= home score
+        fix_away_wins = (home_wins_matrix == 0) & (home_scores_matrix >= away_scores_matrix)
+        away_scores_matrix[fix_away_wins] = home_scores_matrix[fix_away_wins] + 1
+
         logger.info(
             f"Generated {num_simulations * len(remaining_games):,} random game outcomes"
         )
     else:
         # All games completed, no simulations needed
         home_wins_matrix = np.zeros((num_simulations, 0), dtype=int)
+        home_scores_matrix = np.zeros((num_simulations, 0), dtype=int)
+        away_scores_matrix = np.zeros((num_simulations, 0), dtype=int)
 
     # Initialize team stats
     team_stats = {
@@ -242,24 +258,11 @@ def simulate_season(
         # optimization: construct list without deepcopying completed_games (they are read-only here)
         sim_games = completed_games + simulation_buffer_games
 
-        # Generate simulated game outcomes with scores
+        # Apply pre-calculated scores to simulation games
         if remaining_games:
             for game_idx, sim_game in enumerate(simulation_buffer_games):
-                # Determine winner from vectorized results
-                home_won = home_wins_matrix[sim_idx, game_idx] == 1
-
-                # Generate scores (Poisson distribution)
-                home_score = generate_game_score()
-                away_score = generate_game_score()
-
-                # Ensure score reflects winner
-                if home_won and away_score >= home_score:
-                    home_score = away_score + 1
-                elif not home_won and home_score >= away_score:
-                    away_score = home_score + 1
-
-                sim_game.home_score = home_score
-                sim_game.away_score = away_score
+                sim_game.home_score = int(home_scores_matrix[sim_idx, game_idx])
+                sim_game.away_score = int(away_scores_matrix[sim_idx, game_idx])
 
         # Calculate full standings with tiebreaker data
         standings_dict = calculate_standings(sim_games, teams)

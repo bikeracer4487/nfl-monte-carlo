@@ -66,7 +66,24 @@ export const Schedule = () => {
           >
             <ChevronLeft size={20} />
           </button>
-          <span className="font-medium text-white min-w-[80px] text-center">Week {week}</span>
+          
+          <div className="relative">
+            <select
+              value={week}
+              onChange={(e) => setWeek(Number(e.target.value))}
+              className="appearance-none bg-transparent text-white font-medium py-1 pl-2 pr-8 text-center outline-none cursor-pointer hover:text-blue-400 transition-colors"
+            >
+              {Array.from({ length: 18 }, (_, i) => i + 1).map((w) => (
+                <option key={w} value={w} className="bg-[#1E1E1E] text-white">
+                  Week {w}
+                </option>
+              ))}
+            </select>
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
+              <ChevronRight size={12} className="rotate-90" />
+            </div>
+          </div>
+
           <button
             onClick={() => setWeek(w => Math.min(18, w + 1))}
             className="p-2 hover:bg-gray-700 rounded-md text-gray-400 hover:text-white disabled:opacity-50"
@@ -155,13 +172,16 @@ const GameCard = ({ game, teamMap, onSave, onClear }: { game: Game; teamMap: Rec
               className="w-16 bg-[#121212] border border-gray-700 rounded px-2 py-1 text-right text-white focus:border-blue-500 outline-none font-mono text-lg"
             />
             {!isCompleted && (
-              <input
-                type="number"
-                placeholder="Odds"
-                value={awayMoneyline}
-                onChange={(e) => setAwayMoneyline(e.target.value)}
-                className="w-16 bg-[#121212] border border-gray-800 rounded px-2 py-0.5 text-right text-gray-400 focus:border-blue-500 outline-none font-mono text-xs"
-              />
+              <div className="relative group">
+                <input
+                  type="number"
+                  placeholder="ML"
+                  value={awayMoneyline}
+                  onChange={(e) => setAwayMoneyline(e.target.value)}
+                  className="w-16 bg-[#121212] border border-gray-800 rounded px-2 py-0.5 text-right text-gray-400 focus:border-blue-500 outline-none font-mono text-xs"
+                  title="Moneyline Odds"
+                />
+              </div>
             )}
           </div>
         </div>
@@ -184,13 +204,16 @@ const GameCard = ({ game, teamMap, onSave, onClear }: { game: Game; teamMap: Rec
               className="w-16 bg-[#121212] border border-gray-700 rounded px-2 py-1 text-right text-white focus:border-blue-500 outline-none font-mono text-lg"
             />
             {!isCompleted && (
-              <input
-                type="number"
-                placeholder="Odds"
-                value={homeMoneyline}
-                onChange={(e) => setHomeMoneyline(e.target.value)}
-                className="w-16 bg-[#121212] border border-gray-800 rounded px-2 py-0.5 text-right text-gray-400 focus:border-blue-500 outline-none font-mono text-xs"
-              />
+              <div className="relative group">
+                <input
+                  type="number"
+                  placeholder="ML"
+                  value={homeMoneyline}
+                  onChange={(e) => setHomeMoneyline(e.target.value)}
+                  className="w-16 bg-[#121212] border border-gray-800 rounded px-2 py-0.5 text-right text-gray-400 focus:border-blue-500 outline-none font-mono text-xs"
+                  title="Moneyline Odds"
+                />
+              </div>
             )}
           </div>
         </div>

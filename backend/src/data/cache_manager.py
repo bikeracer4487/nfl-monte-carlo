@@ -159,10 +159,20 @@ class CacheManager:
         Args:
             odds_data: Dictionary of odds from OddsAPIClient
         """
+        serializable_odds = {}
+        for key, value in odds_data.items():
+            serializable_odds[key] = value.copy()
+            commence = value.get("commence_time")
+            last_update = value.get("last_update")
+            if isinstance(commence, datetime):
+                serializable_odds[key]["commence_time"] = commence.isoformat()
+            if isinstance(last_update, datetime):
+                serializable_odds[key]["last_update"] = last_update.isoformat()
+
         data = {
             "cached_at": datetime.now().isoformat(),
             "game_count": len(odds_data),
-            "odds": odds_data,
+            "odds": serializable_odds,
         }
 
         self._write_json(self.odds_cache, data)
@@ -183,6 +193,18 @@ class CacheManager:
             return None
 
         odds = data.get("odds", {})
+        for value in odds.values():
+            commence = value.get("commence_time")
+            last_update = value.get("last_update")
+            try:
+                if isinstance(commence, str):
+                    value["commence_time"] = datetime.fromisoformat(commence)
+                if isinstance(last_update, str):
+                    value["last_update"] = datetime.fromisoformat(last_update)
+            except ValueError:
+                # Leave as string if parsing fails
+                continue
+
         self.logger.info(f"Loaded odds for {len(odds)} games from cache")
         return odds
 

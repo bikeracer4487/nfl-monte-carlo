@@ -1,0 +1,276 @@
+{
+  "cached_at": "2025-11-19T07:45:01.618127",
+  "game_count": 30,
+  "odds": {
+    "Buffalo Bills_vs_Houston Texans": {
+      "home_team": "Houston Texans",
+      "away_team": "Buffalo Bills",
+      "home_odds": 235,
+      "away_odds": -290,
+      "commence_time": "2025-11-21T01:15:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617809"
+    },
+    "New York Jets_vs_Baltimore Ravens": {
+      "home_team": "Baltimore Ravens",
+      "away_team": "New York Jets",
+      "home_odds": -900,
+      "away_odds": 600,
+      "commence_time": "2025-11-23T18:00:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617831"
+    },
+    "Pittsburgh Steelers_vs_Chicago Bears": {
+      "home_team": "Chicago Bears",
+      "away_team": "Pittsburgh Steelers",
+      "home_odds": -155,
+      "away_odds": 130,
+      "commence_time": "2025-11-23T18:00:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617836"
+    },
+    "New England Patriots_vs_Cincinnati Bengals": {
+      "home_team": "Cincinnati Bengals",
+      "away_team": "New England Patriots",
+      "home_odds": 310,
+      "away_odds": -395,
+      "commence_time": "2025-11-23T18:00:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617840"
+    },
+    "New York Giants_vs_Detroit Lions": {
+      "home_team": "Detroit Lions",
+      "away_team": "New York Giants",
+      "home_odds": -520,
+      "away_odds": 390,
+      "commence_time": "2025-11-23T18:00:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617844"
+    },
+    "Minnesota Vikings_vs_Green Bay Packers": {
+      "home_team": "Green Bay Packers",
+      "away_team": "Minnesota Vikings",
+      "home_odds": -325,
+      "away_odds": 260,
+      "commence_time": "2025-11-23T18:00:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617848"
+    },
+    "Indianapolis Colts_vs_Kansas City Chiefs": {
+      "home_team": "Kansas City Chiefs",
+      "away_team": "Indianapolis Colts",
+      "home_odds": -185,
+      "away_odds": 154,
+      "commence_time": "2025-11-23T18:00:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617851"
+    },
+    "Seattle Seahawks_vs_Tennessee Titans": {
+      "home_team": "Tennessee Titans",
+      "away_team": "Seattle Seahawks",
+      "home_odds": 575,
+      "away_odds": -850,
+      "commence_time": "2025-11-23T18:00:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617854"
+    },
+    "Jacksonville Jaguars_vs_Arizona Cardinals": {
+      "home_team": "Arizona Cardinals",
+      "away_team": "Jacksonville Jaguars",
+      "home_odds": 124,
+      "away_odds": -148,
+      "commence_time": "2025-11-23T21:05:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617858"
+    },
+    "Cleveland Browns_vs_Las Vegas Raiders": {
+      "home_team": "Las Vegas Raiders",
+      "away_team": "Cleveland Browns",
+      "home_odds": -175,
+      "away_odds": 145,
+      "commence_time": "2025-11-23T21:05:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617861"
+    },
+    "Atlanta Falcons_vs_New Orleans Saints": {
+      "home_team": "New Orleans Saints",
+      "away_team": "Atlanta Falcons",
+      "home_odds": -125,
+      "away_odds": 105,
+      "commence_time": "2025-11-23T21:25:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617865"
+    },
+    "Philadelphia Eagles_vs_Dallas Cowboys": {
+      "home_team": "Dallas Cowboys",
+      "away_team": "Philadelphia Eagles",
+      "home_odds": 145,
+      "away_odds": -175,
+      "commence_time": "2025-11-23T21:25:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617868"
+    },
+    "Tampa Bay Buccaneers_vs_Los Angeles Rams": {
+      "home_team": "Los Angeles Rams",
+      "away_team": "Tampa Bay Buccaneers",
+      "home_odds": -325,
+      "away_odds": 260,
+      "commence_time": "2025-11-24T01:20:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617872"
+    },
+    "Carolina Panthers_vs_San Francisco 49ers": {
+      "home_team": "San Francisco 49ers",
+      "away_team": "Carolina Panthers",
+      "home_odds": -340,
+      "away_odds": 270,
+      "commence_time": "2025-11-25T01:15:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617875"
+    },
+    "Green Bay Packers_vs_Detroit Lions": {
+      "home_team": "Detroit Lions",
+      "away_team": "Green Bay Packers",
+      "home_odds": -170,
+      "away_odds": 142,
+      "commence_time": "2025-11-27T18:00:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617879"
+    },
+    "Kansas City Chiefs_vs_Dallas Cowboys": {
+      "home_team": "Dallas Cowboys",
+      "away_team": "Kansas City Chiefs",
+      "home_odds": 170,
+      "away_odds": -205,
+      "commence_time": "2025-11-27T21:30:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617882"
+    },
+    "Cincinnati Bengals_vs_Baltimore Ravens": {
+      "home_team": "Baltimore Ravens",
+      "away_team": "Cincinnati Bengals",
+      "home_odds": -575,
+      "away_odds": 425,
+      "commence_time": "2025-11-28T01:20:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617885"
+    },
+    "Chicago Bears_vs_Philadelphia Eagles": {
+      "home_team": "Philadelphia Eagles",
+      "away_team": "Chicago Bears",
+      "home_odds": -360,
+      "away_odds": 285,
+      "commence_time": "2025-11-28T20:00:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617888"
+    },
+    "Arizona Cardinals_vs_Tampa Bay Buccaneers": {
+      "home_team": "Tampa Bay Buccaneers",
+      "away_team": "Arizona Cardinals",
+      "home_odds": -290,
+      "away_odds": 235,
+      "commence_time": "2025-11-30T18:00:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617892"
+    },
+    "Atlanta Falcons_vs_New York Jets": {
+      "home_team": "New York Jets",
+      "away_team": "Atlanta Falcons",
+      "home_odds": 105,
+      "away_odds": -125,
+      "commence_time": "2025-11-30T18:00:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617895"
+    },
+    "Los Angeles Rams_vs_Carolina Panthers": {
+      "home_team": "Carolina Panthers",
+      "away_team": "Los Angeles Rams",
+      "home_odds": 350,
+      "away_odds": -455,
+      "commence_time": "2025-11-30T18:00:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617898"
+    },
+    "San Francisco 49ers_vs_Cleveland Browns": {
+      "home_team": "Cleveland Browns",
+      "away_team": "San Francisco 49ers",
+      "home_odds": 245,
+      "away_odds": -305,
+      "commence_time": "2025-11-30T18:00:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617901"
+    },
+    "Houston Texans_vs_Indianapolis Colts": {
+      "home_team": "Indianapolis Colts",
+      "away_team": "Houston Texans",
+      "home_odds": -205,
+      "away_odds": 170,
+      "commence_time": "2025-11-30T18:00:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617905"
+    },
+    "Jacksonville Jaguars_vs_Tennessee Titans": {
+      "home_team": "Tennessee Titans",
+      "away_team": "Jacksonville Jaguars",
+      "home_odds": 250,
+      "away_odds": -310,
+      "commence_time": "2025-11-30T18:00:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617908"
+    },
+    "New Orleans Saints_vs_Miami Dolphins": {
+      "home_team": "Miami Dolphins",
+      "away_team": "New Orleans Saints",
+      "home_odds": -205,
+      "away_odds": 170,
+      "commence_time": "2025-11-30T18:00:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617911"
+    },
+    "Minnesota Vikings_vs_Seattle Seahawks": {
+      "home_team": "Seattle Seahawks",
+      "away_team": "Minnesota Vikings",
+      "home_odds": -360,
+      "away_odds": 285,
+      "commence_time": "2025-11-30T21:05:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617915"
+    },
+    "Buffalo Bills_vs_Pittsburgh Steelers": {
+      "home_team": "Pittsburgh Steelers",
+      "away_team": "Buffalo Bills",
+      "home_odds": 170,
+      "away_odds": -205,
+      "commence_time": "2025-11-30T21:25:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617918"
+    },
+    "Las Vegas Raiders_vs_Los Angeles Chargers": {
+      "home_team": "Los Angeles Chargers",
+      "away_team": "Las Vegas Raiders",
+      "home_odds": -425,
+      "away_odds": 330,
+      "commence_time": "2025-11-30T21:25:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617921"
+    },
+    "Denver Broncos_vs_Washington Commanders": {
+      "home_team": "Washington Commanders",
+      "away_team": "Denver Broncos",
+      "home_odds": 235,
+      "away_odds": -290,
+      "commence_time": "2025-12-01T01:20:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617924"
+    },
+    "New York Giants_vs_New England Patriots": {
+      "home_team": "New England Patriots",
+      "away_team": "New York Giants",
+      "home_odds": -360,
+      "away_odds": 285,
+      "commence_time": "2025-12-02T01:15:00+00:00",
+      "bookmaker": "draftkings",
+      "last_update": "2025-11-19T07:45:01.617927"
+    }
+  }
+}

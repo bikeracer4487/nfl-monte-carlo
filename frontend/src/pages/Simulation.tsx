@@ -14,6 +14,8 @@ interface SortConfig {
 
 export const Simulation = () => {
   const [numSimulations, setNumSimulations] = useState(10000);
+  const [useOdds, setUseOdds] = useState(true);
+  const [removeVig, setRemoveVig] = useState(true);
   const [result, setResult] = useState<SimulationResult | null>(null);
   const [sortConfig, setSortConfig] = useState<SortConfig>({
     key: 'playoff_probability',
@@ -32,7 +34,7 @@ export const Simulation = () => {
   }, [teams]);
 
   const mutation = useMutation({
-    mutationFn: () => runSimulation(numSimulations),
+    mutationFn: () => runSimulation(numSimulations, useOdds, removeVig),
     onSuccess: (data) => {
       setResult(data);
     },
@@ -104,11 +106,36 @@ export const Simulation = () => {
               <option value={100000}>100,000 (High Precision)</option>
             </select>
           </div>
+
+          <div className="flex flex-col justify-end gap-2 mb-1">
+            <label className="flex items-center gap-2 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={useOdds}
+                onChange={(e) => setUseOdds(e.target.checked)}
+                className="w-4 h-4 rounded border-gray-700 bg-[#121212] text-blue-600 focus:ring-blue-500/50"
+              />
+              <span className="text-sm text-gray-300">Use Game Odds</span>
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={removeVig}
+                onChange={(e) => setRemoveVig(e.target.checked)}
+                disabled={!useOdds}
+                className={clsx(
+                  "w-4 h-4 rounded border-gray-700 bg-[#121212] text-blue-600 focus:ring-blue-500/50",
+                  !useOdds && "opacity-50 cursor-not-allowed"
+                )}
+              />
+              <span className={clsx("text-sm text-gray-300", !useOdds && "opacity-50")}>Remove Vig</span>
+            </label>
+          </div>
           
           <button
             onClick={() => mutation.mutate()}
             disabled={mutation.isPending}
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-w-[180px] justify-center"
           >
             {mutation.isPending ? (
               <>
@@ -124,6 +151,16 @@ export const Simulation = () => {
           </button>
         </div>
       </div>
+
+      {mutation.isPending && (
+        <div className="mb-8 bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 flex items-center gap-3">
+          <Loader2 className="text-blue-400 animate-spin" size={24} />
+          <div>
+            <h3 className="font-semibold text-blue-400">Simulation in Progress</h3>
+            <p className="text-sm text-gray-400">Running Monte Carlo simulation... This may take a few seconds.</p>
+          </div>
+        </div>
+      )}
 
       {result && (
         <div className="space-y-6">
