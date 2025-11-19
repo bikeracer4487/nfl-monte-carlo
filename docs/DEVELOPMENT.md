@@ -94,6 +94,23 @@ Enable debug logging in `.env`:
 LOG_LEVEL=DEBUG
 ```
 
+## Simulation Progress & Cancellation
+
+The web UI now uses asynchronous simulation jobs so we can show live progress and allow cancellation:
+
+- Backend orchestrator: `backend/api/simulation_jobs.py`
+  - `POST /simulation-jobs` starts a job and returns `job_id`, status, and initial progress (0%).
+  - `GET /simulation-jobs/{job_id}` returns current progress (`0-100`), status (`pending`, `running`, `completed`, `cancelled`, `error`), and the serialized `SimulationResult` once complete.
+  - `DELETE /simulation-jobs/{job_id}` signals cancellation via a threading event. `simulate_season()` accepts a `cancel_callback` and raises `SimulationCancelledError` so jobs stop cleanly.
+  - Only one job may run at a time; new requests while another job is active receive HTTP `409`.
+
+- Frontend workflow: `frontend/src/pages/Simulation.tsx`
+  - Clicking “Run Simulation” calls `startSimulationJob()` and begins polling every second via `getSimulationJob()`.
+  - A progress bar and status text display percentage complete and automatically switch from “seconds” to “minutes” messaging when `num_simulations >= 100_000`.
+  - The “Cancel” button issues `cancelSimulationJob()`. When cancellation completes, the UI surfaces the cancelled state; otherwise, successful runs display the results table using `job.result`.
+
+When adding new clients (CLI, GUI, etc.), prefer this job API so every surface gets consistent progress reporting and cancellation semantics.
+
 ## Phase 1 Progress
 
 ### Completed ✅

@@ -1,6 +1,15 @@
-import React, { useState } from 'react';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { runSimulation, getTeams, type SimulationResult, type Team, type TeamSimulationStats } from '../lib/api';
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import {
+  getTeams,
+  startSimulationJob,
+  getSimulationJob,
+  cancelSimulationJob,
+  type SimulationResult,
+  type Team,
+  type TeamSimulationStats,
+  type SimulationJob,
+} from '../lib/api';
 import { Play, Loader2, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -13,12 +22,16 @@ interface SortConfig {
 }
 
 export const Simulation = () => {
-  const [numSimulations, setNumSimulations] = useState(10000);
-  const [result, setResult] = useState<SimulationResult | null>(null);
-  const [sortConfig, setSortConfig] = useState<SortConfig>({
+  const [numSimulations, setNumSimulations] = React.useState(10000);
+  const [result, setResult] = React.useState<SimulationResult | null>(null);
+  const [sortConfig, setSortConfig] = React.useState<SortConfig>({
     key: 'playoff_probability',
     direction: 'desc'
   });
+  const [jobData, setJobData] = React.useState<SimulationJob | null>(null);
+  const [jobId, setJobId] = React.useState<string | null>(null);
+  const [jobError, setJobError] = React.useState<string | null>(null);
+  const [isCancelling, setIsCancelling] = React.useState(false);
 
   const { data: teams } = useQuery({
     queryKey: ['teams'],
@@ -31,12 +44,76 @@ export const Simulation = () => {
     return map;
   }, [teams]);
 
-  const mutation = useMutation({
-    mutationFn: () => runSimulation(numSimulations),
-    onSuccess: (data) => {
-      setResult(data);
-    },
-  });
+  const isJobActive = jobData?.status === 'pending' || jobData?.status === 'running';
+  const progressValue = jobData ? jobData.progress ?? 0 : 0;
+
+  const handleStartSimulation = async () => {
+    if (isJobActive) return;
+    try {
+      setJobError(null);
+      setResult(null);
+      const job = await startSimulationJob(numSimulations);
+      setJobData(job);
+      setJobId(job.job_id);
+    } catch (error) {
+      setJobError('Failed to start simulation. Please try again.');
+    }
+  };
+
+  const handleCancelSimulation = async () => {
+    if (!jobData) return;
+    try {
+      setIsCancelling(true);
+      const updated = await cancelSimulationJob(jobData.job_id);
+      setJobData(updated);
+    } catch (error) {
+      setJobError('Failed to cancel simulation. Please try again.');
+      setIsCancelling(false);
+    }
+  };
+
+  React.useEffect(() => {
+    if (!jobId) return;
+
+    let active = true;
+
+    const pollStatus = async () => {
+      try {
+        const latest = await getSimulationJob(jobId);
+        if (!active) return;
+        setJobData(latest);
+
+        if (latest.status === 'completed') {
+          setResult(latest.result ?? null);
+          setJobId(null);
+        } else if (latest.status === 'cancelled') {
+          setJobId(null);
+        } else if (latest.status === 'error') {
+          setJobError(latest.error ?? 'Simulation failed.');
+          setJobId(null);
+        }
+      } catch (error) {
+        if (!active) return;
+        setJobError('Failed to fetch simulation progress.');
+        setJobId(null);
+      }
+    };
+
+    pollStatus();
+    const intervalId = window.setInterval(pollStatus, 1000);
+
+    return () => {
+      active = false;
+      window.clearInterval(intervalId);
+    };
+  }, [jobId]);
+
+  React.useEffect(() => {
+    if (!jobData) return;
+    if (jobData.status !== 'pending' && jobData.status !== 'running') {
+      setIsCancelling(false);
+    }
+  }, [jobData]);
 
   const handleSort = (key: SortKey) => {
     setSortConfig(current => ({
@@ -105,33 +182,86 @@ export const Simulation = () => {
             </select>
           </div>
           
-          <button
-            onClick={() => mutation.mutate()}
-            disabled={mutation.isPending}
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-w-[180px] justify-center"
-          >
-            {mutation.isPending ? (
-              <>
-                <Loader2 className="animate-spin" size={20} />
-                Simulating...
-              </>
-            ) : (
-              <>
-                <Play size={20} />
-                Run Simulation
-              </>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleStartSimulation}
+              disabled={isJobActive}
+              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-w-[180px] justify-center"
+            >
+              {isJobActive ? (
+                <>
+                  <Loader2 className="animate-spin" size={20} />
+                  Simulating...
+                </>
+              ) : (
+                <>
+                  <Play size={20} />
+                  Run Simulation
+                </>
+              )}
+            </button>
+            {isJobActive && (
+              <button
+                onClick={handleCancelSimulation}
+                disabled={isCancelling}
+                className="px-4 py-2 rounded-lg border border-gray-700 text-gray-200 hover:border-red-500 hover:text-red-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isCancelling ? 'Cancelling...' : 'Cancel'}
+              </button>
             )}
-          </button>
+          </div>
         </div>
       </div>
 
-      {mutation.isPending && (
-        <div className="mb-8 bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 flex items-center gap-3">
-          <Loader2 className="text-blue-400 animate-spin" size={24} />
-          <div>
-            <h3 className="font-semibold text-blue-400">Simulation in Progress</h3>
-            <p className="text-sm text-gray-400">Running Monte Carlo simulation... This may take a few seconds.</p>
+      {jobError && (
+        <div className="mb-6 rounded-lg border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+          {jobError}
+        </div>
+      )}
+
+      {jobData && jobData.status !== 'completed' && (
+        <div className="mb-8 bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 space-y-3">
+          <div className="flex items-center gap-3">
+            {isJobActive ? (
+              <Loader2 className="text-blue-400 animate-spin" size={24} />
+            ) : null}
+            <div>
+              <h3 className="font-semibold text-blue-400">
+                {jobData.status === 'cancelled'
+                  ? 'Simulation Cancelled'
+                  : jobData.status === 'error'
+                  ? 'Simulation Failed'
+                  : 'Simulation In Progress'}
+              </h3>
+              <p className="text-sm text-gray-400">
+                {jobData.message ||
+                  `Status: ${jobData.status.charAt(0).toUpperCase()}${jobData.status.slice(1)}`}
+              </p>
+              {(jobData.status === 'pending' || jobData.status === 'running') && (
+                <p className="text-xs text-gray-500 mt-1">
+                  Running {jobData.num_simulations.toLocaleString()} simulations.{' '}
+                  {jobData.num_simulations >= 100000
+                    ? 'This may take a few minutes.'
+                    : 'This may take a few seconds.'}
+                </p>
+              )}
+            </div>
           </div>
+
+          {(jobData.status === 'pending' || jobData.status === 'running') && (
+            <div>
+              <div className="flex items-center justify-between text-xs text-gray-400 mb-2">
+                <span>Progress</span>
+                <span>{progressValue}%</span>
+              </div>
+              <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-blue-500 transition-all duration-300"
+                  style={{ width: `${progressValue}%` }}
+                />
+              </div>
+            </div>
+          )}
         </div>
       )}
 

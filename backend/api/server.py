@@ -18,6 +18,7 @@ from src.data.espn_api import ESPNAPIClient
 from src.data.models import Team, Game
 from src.simulation.monte_carlo import simulate_season, SimulationResult
 from src.simulation.standings import calculate_standings
+from simulation_jobs import SimulationJobManager
 
 # Setup logging
 logger = setup_logger(__name__)
@@ -34,6 +35,7 @@ class AppState:
         self.teams: List[Team] = []
         self.games: List[Game] = []
         self.simulation_result: Optional[SimulationResult] = None
+        self.job_manager = SimulationJobManager()
 
 state = AppState()
 
@@ -200,6 +202,51 @@ class OverrideRequest(BaseModel):
     home_score: Optional[int] = None
     away_score: Optional[int] = None
     is_overridden: bool = True
+
+
+class SimulationJobRequest(BaseModel):
+    num_simulations: int = 10000
+    random_seed: Optional[int] = None
+
+
+@app.post("/simulation-jobs")
+async def create_simulation_job(request: SimulationJobRequest):
+    """Start an asynchronous simulation job."""
+    if not state.teams or not state.games:
+        raise HTTPException(status_code=503, detail="Data not loaded")
+
+    try:
+        job = state.job_manager.start_job(
+            games=state.games,
+            teams=state.teams,
+            num_simulations=request.num_simulations,
+            random_seed=request.random_seed,
+        )
+    except RuntimeError as exc:
+        raise HTTPException(status_code=409, detail=str(exc))
+
+    return job.to_dict()
+
+
+@app.get("/simulation-jobs/{job_id}")
+async def get_simulation_job(job_id: str):
+    """Fetch status/progress for a simulation job."""
+    job = state.job_manager.get_job(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="Job not found")
+
+    return job.to_dict()
+
+
+@app.delete("/simulation-jobs/{job_id}")
+async def cancel_simulation_job(job_id: str):
+    """Cancel a running simulation job."""
+    job = state.job_manager.get_job(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="Job not found")
+
+    state.job_manager.cancel_job(job_id)
+    return job.to_dict()
 
 @app.post("/override")
 async def set_override(request: OverrideRequest):

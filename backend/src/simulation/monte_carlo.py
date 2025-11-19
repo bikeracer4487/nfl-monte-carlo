@@ -21,6 +21,10 @@ from .tiebreakers import seed_conference_playoffs, determine_division_winners
 logger = setup_logger(__name__)
 
 
+class SimulationCancelledError(Exception):
+    """Raised when a simulation run is cancelled early."""
+
+
 @dataclass
 class TeamSimulationStats:
     """Statistics for a single team across all simulations."""
@@ -124,6 +128,7 @@ def simulate_season(
     num_simulations: int = 10000,
     random_seed: Optional[int] = None,
     progress_callback: Optional[Callable[[int], None]] = None,
+    cancel_callback: Optional[Callable[[], bool]] = None,
 ) -> SimulationResult:
     """
     Run Monte Carlo simulation of NFL season using vectorized NumPy operations.
@@ -141,6 +146,7 @@ def simulate_season(
         num_simulations: Number of Monte Carlo simulations to run (default: 10000)
         random_seed: Optional random seed for reproducibility
         progress_callback: Optional callback function receiving percentage complete (0-100)
+        cancel_callback: Optional function returning True when caller requests cancellation
 
     Returns:
         SimulationResult with aggregated statistics
@@ -226,6 +232,9 @@ def simulate_season(
     progress_interval = max(1, num_simulations // 100)  # Report every 1%
     
     for sim_idx in range(num_simulations):
+        if cancel_callback and cancel_callback():
+            logger.info("Simulation cancelled at %s/%s iterations", sim_idx, num_simulations)
+            raise SimulationCancelledError("Simulation cancelled")
         # Report progress
         if progress_callback and sim_idx % progress_interval == 0:
             pct = int((sim_idx / num_simulations) * 100)
