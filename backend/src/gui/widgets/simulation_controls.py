@@ -26,7 +26,7 @@ class SimulationControls(QWidget):
     """Widget for simulation configuration and control."""
 
     # Signals
-    runSimulation = Signal(int, bool, int, int)  # num_sims, use_seed, seed, week
+    runSimulation = Signal(int, bool, int, int, bool)  # num_sims, use_seed, seed, week, use_odds
     cancelSimulation = Signal()
 
     def __init__(self):
@@ -85,6 +85,13 @@ class SimulationControls(QWidget):
         # Row 2: Options
         options_layout = QHBoxLayout()
 
+        self.use_odds_check = QCheckBox("Use game odds")
+        self.use_odds_check.setChecked(True)
+        self.use_odds_check.setToolTip("If unchecked, all matchups are treated as 50/50 coin tosses")
+        options_layout.addWidget(self.use_odds_check)
+
+        options_layout.addSpacing(20)
+
         self.remove_vig_check = QCheckBox("Remove vig from odds")
         self.remove_vig_check.setChecked(True)
         options_layout.addWidget(self.remove_vig_check)
@@ -138,7 +145,8 @@ class SimulationControls(QWidget):
         # Row 5: Progress bar
         self.progress_bar = QProgressBar()
         self.progress_bar.setMinimum(0)
-        self.progress_bar.setMaximum(0)  # Indeterminate mode
+        self.progress_bar.setMaximum(100)
+        self.progress_bar.setValue(0)
         self.progress_bar.setVisible(False)
         controls_layout.addWidget(self.progress_bar)
 
@@ -158,16 +166,18 @@ class SimulationControls(QWidget):
         use_seed = self.use_seed_check.isChecked()
         seed = self.random_seed_spin.value() if use_seed else -1
         week = self.week_selector.current_week
+        use_odds = self.use_odds_check.isChecked()
 
         logger.info(
-            f"Run simulation clicked: {num_sims} sims, seed={seed}, week={week}"
+            f"Run simulation clicked: {num_sims} sims, seed={seed}, week={week}, use_odds={use_odds}"
         )
 
         # Update UI state
         self.set_running(True)
+        self.progress_bar.setValue(0)
 
         # Emit signal
-        self.runSimulation.emit(num_sims, use_seed, seed, week)
+        self.runSimulation.emit(num_sims, use_seed, seed, week, use_odds)
 
     def on_cancel_clicked(self):
         """Handle cancel button click."""
@@ -192,6 +202,7 @@ class SimulationControls(QWidget):
 
         # Update controls
         self.num_sims_spin.setEnabled(not running)
+        self.use_odds_check.setEnabled(not running)
         self.remove_vig_check.setEnabled(not running)
         self.use_seed_check.setEnabled(not running)
         self.random_seed_spin.setEnabled(not running and self.use_seed_check.isChecked())

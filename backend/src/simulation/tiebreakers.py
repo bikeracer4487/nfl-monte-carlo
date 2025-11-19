@@ -67,26 +67,49 @@ def calculate_head_to_head_record(
     return (wins, losses, ties)
 
 
-def check_head_to_head_sweep(team_ids: List[str], games: List[Game]) -> Optional[str]:
+def check_head_to_head_sweep(
+    team_ids: List[str], games: List[Game], standings_dict: Optional[Dict[str, Standing]] = None
+) -> Optional[str]:
     """
     Check if one team has beaten (or lost to) all other teams in a multi-team tie.
 
     Args:
         team_ids: List of tied team IDs
         games: List of all games
+        standings_dict: Optional dictionary of standings (for optimized H2H lookup)
 
     Returns:
         Team ID of the team that swept all others, or None if no sweep
     """
-    # Build head-to-head matrix
-    h2h_records = {}
-    for team_id in team_ids:
-        h2h_records[team_id] = {}
-        for opponent_id in team_ids:
-            if team_id != opponent_id:
-                h2h_records[team_id][opponent_id] = calculate_head_to_head_record(
-                    team_id, opponent_id, games
-                )
+    # Use optimized H2H lookup if standings provided
+    if standings_dict:
+        h2h_records = {}
+        for team_id in team_ids:
+            h2h_records[team_id] = {}
+            team_standing = standings_dict.get(team_id)
+            if not team_standing:
+                continue
+                
+            for opponent_id in team_ids:
+                if team_id == opponent_id:
+                    continue
+                
+                # Look up in pre-calculated records
+                if opponent_id in team_standing.head_to_head_records:
+                    h2h_records[team_id][opponent_id] = team_standing.head_to_head_records[opponent_id]
+                else:
+                    # Fallback if not found (shouldn't happen if populated correctly)
+                    h2h_records[team_id][opponent_id] = (0, 0, 0)
+    else:
+        # Legacy slow method: Calculate from games
+        h2h_records = {}
+        for team_id in team_ids:
+            h2h_records[team_id] = {}
+            for opponent_id in team_ids:
+                if team_id != opponent_id:
+                    h2h_records[team_id][opponent_id] = calculate_head_to_head_record(
+                        team_id, opponent_id, games
+                    )
 
     # Check for sweep (team beat all others)
     for team_id in team_ids:
@@ -94,6 +117,11 @@ def check_head_to_head_sweep(team_ids: List[str], games: List[Game]) -> Optional
         for opponent_id in team_ids:
             if team_id == opponent_id:
                 continue
+            
+            if team_id not in h2h_records or opponent_id not in h2h_records[team_id]:
+                beat_all = False
+                break
+                
             wins, losses, ties = h2h_records[team_id][opponent_id]
             if wins == 0 or losses > 0:  # Didn't beat this opponent or lost to them
                 beat_all = False
@@ -355,7 +383,12 @@ def break_division_tie_two_teams(
     team2_id = team2_standing.team_id
 
     # 1. Head-to-head record
-    h2h = calculate_head_to_head_record(team1_id, team2_id, games)
+    # Use pre-calculated if available in standings
+    if team2_id in team1_standing.head_to_head_records:
+        h2h = team1_standing.head_to_head_records[team2_id]
+    else:
+        h2h = calculate_head_to_head_record(team1_id, team2_id, games)
+        
     h2h_pct_1 = record_to_percentage(*h2h)
     h2h_pct_2 = record_to_percentage(*h2h[::-1])  # Reverse for team2's perspective
     if h2h_pct_1 > h2h_pct_2:
@@ -459,7 +492,12 @@ def break_wild_card_tie_two_teams(
     team2_id = team2_standing.team_id
 
     # 1. Head-to-head (if they played)
-    h2h = calculate_head_to_head_record(team1_id, team2_id, games)
+    # Use pre-calculated if available in standings
+    if team2_id in team1_standing.head_to_head_records:
+        h2h = team1_standing.head_to_head_records[team2_id]
+    else:
+        h2h = calculate_head_to_head_record(team1_id, team2_id, games)
+        
     if sum(h2h) > 0:  # They played each other
         h2h_pct_1 = record_to_percentage(*h2h)
         h2h_pct_2 = record_to_percentage(*h2h[::-1])
@@ -575,7 +613,7 @@ def break_division_tie_multi_teams(
     # NOTE: After each step, if only 2 teams remain, restart at step 1 for 2-team procedure
 
     # Step: Head-to-head sweep
-    sweep_winner = check_head_to_head_sweep(team_ids, games)
+    sweep_winner = check_head_to_head_sweep(team_ids, games, standings_dict)
     if sweep_winner:
         remaining = [tid for tid in team_ids if tid != sweep_winner]
         remaining_standings = [standings_dict[tid] for tid in remaining]

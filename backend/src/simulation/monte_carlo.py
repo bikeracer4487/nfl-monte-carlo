@@ -7,7 +7,7 @@ Phase 3 includes tiebreaker-based playoff seeding.
 """
 
 from dataclasses import dataclass, field
-from typing import Optional, Dict, List
+from typing import Optional, Dict, List, Callable
 from copy import deepcopy
 
 import numpy as np
@@ -125,6 +125,8 @@ def simulate_season(
     num_simulations: int = 10000,
     random_seed: Optional[int] = None,
     remove_vig: bool = True,
+    use_odds: bool = True,
+    progress_callback: Optional[Callable[[int], None]] = None,
 ) -> SimulationResult:
     """
     Run Monte Carlo simulation of NFL season using vectorized NumPy operations.
@@ -142,6 +144,8 @@ def simulate_season(
         num_simulations: Number of Monte Carlo simulations to run (default: 10000)
         random_seed: Optional random seed for reproducibility
         remove_vig: If True, remove bookmaker's vig from probabilities (default: True)
+        use_odds: If True, use game odds for probabilities. If False, use 50/50 (default: True)
+        progress_callback: Optional callback function receiving percentage complete (0-100)
 
     Returns:
         SimulationResult with aggregated statistics
@@ -175,7 +179,12 @@ def simulate_season(
     game_away_teams = []
 
     for game in remaining_games:
-        prob_home, prob_away = get_game_probabilities(game, remove_vig_flag=remove_vig)
+        if use_odds:
+            prob_home, prob_away = get_game_probabilities(game, remove_vig_flag=remove_vig)
+        else:
+            # 50/50 coin toss
+            prob_home, prob_away = 0.5, 0.5
+            
         probabilities.append(prob_home)
         game_home_teams.append(game.home_team_id)
         game_away_teams.append(game.away_team_id)
@@ -210,16 +219,32 @@ def simulate_season(
     team_id_to_idx = {team.id: idx for idx, team in enumerate(teams)}
 
     # Process each simulation
+    
+    # Pre-allocate simulation objects to avoid deepcopy overhead in loop
+    # We'll reuse these objects for every simulation, just updating scores
+    simulation_buffer_games = [deepcopy(g) for g in remaining_games]
+    for game in simulation_buffer_games:
+        game.is_completed = True
+        
+    # Progress reporting variables
+    last_progress_pct = -1
+    progress_interval = max(1, num_simulations // 100)  # Report every 1%
+    
     for sim_idx in range(num_simulations):
+        # Report progress
+        if progress_callback and sim_idx % progress_interval == 0:
+            pct = int((sim_idx / num_simulations) * 100)
+            if pct > last_progress_pct:
+                progress_callback(pct)
+                last_progress_pct = pct
+                
         # Create list of all games for this simulation (completed + simulated)
-        sim_games = deepcopy(completed_games)
+        # optimization: construct list without deepcopying completed_games (they are read-only here)
+        sim_games = completed_games + simulation_buffer_games
 
         # Generate simulated game outcomes with scores
         if remaining_games:
-            for game_idx, game in enumerate(remaining_games):
-                sim_game = deepcopy(game)
-                sim_game.is_completed = True
-
+            for game_idx, sim_game in enumerate(simulation_buffer_games):
                 # Determine winner from vectorized results
                 home_won = home_wins_matrix[sim_idx, game_idx] == 1
 
@@ -235,8 +260,6 @@ def simulate_season(
 
                 sim_game.home_score = home_score
                 sim_game.away_score = away_score
-
-                sim_games.append(sim_game)
 
         # Calculate full standings with tiebreaker data
         standings_dict = calculate_standings(sim_games, teams)
@@ -268,6 +291,9 @@ def simulate_season(
                 logger.warning(f"Error in playoff seeding for {conference} in sim {sim_idx}: {e}")
                 # Fall back to simple method for this simulation
                 continue
+
+    if progress_callback:
+        progress_callback(100)
 
     execution_time = time.time() - start_time
     logger.info(

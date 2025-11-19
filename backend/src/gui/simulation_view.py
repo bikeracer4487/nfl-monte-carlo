@@ -97,7 +97,7 @@ class SimulationView(QWidget):
         self.setLayout(main_layout)
 
     def on_run_simulation(
-        self, num_sims: int, use_seed: bool, seed: int, week: int
+        self, num_sims: int, use_seed: bool, seed: int, week: int, use_odds: bool
     ):
         """
         Handle run simulation request.
@@ -107,10 +107,11 @@ class SimulationView(QWidget):
             use_seed: Whether to use random seed
             seed: Random seed value
             week: Week to simulate from
+            use_odds: Whether to use game odds
         """
         logger.info(
             f"Running simulation: num_sims={num_sims}, use_seed={use_seed}, "
-            f"seed={seed}, week={week}"
+            f"seed={seed}, week={week}, use_odds={use_odds}"
         )
 
         # Create worker and thread
@@ -121,6 +122,7 @@ class SimulationView(QWidget):
             random_seed=seed if use_seed else None,
             remove_vig=self.controls.remove_vig_check.isChecked(),
             selected_week=week,
+            use_odds=use_odds,
         )
         self.thread = QThread()
 
@@ -132,6 +134,7 @@ class SimulationView(QWidget):
         self.worker.started.connect(self.on_simulation_started)
         self.worker.finished.connect(self.on_simulation_complete)
         self.worker.progress.connect(self.on_simulation_progress)
+        self.worker.progress_value.connect(self.controls.progress_bar.setValue)
         self.worker.error.connect(self.on_simulation_error)
         self.worker.finished.connect(self.thread.quit)
         self.worker.finished.connect(self.worker.deleteLater)

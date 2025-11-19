@@ -22,6 +22,7 @@ class SimulationWorker(QObject):
     # Signals
     finished = Signal(object)  # Emits SimulationResult
     progress = Signal(str)  # Emits status messages
+    progress_value = Signal(int)  # Emits percentage complete (0-100)
     error = Signal(str)  # Emits error messages
     started = Signal()  # Emits when simulation starts
 
@@ -33,6 +34,7 @@ class SimulationWorker(QObject):
         random_seed: Optional[int],
         remove_vig: bool,
         selected_week: int,
+        use_odds: bool = True,
     ):
         """
         Initialize simulation worker.
@@ -44,6 +46,7 @@ class SimulationWorker(QObject):
             random_seed: Random seed for reproducibility (None for random)
             remove_vig: Whether to remove vig from odds
             selected_week: Week to simulate from (-1 for current)
+            use_odds: Whether to use game odds (default: True)
         """
         super().__init__()
         self.games = games
@@ -52,6 +55,7 @@ class SimulationWorker(QObject):
         self.random_seed = random_seed
         self.remove_vig = remove_vig
         self.selected_week = selected_week
+        self.use_odds = use_odds
 
     def run(self):
         """Run Monte Carlo simulation in background."""
@@ -79,6 +83,10 @@ class SimulationWorker(QObject):
             # Record start time
             start_time = time.time()
 
+            # Define callback for progress updates
+            def update_progress(pct: int):
+                self.progress_value.emit(pct)
+
             # Run simulation
             result = simulate_season(
                 games=filtered_games,
@@ -86,6 +94,8 @@ class SimulationWorker(QObject):
                 num_simulations=self.num_simulations,
                 random_seed=self.random_seed,
                 remove_vig=self.remove_vig,
+                use_odds=self.use_odds,
+                progress_callback=update_progress,
             )
 
             # Calculate execution time
