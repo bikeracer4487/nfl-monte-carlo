@@ -14,8 +14,8 @@ This script demonstrates the functionality of Phase 1:
 import sys
 from pathlib import Path
 
-# Add src to path
-sys.path.insert(0, str(Path(__file__).parent))
+# Add backend to path
+sys.path.insert(0, str(Path(__file__).parent / "backend"))
 
 from dotenv import load_dotenv
 

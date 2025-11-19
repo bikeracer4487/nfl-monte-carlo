@@ -1,6 +1,6 @@
 {
   "season": 2025,
-  "cached_at": "2025-11-18T21:59:02.464966",
+  "cached_at": "2025-11-18T23:05:58.289880",
   "game_count": 272,
   "games": [
     {
@@ -22,7 +22,7 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.402005",
+      "last_updated": "2025-11-18T23:05:55.608722",
       "odds_source": null
     },
     {
@@ -44,7 +44,7 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.402040",
+      "last_updated": "2025-11-18T23:05:55.608751",
       "odds_source": null
     },
     {
@@ -66,7 +66,7 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.402061",
+      "last_updated": "2025-11-18T23:05:55.608759",
       "odds_source": null
     },
     {
@@ -88,7 +88,7 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.402076",
+      "last_updated": "2025-11-18T23:05:55.608764",
       "odds_source": null
     },
     {
@@ -110,7 +110,7 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.402093",
+      "last_updated": "2025-11-18T23:05:55.608769",
       "odds_source": null
     },
     {
@@ -132,7 +132,7 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.402107",
+      "last_updated": "2025-11-18T23:05:55.608774",
       "odds_source": null
     },
     {
@@ -154,7 +154,7 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.402120",
+      "last_updated": "2025-11-18T23:05:55.608778",
       "odds_source": null
     },
     {
@@ -176,7 +176,7 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.402133",
+      "last_updated": "2025-11-18T23:05:55.608783",
       "odds_source": null
     },
     {
@@ -198,7 +198,7 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.402146",
+      "last_updated": "2025-11-18T23:05:55.608787",
       "odds_source": null
     },
     {
@@ -220,7 +220,7 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.402159",
+      "last_updated": "2025-11-18T23:05:55.608791",
       "odds_source": null
     },
     {
@@ -242,7 +242,7 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.402172",
+      "last_updated": "2025-11-18T23:05:55.608795",
       "odds_source": null
     },
     {
@@ -264,7 +264,7 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.402185",
+      "last_updated": "2025-11-18T23:05:55.608799",
       "odds_source": null
     },
     {
@@ -286,7 +286,7 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.402198",
+      "last_updated": "2025-11-18T23:05:55.608803",
       "odds_source": null
     },
     {
@@ -308,7 +308,7 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.402211",
+      "last_updated": "2025-11-18T23:05:55.608808",
       "odds_source": null
     },
     {
@@ -330,7 +330,7 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.402306",
+      "last_updated": "2025-11-18T23:05:55.608812",
       "odds_source": null
     },
     {
@@ -352,12 +352,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.402331",
+      "last_updated": "2025-11-18T23:05:55.608816",
       "odds_source": null
     },
     {
       "id": "401772936",
-      "week": 1,
+      "week": 2,
       "season": 2025,
       "home_team_id": "9",
       "away_team_id": "28",
@@ -374,12 +374,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.519865",
+      "last_updated": "2025-11-18T23:05:55.876567",
       "odds_source": null
     },
     {
       "id": "401772725",
-      "week": 1,
+      "week": 2,
       "season": 2025,
       "home_team_id": "4",
       "away_team_id": "30",
@@ -396,12 +396,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.519892",
+      "last_updated": "2025-11-18T23:05:55.876581",
       "odds_source": null
     },
     {
       "id": "401772834",
-      "week": 1,
+      "week": 2,
       "season": 2025,
       "home_team_id": "6",
       "away_team_id": "19",
@@ -418,12 +418,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.519908",
+      "last_updated": "2025-11-18T23:05:55.876599",
       "odds_source": null
     },
     {
       "id": "401772835",
-      "week": 1,
+      "week": 2,
       "season": 2025,
       "home_team_id": "8",
       "away_team_id": "3",
@@ -440,12 +440,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.519924",
+      "last_updated": "2025-11-18T23:05:55.876612",
       "odds_source": null
     },
     {
       "id": "401772724",
-      "week": 1,
+      "week": 2,
       "season": 2025,
       "home_team_id": "10",
       "away_team_id": "14",
@@ -462,12 +462,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.519939",
+      "last_updated": "2025-11-18T23:05:55.876618",
       "odds_source": null
     },
     {
       "id": "401772728",
-      "week": 1,
+      "week": 2,
       "season": 2025,
       "home_team_id": "15",
       "away_team_id": "17",
@@ -484,12 +484,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.519953",
+      "last_updated": "2025-11-18T23:05:55.876623",
       "odds_source": null
     },
     {
       "id": "401772833",
-      "week": 1,
+      "week": 2,
       "season": 2025,
       "home_team_id": "18",
       "away_team_id": "25",
@@ -506,12 +506,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.519966",
+      "last_updated": "2025-11-18T23:05:55.876628",
       "odds_source": null
     },
     {
       "id": "401772727",
-      "week": 1,
+      "week": 2,
       "season": 2025,
       "home_team_id": "20",
       "away_team_id": "2",
@@ -528,12 +528,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.519979",
+      "last_updated": "2025-11-18T23:05:55.876632",
       "odds_source": null
     },
     {
       "id": "401772836",
-      "week": 1,
+      "week": 2,
       "season": 2025,
       "home_team_id": "23",
       "away_team_id": "26",
@@ -550,12 +550,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.519992",
+      "last_updated": "2025-11-18T23:05:55.876636",
       "odds_source": null
     },
     {
       "id": "401772726",
-      "week": 1,
+      "week": 2,
       "season": 2025,
       "home_team_id": "33",
       "away_team_id": "5",
@@ -572,12 +572,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.520005",
+      "last_updated": "2025-11-18T23:05:55.876640",
       "odds_source": null
     },
     {
       "id": "401772729",
-      "week": 1,
+      "week": 2,
       "season": 2025,
       "home_team_id": "11",
       "away_team_id": "7",
@@ -594,12 +594,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.520018",
+      "last_updated": "2025-11-18T23:05:55.876645",
       "odds_source": null
     },
     {
       "id": "401772730",
-      "week": 1,
+      "week": 2,
       "season": 2025,
       "home_team_id": "22",
       "away_team_id": "29",
@@ -616,12 +616,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.520031",
+      "last_updated": "2025-11-18T23:05:55.876650",
       "odds_source": null
     },
     {
       "id": "401772837",
-      "week": 1,
+      "week": 2,
       "season": 2025,
       "home_team_id": "12",
       "away_team_id": "21",
@@ -638,12 +638,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.520044",
+      "last_updated": "2025-11-18T23:05:55.876653",
       "odds_source": null
     },
     {
       "id": "401772919",
-      "week": 1,
+      "week": 2,
       "season": 2025,
       "home_team_id": "16",
       "away_team_id": "1",
@@ -660,12 +660,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.520056",
+      "last_updated": "2025-11-18T23:05:55.876658",
       "odds_source": null
     },
     {
       "id": "401772715",
-      "week": 1,
+      "week": 2,
       "season": 2025,
       "home_team_id": "34",
       "away_team_id": "27",
@@ -682,12 +682,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.520069",
+      "last_updated": "2025-11-18T23:05:55.876661",
       "odds_source": null
     },
     {
       "id": "401772811",
-      "week": 1,
+      "week": 2,
       "season": 2025,
       "home_team_id": "13",
       "away_team_id": "24",
@@ -704,12 +704,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.520081",
+      "last_updated": "2025-11-18T23:05:55.876666",
       "odds_source": null
     },
     {
       "id": "401772937",
-      "week": 1,
+      "week": 3,
       "season": 2025,
       "home_team_id": "2",
       "away_team_id": "15",
@@ -726,12 +726,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.654792",
+      "last_updated": "2025-11-18T23:05:55.967113",
       "odds_source": null
     },
     {
       "id": "401772842",
-      "week": 1,
+      "week": 3,
       "season": 2025,
       "home_team_id": "5",
       "away_team_id": "9",
@@ -748,12 +748,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.654825",
+      "last_updated": "2025-11-18T23:05:55.967127",
       "odds_source": null
     },
     {
       "id": "401772733",
-      "week": 1,
+      "week": 3,
       "season": 2025,
       "home_team_id": "10",
       "away_team_id": "11",
@@ -770,12 +770,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.654846",
+      "last_updated": "2025-11-18T23:05:55.967131",
       "odds_source": null
     },
     {
       "id": "401772731",
-      "week": 1,
+      "week": 3,
       "season": 2025,
       "home_team_id": "16",
       "away_team_id": "4",
@@ -792,12 +792,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.654865",
+      "last_updated": "2025-11-18T23:05:55.967135",
       "odds_source": null
     },
     {
       "id": "401772732",
-      "week": 1,
+      "week": 3,
       "season": 2025,
       "home_team_id": "17",
       "away_team_id": "23",
@@ -814,12 +814,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.654882",
+      "last_updated": "2025-11-18T23:05:55.967138",
       "odds_source": null
     },
     {
       "id": "401772839",
-      "week": 1,
+      "week": 3,
       "season": 2025,
       "home_team_id": "21",
       "away_team_id": "14",
@@ -836,12 +836,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.654898",
+      "last_updated": "2025-11-18T23:05:55.967150",
       "odds_source": null
     },
     {
       "id": "401772840",
-      "week": 1,
+      "week": 3,
       "season": 2025,
       "home_team_id": "27",
       "away_team_id": "20",
@@ -858,12 +858,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.654914",
+      "last_updated": "2025-11-18T23:05:55.967153",
       "odds_source": null
     },
     {
       "id": "401772841",
-      "week": 1,
+      "week": 3,
       "season": 2025,
       "home_team_id": "28",
       "away_team_id": "13",
@@ -880,12 +880,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.654930",
+      "last_updated": "2025-11-18T23:05:55.967156",
       "odds_source": null
     },
     {
       "id": "401772838",
-      "week": 1,
+      "week": 3,
       "season": 2025,
       "home_team_id": "29",
       "away_team_id": "1",
@@ -902,12 +902,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.654945",
+      "last_updated": "2025-11-18T23:05:55.967159",
       "odds_source": null
     },
     {
       "id": "401772734",
-      "week": 1,
+      "week": 3,
       "season": 2025,
       "home_team_id": "30",
       "away_team_id": "34",
@@ -924,12 +924,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.654961",
+      "last_updated": "2025-11-18T23:05:55.967162",
       "odds_source": null
     },
     {
       "id": "401772735",
-      "week": 1,
+      "week": 3,
       "season": 2025,
       "home_team_id": "24",
       "away_team_id": "7",
@@ -946,12 +946,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.654977",
+      "last_updated": "2025-11-18T23:05:55.967165",
       "odds_source": null
     },
     {
       "id": "401772736",
-      "week": 1,
+      "week": 3,
       "season": 2025,
       "home_team_id": "26",
       "away_team_id": "18",
@@ -968,12 +968,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.654993",
+      "last_updated": "2025-11-18T23:05:55.967169",
       "odds_source": null
     },
     {
       "id": "401772844",
-      "week": 1,
+      "week": 3,
       "season": 2025,
       "home_team_id": "3",
       "away_team_id": "6",
@@ -990,12 +990,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.655009",
+      "last_updated": "2025-11-18T23:05:55.967172",
       "odds_source": null
     },
     {
       "id": "401772843",
-      "week": 1,
+      "week": 3,
       "season": 2025,
       "home_team_id": "25",
       "away_team_id": "22",
@@ -1012,12 +1012,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.655024",
+      "last_updated": "2025-11-18T23:05:55.967175",
       "odds_source": null
     },
     {
       "id": "401772920",
-      "week": 1,
+      "week": 3,
       "season": 2025,
       "home_team_id": "19",
       "away_team_id": "12",
@@ -1034,12 +1034,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.655041",
+      "last_updated": "2025-11-18T23:05:55.967178",
       "odds_source": null
     },
     {
       "id": "401772812",
-      "week": 1,
+      "week": 3,
       "season": 2025,
       "home_team_id": "33",
       "away_team_id": "8",
@@ -1056,12 +1056,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.655058",
+      "last_updated": "2025-11-18T23:05:55.967181",
       "odds_source": null
     },
     {
       "id": "401772938",
-      "week": 1,
+      "week": 4,
       "season": 2025,
       "home_team_id": "22",
       "away_team_id": "26",
@@ -1078,12 +1078,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.762608",
+      "last_updated": "2025-11-18T23:05:56.052425",
       "odds_source": null
     },
     {
       "id": "401772632",
-      "week": 1,
+      "week": 4,
       "season": 2025,
       "home_team_id": "23",
       "away_team_id": "16",
@@ -1100,12 +1100,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.762684",
+      "last_updated": "2025-11-18T23:05:56.052445",
       "odds_source": null
     },
     {
       "id": "401772739",
-      "week": 1,
+      "week": 4,
       "season": 2025,
       "home_team_id": "1",
       "away_team_id": "28",
@@ -1122,12 +1122,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.762739",
+      "last_updated": "2025-11-18T23:05:56.052450",
       "odds_source": null
     },
     {
       "id": "401772740",
-      "week": 1,
+      "week": 4,
       "season": 2025,
       "home_team_id": "2",
       "away_team_id": "18",
@@ -1144,12 +1144,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.762782",
+      "last_updated": "2025-11-18T23:05:56.052455",
       "odds_source": null
     },
     {
       "id": "401772846",
-      "week": 1,
+      "week": 4,
       "season": 2025,
       "home_team_id": "8",
       "away_team_id": "5",
@@ -1166,12 +1166,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.762827",
+      "last_updated": "2025-11-18T23:05:56.052459",
       "odds_source": null
     },
     {
       "id": "401772847",
-      "week": 1,
+      "week": 4,
       "season": 2025,
       "home_team_id": "17",
       "away_team_id": "29",
@@ -1188,12 +1188,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.762872",
+      "last_updated": "2025-11-18T23:05:56.052464",
       "odds_source": null
     },
     {
       "id": "401772737",
-      "week": 1,
+      "week": 4,
       "season": 2025,
       "home_team_id": "19",
       "away_team_id": "24",
@@ -1210,12 +1210,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.762914",
+      "last_updated": "2025-11-18T23:05:56.052468",
       "odds_source": null
     },
     {
       "id": "401772845",
-      "week": 1,
+      "week": 4,
       "season": 2025,
       "home_team_id": "27",
       "away_team_id": "21",
@@ -1232,12 +1232,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.762951",
+      "last_updated": "2025-11-18T23:05:56.052475",
       "odds_source": null
     },
     {
       "id": "401772738",
-      "week": 1,
+      "week": 4,
       "season": 2025,
       "home_team_id": "34",
       "away_team_id": "10",
@@ -1254,12 +1254,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.762991",
+      "last_updated": "2025-11-18T23:05:56.052479",
       "odds_source": null
     },
     {
       "id": "401772849",
-      "week": 1,
+      "week": 4,
       "season": 2025,
       "home_team_id": "14",
       "away_team_id": "11",
@@ -1276,12 +1276,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.763028",
+      "last_updated": "2025-11-18T23:05:56.052484",
       "odds_source": null
     },
     {
       "id": "401772848",
-      "week": 1,
+      "week": 4,
       "season": 2025,
       "home_team_id": "25",
       "away_team_id": "30",
@@ -1298,12 +1298,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.763065",
+      "last_updated": "2025-11-18T23:05:56.052488",
       "odds_source": null
     },
     {
       "id": "401772741",
-      "week": 1,
+      "week": 4,
       "season": 2025,
       "home_team_id": "12",
       "away_team_id": "33",
@@ -1320,12 +1320,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.763100",
+      "last_updated": "2025-11-18T23:05:56.052492",
       "odds_source": null
     },
     {
       "id": "401772742",
-      "week": 1,
+      "week": 4,
       "season": 2025,
       "home_team_id": "13",
       "away_team_id": "3",
@@ -1342,12 +1342,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.763136",
+      "last_updated": "2025-11-18T23:05:56.052496",
       "odds_source": null
     },
     {
       "id": "401772921",
-      "week": 1,
+      "week": 4,
       "season": 2025,
       "home_team_id": "6",
       "away_team_id": "9",
@@ -1364,12 +1364,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.763176",
+      "last_updated": "2025-11-18T23:05:56.052501",
       "odds_source": null
     },
     {
       "id": "401772813",
-      "week": 1,
+      "week": 4,
       "season": 2025,
       "home_team_id": "15",
       "away_team_id": "20",
@@ -1386,12 +1386,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.763213",
+      "last_updated": "2025-11-18T23:05:56.052505",
       "odds_source": null
     },
     {
       "id": "401772716",
-      "week": 1,
+      "week": 4,
       "season": 2025,
       "home_team_id": "7",
       "away_team_id": "4",
@@ -1408,12 +1408,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.763250",
+      "last_updated": "2025-11-18T23:05:56.052509",
       "odds_source": null
     },
     {
       "id": "401772939",
-      "week": 1,
+      "week": 5,
       "season": 2025,
       "home_team_id": "14",
       "away_team_id": "25",
@@ -1430,12 +1430,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.894012",
+      "last_updated": "2025-11-18T23:05:56.324661",
       "odds_source": null
     },
     {
       "id": "401772633",
-      "week": 1,
+      "week": 5,
       "season": 2025,
       "home_team_id": "5",
       "away_team_id": "16",
@@ -1452,12 +1452,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.894064",
+      "last_updated": "2025-11-18T23:05:56.324678",
       "odds_source": null
     },
     {
       "id": "401772851",
-      "week": 1,
+      "week": 5,
       "season": 2025,
       "home_team_id": "11",
       "away_team_id": "13",
@@ -1474,12 +1474,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.894100",
+      "last_updated": "2025-11-18T23:05:56.324684",
       "odds_source": null
     },
     {
       "id": "401772744",
-      "week": 1,
+      "week": 5,
       "season": 2025,
       "home_team_id": "18",
       "away_team_id": "19",
@@ -1496,12 +1496,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.894122",
+      "last_updated": "2025-11-18T23:05:56.324688",
       "odds_source": null
     },
     {
       "id": "401772850",
-      "week": 1,
+      "week": 5,
       "season": 2025,
       "home_team_id": "20",
       "away_team_id": "6",
@@ -1518,12 +1518,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.894139",
+      "last_updated": "2025-11-18T23:05:56.324693",
       "odds_source": null
     },
     {
       "id": "401772745",
-      "week": 1,
+      "week": 5,
       "season": 2025,
       "home_team_id": "21",
       "away_team_id": "7",
@@ -1540,12 +1540,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.894155",
+      "last_updated": "2025-11-18T23:05:56.324697",
       "odds_source": null
     },
     {
       "id": "401772852",
-      "week": 1,
+      "week": 5,
       "season": 2025,
       "home_team_id": "29",
       "away_team_id": "15",
@@ -1562,12 +1562,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.894170",
+      "last_updated": "2025-11-18T23:05:56.324701",
       "odds_source": null
     },
     {
       "id": "401772743",
-      "week": 1,
+      "week": 5,
       "season": 2025,
       "home_team_id": "33",
       "away_team_id": "34",
@@ -1584,12 +1584,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.894185",
+      "last_updated": "2025-11-18T23:05:56.324705",
       "odds_source": null
     },
     {
       "id": "401772747",
-      "week": 1,
+      "week": 5,
       "season": 2025,
       "home_team_id": "22",
       "away_team_id": "10",
@@ -1606,12 +1606,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.894200",
+      "last_updated": "2025-11-18T23:05:56.324709",
       "odds_source": null
     },
     {
       "id": "401772746",
-      "week": 1,
+      "week": 5,
       "season": 2025,
       "home_team_id": "26",
       "away_team_id": "27",
@@ -1628,12 +1628,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.894214",
+      "last_updated": "2025-11-18T23:05:56.324713",
       "odds_source": null
     },
     {
       "id": "401772854",
-      "week": 1,
+      "week": 5,
       "season": 2025,
       "home_team_id": "4",
       "away_team_id": "8",
@@ -1650,12 +1650,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.894229",
+      "last_updated": "2025-11-18T23:05:56.324717",
       "odds_source": null
     },
     {
       "id": "401772853",
-      "week": 1,
+      "week": 5,
       "season": 2025,
       "home_team_id": "24",
       "away_team_id": "28",
@@ -1672,12 +1672,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.894244",
+      "last_updated": "2025-11-18T23:05:56.324721",
       "odds_source": null
     },
     {
       "id": "401772922",
-      "week": 1,
+      "week": 5,
       "season": 2025,
       "home_team_id": "2",
       "away_team_id": "17",
@@ -1694,12 +1694,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.894258",
+      "last_updated": "2025-11-18T23:05:56.324725",
       "odds_source": null
     },
     {
       "id": "401772814",
-      "week": 1,
+      "week": 5,
       "season": 2025,
       "home_team_id": "30",
       "away_team_id": "12",
@@ -1716,12 +1716,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:58:59.894345",
+      "last_updated": "2025-11-18T23:05:56.324730",
       "odds_source": null
     },
     {
       "id": "401772940",
-      "week": 1,
+      "week": 6,
       "season": 2025,
       "home_team_id": "19",
       "away_team_id": "21",
@@ -1738,12 +1738,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.168694",
+      "last_updated": "2025-11-18T23:05:56.442526",
       "odds_source": null
     },
     {
       "id": "401772634",
-      "week": 1,
+      "week": 6,
       "season": 2025,
       "home_team_id": "20",
       "away_team_id": "7",
@@ -1760,12 +1760,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.168722",
+      "last_updated": "2025-11-18T23:05:56.442555",
       "odds_source": null
     },
     {
       "id": "401772856",
-      "week": 1,
+      "week": 6,
       "season": 2025,
       "home_team_id": "11",
       "away_team_id": "22",
@@ -1782,12 +1782,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.168739",
+      "last_updated": "2025-11-18T23:05:56.442566",
       "odds_source": null
     },
     {
       "id": "401772750",
-      "week": 1,
+      "week": 6,
       "season": 2025,
       "home_team_id": "15",
       "away_team_id": "24",
@@ -1804,12 +1804,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.168753",
+      "last_updated": "2025-11-18T23:05:56.442577",
       "odds_source": null
     },
     {
       "id": "401772751",
-      "week": 1,
+      "week": 6,
       "season": 2025,
       "home_team_id": "18",
       "away_team_id": "17",
@@ -1826,12 +1826,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.168766",
+      "last_updated": "2025-11-18T23:05:56.442586",
       "odds_source": null
     },
     {
       "id": "401772748",
-      "week": 1,
+      "week": 6,
       "season": 2025,
       "home_team_id": "23",
       "away_team_id": "5",
@@ -1848,12 +1848,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.168779",
+      "last_updated": "2025-11-18T23:05:56.442596",
       "odds_source": null
     },
     {
       "id": "401772858",
-      "week": 1,
+      "week": 6,
       "season": 2025,
       "home_team_id": "29",
       "away_team_id": "6",
@@ -1870,12 +1870,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.168792",
+      "last_updated": "2025-11-18T23:05:56.442606",
       "odds_source": null
     },
     {
       "id": "401772857",
-      "week": 1,
+      "week": 6,
       "season": 2025,
       "home_team_id": "30",
       "away_team_id": "26",
@@ -1892,12 +1892,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.168804",
+      "last_updated": "2025-11-18T23:05:56.442615",
       "odds_source": null
     },
     {
       "id": "401772855",
-      "week": 1,
+      "week": 6,
       "season": 2025,
       "home_team_id": "33",
       "away_team_id": "14",
@@ -1914,12 +1914,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.168816",
+      "last_updated": "2025-11-18T23:05:56.442624",
       "odds_source": null
     },
     {
       "id": "401772859",
-      "week": 1,
+      "week": 6,
       "season": 2025,
       "home_team_id": "13",
       "away_team_id": "10",
@@ -1936,12 +1936,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.168828",
+      "last_updated": "2025-11-18T23:05:56.442633",
       "odds_source": null
     },
     {
       "id": "401772752",
-      "week": 1,
+      "week": 6,
       "season": 2025,
       "home_team_id": "9",
       "away_team_id": "4",
@@ -1958,12 +1958,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.168841",
+      "last_updated": "2025-11-18T23:05:56.442643",
       "odds_source": null
     },
     {
       "id": "401772749",
-      "week": 1,
+      "week": 6,
       "season": 2025,
       "home_team_id": "27",
       "away_team_id": "25",
@@ -1980,12 +1980,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.168853",
+      "last_updated": "2025-11-18T23:05:56.442652",
       "odds_source": null
     },
     {
       "id": "401772923",
-      "week": 1,
+      "week": 6,
       "season": 2025,
       "home_team_id": "12",
       "away_team_id": "8",
@@ -2002,12 +2002,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.168865",
+      "last_updated": "2025-11-18T23:05:56.442664",
       "odds_source": null
     },
     {
       "id": "401772815",
-      "week": 1,
+      "week": 6,
       "season": 2025,
       "home_team_id": "1",
       "away_team_id": "2",
@@ -2024,12 +2024,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.168877",
+      "last_updated": "2025-11-18T23:05:56.442674",
       "odds_source": null
     },
     {
       "id": "401772717",
-      "week": 1,
+      "week": 6,
       "season": 2025,
       "home_team_id": "28",
       "away_team_id": "3",
@@ -2046,12 +2046,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.168890",
+      "last_updated": "2025-11-18T23:05:56.442683",
       "odds_source": null
     },
     {
       "id": "401772941",
-      "week": 1,
+      "week": 7,
       "season": 2025,
       "home_team_id": "4",
       "away_team_id": "23",
@@ -2068,12 +2068,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.324993",
+      "last_updated": "2025-11-18T23:05:56.529347",
       "odds_source": null
     },
     {
       "id": "401772635",
-      "week": 1,
+      "week": 7,
       "season": 2025,
       "home_team_id": "30",
       "away_team_id": "14",
@@ -2090,12 +2090,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.325045",
+      "last_updated": "2025-11-18T23:05:56.529365",
       "odds_source": null
     },
     {
       "id": "401772861",
-      "week": 1,
+      "week": 7,
       "season": 2025,
       "home_team_id": "3",
       "away_team_id": "18",
@@ -2112,12 +2112,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.325073",
+      "last_updated": "2025-11-18T23:05:56.529372",
       "odds_source": null
     },
     {
       "id": "401772754",
-      "week": 1,
+      "week": 7,
       "season": 2025,
       "home_team_id": "5",
       "away_team_id": "15",
@@ -2134,12 +2134,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.325090",
+      "last_updated": "2025-11-18T23:05:56.529378",
       "odds_source": null
     },
     {
       "id": "401772755",
-      "week": 1,
+      "week": 7,
       "season": 2025,
       "home_team_id": "10",
       "away_team_id": "17",
@@ -2156,12 +2156,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.325105",
+      "last_updated": "2025-11-18T23:05:56.529384",
       "odds_source": null
     },
     {
       "id": "401772753",
-      "week": 1,
+      "week": 7,
       "season": 2025,
       "home_team_id": "12",
       "away_team_id": "13",
@@ -2178,12 +2178,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.325119",
+      "last_updated": "2025-11-18T23:05:56.529390",
       "odds_source": null
     },
     {
       "id": "401772862",
-      "week": 1,
+      "week": 7,
       "season": 2025,
       "home_team_id": "16",
       "away_team_id": "21",
@@ -2200,12 +2200,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.325132",
+      "last_updated": "2025-11-18T23:05:56.529396",
       "odds_source": null
     },
     {
       "id": "401772860",
-      "week": 1,
+      "week": 7,
       "season": 2025,
       "home_team_id": "20",
       "away_team_id": "29",
@@ -2222,12 +2222,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.325146",
+      "last_updated": "2025-11-18T23:05:56.529402",
       "odds_source": null
     },
     {
       "id": "401772757",
-      "week": 1,
+      "week": 7,
       "season": 2025,
       "home_team_id": "7",
       "away_team_id": "19",
@@ -2244,12 +2244,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.325159",
+      "last_updated": "2025-11-18T23:05:56.529407",
       "odds_source": null
     },
     {
       "id": "401772756",
-      "week": 1,
+      "week": 7,
       "season": 2025,
       "home_team_id": "24",
       "away_team_id": "11",
@@ -2266,12 +2266,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.325172",
+      "last_updated": "2025-11-18T23:05:56.529413",
       "odds_source": null
     },
     {
       "id": "401772864",
-      "week": 1,
+      "week": 7,
       "season": 2025,
       "home_team_id": "6",
       "away_team_id": "28",
@@ -2288,12 +2288,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.325185",
+      "last_updated": "2025-11-18T23:05:56.529419",
       "odds_source": null
     },
     {
       "id": "401772863",
-      "week": 1,
+      "week": 7,
       "season": 2025,
       "home_team_id": "22",
       "away_team_id": "9",
@@ -2310,12 +2310,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.325198",
+      "last_updated": "2025-11-18T23:05:56.529425",
       "odds_source": null
     },
     {
       "id": "401772924",
-      "week": 1,
+      "week": 7,
       "season": 2025,
       "home_team_id": "25",
       "away_team_id": "1",
@@ -2332,12 +2332,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.325210",
+      "last_updated": "2025-11-18T23:05:56.529431",
       "odds_source": null
     },
     {
       "id": "401772816",
-      "week": 1,
+      "week": 7,
       "season": 2025,
       "home_team_id": "8",
       "away_team_id": "27",
@@ -2354,12 +2354,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.325223",
+      "last_updated": "2025-11-18T23:05:56.529436",
       "odds_source": null
     },
     {
       "id": "401772826",
-      "week": 1,
+      "week": 7,
       "season": 2025,
       "home_team_id": "26",
       "away_team_id": "34",
@@ -2376,12 +2376,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.325237",
+      "last_updated": "2025-11-18T23:05:56.529442",
       "odds_source": null
     },
     {
       "id": "401772942",
-      "week": 1,
+      "week": 8,
       "season": 2025,
       "home_team_id": "24",
       "away_team_id": "16",
@@ -2398,12 +2398,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.483896",
+      "last_updated": "2025-11-18T23:05:56.616361",
       "odds_source": null
     },
     {
       "id": "401772760",
-      "week": 1,
+      "week": 8,
       "season": 2025,
       "home_team_id": "1",
       "away_team_id": "15",
@@ -2420,12 +2420,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.483985",
+      "last_updated": "2025-11-18T23:05:56.616379",
       "odds_source": null
     },
     {
       "id": "401772758",
-      "week": 1,
+      "week": 8,
       "season": 2025,
       "home_team_id": "4",
       "away_team_id": "20",
@@ -2442,12 +2442,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.484010",
+      "last_updated": "2025-11-18T23:05:56.616386",
       "odds_source": null
     },
     {
       "id": "401772868",
-      "week": 1,
+      "week": 8,
       "season": 2025,
       "home_team_id": "17",
       "away_team_id": "5",
@@ -2464,12 +2464,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.484027",
+      "last_updated": "2025-11-18T23:05:56.616391",
       "odds_source": null
     },
     {
       "id": "401772867",
-      "week": 1,
+      "week": 8,
       "season": 2025,
       "home_team_id": "21",
       "away_team_id": "19",
@@ -2486,12 +2486,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.484043",
+      "last_updated": "2025-11-18T23:05:56.616397",
       "odds_source": null
     },
     {
       "id": "401772865",
-      "week": 1,
+      "week": 8,
       "season": 2025,
       "home_team_id": "29",
       "away_team_id": "2",
@@ -2508,12 +2508,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.484060",
+      "last_updated": "2025-11-18T23:05:56.616403",
       "odds_source": null
     },
     {
       "id": "401772759",
-      "week": 1,
+      "week": 8,
       "season": 2025,
       "home_team_id": "33",
       "away_team_id": "3",
@@ -2530,12 +2530,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.484074",
+      "last_updated": "2025-11-18T23:05:56.616409",
       "odds_source": null
     },
     {
       "id": "401772866",
-      "week": 1,
+      "week": 8,
       "season": 2025,
       "home_team_id": "34",
       "away_team_id": "25",
@@ -2552,12 +2552,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.484170",
+      "last_updated": "2025-11-18T23:05:56.616414",
       "odds_source": null
     },
     {
       "id": "401772869",
-      "week": 1,
+      "week": 8,
       "season": 2025,
       "home_team_id": "18",
       "away_team_id": "27",
@@ -2574,12 +2574,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.484252",
+      "last_updated": "2025-11-18T23:05:56.616420",
       "odds_source": null
     },
     {
       "id": "401772762",
-      "week": 1,
+      "week": 8,
       "season": 2025,
       "home_team_id": "7",
       "away_team_id": "6",
@@ -2596,12 +2596,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.484279",
+      "last_updated": "2025-11-18T23:05:56.616425",
       "odds_source": null
     },
     {
       "id": "401772761",
-      "week": 1,
+      "week": 8,
       "season": 2025,
       "home_team_id": "11",
       "away_team_id": "10",
@@ -2618,12 +2618,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.484300",
+      "last_updated": "2025-11-18T23:05:56.616430",
       "odds_source": null
     },
     {
       "id": "401772925",
-      "week": 1,
+      "week": 8,
       "season": 2025,
       "home_team_id": "23",
       "away_team_id": "9",
@@ -2640,12 +2640,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.484318",
+      "last_updated": "2025-11-18T23:05:56.616454",
       "odds_source": null
     },
     {
       "id": "401772817",
-      "week": 1,
+      "week": 8,
       "season": 2025,
       "home_team_id": "12",
       "away_team_id": "28",
@@ -2662,12 +2662,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.484337",
+      "last_updated": "2025-11-18T23:05:56.616461",
       "odds_source": null
     },
     {
       "id": "401772943",
-      "week": 1,
+      "week": 9,
       "season": 2025,
       "home_team_id": "15",
       "away_team_id": "33",
@@ -2684,12 +2684,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.617719",
+      "last_updated": "2025-11-18T23:05:56.789760",
       "odds_source": null
     },
     {
       "id": "401772765",
-      "week": 1,
+      "week": 9,
       "season": 2025,
       "home_team_id": "4",
       "away_team_id": "3",
@@ -2706,12 +2706,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.617747",
+      "last_updated": "2025-11-18T23:05:56.789773",
       "odds_source": null
     },
     {
       "id": "401772871",
-      "week": 1,
+      "week": 9,
       "season": 2025,
       "home_team_id": "8",
       "away_team_id": "16",
@@ -2728,12 +2728,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.617764",
+      "last_updated": "2025-11-18T23:05:56.789777",
       "odds_source": null
     },
     {
       "id": "401772872",
-      "week": 1,
+      "week": 9,
       "season": 2025,
       "home_team_id": "9",
       "away_team_id": "29",
@@ -2750,12 +2750,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.617779",
+      "last_updated": "2025-11-18T23:05:56.789781",
       "odds_source": null
     },
     {
       "id": "401772764",
-      "week": 1,
+      "week": 9,
       "season": 2025,
       "home_team_id": "10",
       "away_team_id": "24",
@@ -2772,12 +2772,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.617793",
+      "last_updated": "2025-11-18T23:05:56.789785",
       "odds_source": null
     },
     {
       "id": "401772763",
-      "week": 1,
+      "week": 9,
       "season": 2025,
       "home_team_id": "17",
       "away_team_id": "1",
@@ -2794,12 +2794,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.617806",
+      "last_updated": "2025-11-18T23:05:56.789789",
       "odds_source": null
     },
     {
       "id": "401772767",
-      "week": 1,
+      "week": 9,
       "season": 2025,
       "home_team_id": "19",
       "away_team_id": "25",
@@ -2816,12 +2816,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.617819",
+      "last_updated": "2025-11-18T23:05:56.789793",
       "odds_source": null
     },
     {
       "id": "401772766",
-      "week": 1,
+      "week": 9,
       "season": 2025,
       "home_team_id": "23",
       "away_team_id": "11",
@@ -2838,12 +2838,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.617833",
+      "last_updated": "2025-11-18T23:05:56.789797",
       "odds_source": null
     },
     {
       "id": "401772870",
-      "week": 1,
+      "week": 9,
       "season": 2025,
       "home_team_id": "34",
       "away_team_id": "7",
@@ -2860,12 +2860,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.617847",
+      "last_updated": "2025-11-18T23:05:56.789801",
       "odds_source": null
     },
     {
       "id": "401772873",
-      "week": 1,
+      "week": 9,
       "season": 2025,
       "home_team_id": "13",
       "away_team_id": "30",
@@ -2882,12 +2882,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.617860",
+      "last_updated": "2025-11-18T23:05:56.789805",
       "odds_source": null
     },
     {
       "id": "401772874",
-      "week": 1,
+      "week": 9,
       "season": 2025,
       "home_team_id": "14",
       "away_team_id": "18",
@@ -2904,12 +2904,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.617872",
+      "last_updated": "2025-11-18T23:05:56.789809",
       "odds_source": null
     },
     {
       "id": "401772768",
-      "week": 1,
+      "week": 9,
       "season": 2025,
       "home_team_id": "2",
       "away_team_id": "12",
@@ -2926,12 +2926,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.617885",
+      "last_updated": "2025-11-18T23:05:56.789813",
       "odds_source": null
     },
     {
       "id": "401772926",
-      "week": 1,
+      "week": 9,
       "season": 2025,
       "home_team_id": "28",
       "away_team_id": "26",
@@ -2948,12 +2948,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.617899",
+      "last_updated": "2025-11-18T23:05:56.789817",
       "odds_source": null
     },
     {
       "id": "401772818",
-      "week": 1,
+      "week": 9,
       "season": 2025,
       "home_team_id": "6",
       "away_team_id": "22",
@@ -2970,12 +2970,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.617911",
+      "last_updated": "2025-11-18T23:05:56.789820",
       "odds_source": null
     },
     {
       "id": "401772944",
-      "week": 1,
+      "week": 10,
       "season": 2025,
       "home_team_id": "7",
       "away_team_id": "13",
@@ -2992,12 +2992,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.906495",
+      "last_updated": "2025-11-18T23:05:56.873916",
       "odds_source": null
     },
     {
       "id": "401772636",
-      "week": 1,
+      "week": 10,
       "season": 2025,
       "home_team_id": "11",
       "away_team_id": "1",
@@ -3014,12 +3014,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.906561",
+      "last_updated": "2025-11-18T23:05:56.873930",
       "odds_source": null
     },
     {
       "id": "401772875",
-      "week": 1,
+      "week": 10,
       "season": 2025,
       "home_team_id": "3",
       "away_team_id": "19",
@@ -3036,12 +3036,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.906612",
+      "last_updated": "2025-11-18T23:05:56.873935",
       "odds_source": null
     },
     {
       "id": "401772771",
-      "week": 1,
+      "week": 10,
       "season": 2025,
       "home_team_id": "15",
       "away_team_id": "2",
@@ -3058,12 +3058,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.906661",
+      "last_updated": "2025-11-18T23:05:56.873939",
       "odds_source": null
     },
     {
       "id": "401772876",
-      "week": 1,
+      "week": 10,
       "season": 2025,
       "home_team_id": "16",
       "away_team_id": "33",
@@ -3080,12 +3080,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.906713",
+      "last_updated": "2025-11-18T23:05:56.873943",
       "odds_source": null
     },
     {
       "id": "401772769",
-      "week": 1,
+      "week": 10,
       "season": 2025,
       "home_team_id": "20",
       "away_team_id": "5",
@@ -3102,12 +3102,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.906762",
+      "last_updated": "2025-11-18T23:05:56.873947",
       "odds_source": null
     },
     {
       "id": "401772772",
-      "week": 1,
+      "week": 10,
       "season": 2025,
       "home_team_id": "27",
       "away_team_id": "17",
@@ -3124,12 +3124,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.906808",
+      "last_updated": "2025-11-18T23:05:56.873951",
       "odds_source": null
     },
     {
       "id": "401772877",
-      "week": 1,
+      "week": 10,
       "season": 2025,
       "home_team_id": "29",
       "away_team_id": "18",
@@ -3146,12 +3146,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.906854",
+      "last_updated": "2025-11-18T23:05:56.873954",
       "odds_source": null
     },
     {
       "id": "401772770",
-      "week": 1,
+      "week": 10,
       "season": 2025,
       "home_team_id": "34",
       "away_team_id": "30",
@@ -3168,12 +3168,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.906900",
+      "last_updated": "2025-11-18T23:05:56.873958",
       "odds_source": null
     },
     {
       "id": "401772773",
-      "week": 1,
+      "week": 10,
       "season": 2025,
       "home_team_id": "26",
       "away_team_id": "22",
@@ -3190,12 +3190,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.906946",
+      "last_updated": "2025-11-18T23:05:56.873962",
       "odds_source": null
     },
     {
       "id": "401772879",
-      "week": 1,
+      "week": 10,
       "season": 2025,
       "home_team_id": "25",
       "away_team_id": "14",
@@ -3212,12 +3212,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.906992",
+      "last_updated": "2025-11-18T23:05:56.873965",
       "odds_source": null
     },
     {
       "id": "401772878",
-      "week": 1,
+      "week": 10,
       "season": 2025,
       "home_team_id": "28",
       "away_team_id": "8",
@@ -3234,12 +3234,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.907039",
+      "last_updated": "2025-11-18T23:05:56.873969",
       "odds_source": null
     },
     {
       "id": "401772927",
-      "week": 1,
+      "week": 10,
       "season": 2025,
       "home_team_id": "24",
       "away_team_id": "23",
@@ -3256,12 +3256,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.907085",
+      "last_updated": "2025-11-18T23:05:56.873973",
       "odds_source": null
     },
     {
       "id": "401772630",
-      "week": 1,
+      "week": 10,
       "season": 2025,
       "home_team_id": "9",
       "away_team_id": "21",
@@ -3278,12 +3278,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:00.907132",
+      "last_updated": "2025-11-18T23:05:56.873976",
       "odds_source": null
     },
     {
       "id": "401772945",
-      "week": 1,
+      "week": 11,
       "season": 2025,
       "home_team_id": "17",
       "away_team_id": "20",
@@ -3300,12 +3300,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.166634",
+      "last_updated": "2025-11-18T23:05:57.124411",
       "odds_source": null
     },
     {
       "id": "401772631",
-      "week": 1,
+      "week": 11,
       "season": 2025,
       "home_team_id": "15",
       "away_team_id": "28",
@@ -3322,12 +3322,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.166666",
+      "last_updated": "2025-11-18T23:05:57.124428",
       "odds_source": null
     },
     {
       "id": "401772882",
-      "week": 1,
+      "week": 11,
       "season": 2025,
       "home_team_id": "1",
       "away_team_id": "29",
@@ -3344,12 +3344,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.166686",
+      "last_updated": "2025-11-18T23:05:57.124433",
       "odds_source": null
     },
     {
       "id": "401772776",
-      "week": 1,
+      "week": 11,
       "season": 2025,
       "home_team_id": "2",
       "away_team_id": "27",
@@ -3366,12 +3366,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.166703",
+      "last_updated": "2025-11-18T23:05:57.124439",
       "odds_source": null
     },
     {
       "id": "401772881",
-      "week": 1,
+      "week": 11,
       "season": 2025,
       "home_team_id": "10",
       "away_team_id": "34",
@@ -3388,12 +3388,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.166718",
+      "last_updated": "2025-11-18T23:05:57.124443",
       "odds_source": null
     },
     {
       "id": "401772880",
-      "week": 1,
+      "week": 11,
       "season": 2025,
       "home_team_id": "16",
       "away_team_id": "3",
@@ -3410,12 +3410,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.166732",
+      "last_updated": "2025-11-18T23:05:57.124448",
       "odds_source": null
     },
     {
       "id": "401772883",
-      "week": 1,
+      "week": 11,
       "season": 2025,
       "home_team_id": "19",
       "away_team_id": "9",
@@ -3432,12 +3432,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.166747",
+      "last_updated": "2025-11-18T23:05:57.124453",
       "odds_source": null
     },
     {
       "id": "401772774",
-      "week": 1,
+      "week": 11,
       "season": 2025,
       "home_team_id": "23",
       "away_team_id": "4",
@@ -3454,12 +3454,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.166761",
+      "last_updated": "2025-11-18T23:05:57.124457",
       "odds_source": null
     },
     {
       "id": "401772775",
-      "week": 1,
+      "week": 11,
       "season": 2025,
       "home_team_id": "30",
       "away_team_id": "24",
@@ -3476,12 +3476,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.166774",
+      "last_updated": "2025-11-18T23:05:57.124462",
       "odds_source": null
     },
     {
       "id": "401772884",
-      "week": 1,
+      "week": 11,
       "season": 2025,
       "home_team_id": "14",
       "away_team_id": "26",
@@ -3498,12 +3498,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.166788",
+      "last_updated": "2025-11-18T23:05:57.124467",
       "odds_source": null
     },
     {
       "id": "401772885",
-      "week": 1,
+      "week": 11,
       "season": 2025,
       "home_team_id": "22",
       "away_team_id": "25",
@@ -3520,12 +3520,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.166802",
+      "last_updated": "2025-11-18T23:05:57.124471",
       "odds_source": null
     },
     {
       "id": "401772777",
-      "week": 1,
+      "week": 11,
       "season": 2025,
       "home_team_id": "5",
       "away_team_id": "33",
@@ -3542,12 +3542,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.166817",
+      "last_updated": "2025-11-18T23:05:57.124475",
       "odds_source": null
     },
     {
       "id": "401772778",
-      "week": 1,
+      "week": 11,
       "season": 2025,
       "home_team_id": "7",
       "away_team_id": "12",
@@ -3564,12 +3564,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.166830",
+      "last_updated": "2025-11-18T23:05:57.124480",
       "odds_source": null
     },
     {
       "id": "401772928",
-      "week": 1,
+      "week": 11,
       "season": 2025,
       "home_team_id": "21",
       "away_team_id": "8",
@@ -3586,12 +3586,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.166844",
+      "last_updated": "2025-11-18T23:05:57.124484",
       "odds_source": null
     },
     {
       "id": "401772819",
-      "week": 1,
+      "week": 11,
       "season": 2025,
       "home_team_id": "13",
       "away_team_id": "6",
@@ -3608,12 +3608,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.166858",
+      "last_updated": "2025-11-18T23:05:57.124489",
       "odds_source": null
     },
     {
       "id": "401772946",
-      "week": 1,
+      "week": 12,
       "season": 2025,
       "home_team_id": "34",
       "away_team_id": "2",
@@ -3630,12 +3630,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.389186",
+      "last_updated": "2025-11-18T23:05:57.457428",
       "odds_source": null
     },
     {
       "id": "401772780",
-      "week": 1,
+      "week": 12,
       "season": 2025,
       "home_team_id": "3",
       "away_team_id": "23",
@@ -3652,12 +3652,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.389214",
+      "last_updated": "2025-11-18T23:05:57.457442",
       "odds_source": null
     },
     {
       "id": "401772781",
-      "week": 1,
+      "week": 12,
       "season": 2025,
       "home_team_id": "4",
       "away_team_id": "17",
@@ -3674,12 +3674,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.389231",
+      "last_updated": "2025-11-18T23:05:57.457446",
       "odds_source": null
     },
     {
       "id": "401772888",
-      "week": 1,
+      "week": 12,
       "season": 2025,
       "home_team_id": "8",
       "away_team_id": "19",
@@ -3696,12 +3696,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.389244",
+      "last_updated": "2025-11-18T23:05:57.457449",
       "odds_source": null
     },
     {
       "id": "401772887",
-      "week": 1,
+      "week": 12,
       "season": 2025,
       "home_team_id": "9",
       "away_team_id": "16",
@@ -3718,12 +3718,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.389257",
+      "last_updated": "2025-11-18T23:05:57.457453",
       "odds_source": null
     },
     {
       "id": "401772886",
-      "week": 1,
+      "week": 12,
       "season": 2025,
       "home_team_id": "10",
       "away_team_id": "26",
@@ -3740,12 +3740,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.389270",
+      "last_updated": "2025-11-18T23:05:57.457456",
       "odds_source": null
     },
     {
       "id": "401772779",
-      "week": 1,
+      "week": 12,
       "season": 2025,
       "home_team_id": "12",
       "away_team_id": "11",
@@ -3762,12 +3762,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.389282",
+      "last_updated": "2025-11-18T23:05:57.457459",
       "odds_source": null
     },
     {
       "id": "401772782",
-      "week": 1,
+      "week": 12,
       "season": 2025,
       "home_team_id": "33",
       "away_team_id": "20",
@@ -3784,12 +3784,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.389294",
+      "last_updated": "2025-11-18T23:05:57.457462",
       "odds_source": null
     },
     {
       "id": "401772784",
-      "week": 1,
+      "week": 12,
       "season": 2025,
       "home_team_id": "13",
       "away_team_id": "5",
@@ -3806,12 +3806,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.389306",
+      "last_updated": "2025-11-18T23:05:57.457465",
       "odds_source": null
     },
     {
       "id": "401772783",
-      "week": 1,
+      "week": 12,
       "season": 2025,
       "home_team_id": "22",
       "away_team_id": "30",
@@ -3828,12 +3828,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.389319",
+      "last_updated": "2025-11-18T23:05:57.457470",
       "odds_source": null
     },
     {
       "id": "401772890",
-      "week": 1,
+      "week": 12,
       "season": 2025,
       "home_team_id": "6",
       "away_team_id": "21",
@@ -3850,12 +3850,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.389332",
+      "last_updated": "2025-11-18T23:05:57.457473",
       "odds_source": null
     },
     {
       "id": "401772889",
-      "week": 1,
+      "week": 12,
       "season": 2025,
       "home_team_id": "18",
       "away_team_id": "1",
@@ -3872,12 +3872,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.389343",
+      "last_updated": "2025-11-18T23:05:57.457476",
       "odds_source": null
     },
     {
       "id": "401772929",
-      "week": 1,
+      "week": 12,
       "season": 2025,
       "home_team_id": "14",
       "away_team_id": "27",
@@ -3894,12 +3894,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.389355",
+      "last_updated": "2025-11-18T23:05:57.457479",
       "odds_source": null
     },
     {
       "id": "401772820",
-      "week": 1,
+      "week": 12,
       "season": 2025,
       "home_team_id": "25",
       "away_team_id": "29",
@@ -3916,12 +3916,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.389367",
+      "last_updated": "2025-11-18T23:05:57.457482",
       "odds_source": null
     },
     {
       "id": "401772891",
-      "week": 1,
+      "week": 13,
       "season": 2025,
       "home_team_id": "8",
       "away_team_id": "9",
@@ -3938,12 +3938,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.545664",
+      "last_updated": "2025-11-18T23:05:57.690022",
       "odds_source": null
     },
     {
       "id": "401772694",
-      "week": 1,
+      "week": 13,
       "season": 2025,
       "home_team_id": "6",
       "away_team_id": "12",
@@ -3960,12 +3960,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.545691",
+      "last_updated": "2025-11-18T23:05:57.690034",
       "odds_source": null
     },
     {
       "id": "401772930",
-      "week": 1,
+      "week": 13,
       "season": 2025,
       "home_team_id": "33",
       "away_team_id": "4",
@@ -3982,12 +3982,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.545707",
+      "last_updated": "2025-11-18T23:05:57.690039",
       "odds_source": null
     },
     {
       "id": "401772621",
-      "week": 1,
+      "week": 13,
       "season": 2025,
       "home_team_id": "21",
       "away_team_id": "3",
@@ -4004,12 +4004,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.545722",
+      "last_updated": "2025-11-18T23:05:57.690043",
       "odds_source": null
     },
     {
       "id": "401772785",
-      "week": 1,
+      "week": 13,
       "season": 2025,
       "home_team_id": "5",
       "away_team_id": "25",
@@ -4026,12 +4026,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.545735",
+      "last_updated": "2025-11-18T23:05:57.690047",
       "odds_source": null
     },
     {
       "id": "401772786",
-      "week": 1,
+      "week": 13,
       "season": 2025,
       "home_team_id": "10",
       "away_team_id": "30",
@@ -4048,12 +4048,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.545747",
+      "last_updated": "2025-11-18T23:05:57.690051",
       "odds_source": null
     },
     {
       "id": "401772787",
-      "week": 1,
+      "week": 13,
       "season": 2025,
       "home_team_id": "11",
       "away_team_id": "34",
@@ -4070,12 +4070,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.545760",
+      "last_updated": "2025-11-18T23:05:57.690055",
       "odds_source": null
     },
     {
       "id": "401772892",
-      "week": 1,
+      "week": 13,
       "season": 2025,
       "home_team_id": "15",
       "away_team_id": "18",
@@ -4092,12 +4092,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.545772",
+      "last_updated": "2025-11-18T23:05:57.690059",
       "odds_source": null
     },
     {
       "id": "401772893",
-      "week": 1,
+      "week": 13,
       "season": 2025,
       "home_team_id": "20",
       "away_team_id": "1",
@@ -4114,12 +4114,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.545783",
+      "last_updated": "2025-11-18T23:05:57.690062",
       "odds_source": null
     },
     {
       "id": "401772895",
-      "week": 1,
+      "week": 13,
       "season": 2025,
       "home_team_id": "27",
       "away_team_id": "22",
@@ -4136,12 +4136,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.545795",
+      "last_updated": "2025-11-18T23:05:57.690066",
       "odds_source": null
     },
     {
       "id": "401772894",
-      "week": 1,
+      "week": 13,
       "season": 2025,
       "home_team_id": "29",
       "away_team_id": "14",
@@ -4158,12 +4158,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.545807",
+      "last_updated": "2025-11-18T23:05:57.690070",
       "odds_source": null
     },
     {
       "id": "401772896",
-      "week": 1,
+      "week": 13,
       "season": 2025,
       "home_team_id": "26",
       "away_team_id": "16",
@@ -4180,12 +4180,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.545819",
+      "last_updated": "2025-11-18T23:05:57.690073",
       "odds_source": null
     },
     {
       "id": "401772789",
-      "week": 1,
+      "week": 13,
       "season": 2025,
       "home_team_id": "23",
       "away_team_id": "2",
@@ -4202,12 +4202,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.545830",
+      "last_updated": "2025-11-18T23:05:57.690077",
       "odds_source": null
     },
     {
       "id": "401772788",
-      "week": 1,
+      "week": 13,
       "season": 2025,
       "home_team_id": "24",
       "away_team_id": "13",
@@ -4224,12 +4224,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.545842",
+      "last_updated": "2025-11-18T23:05:57.690081",
       "odds_source": null
     },
     {
       "id": "401772931",
-      "week": 1,
+      "week": 13,
       "season": 2025,
       "home_team_id": "28",
       "away_team_id": "7",
@@ -4246,12 +4246,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.545854",
+      "last_updated": "2025-11-18T23:05:57.690085",
       "odds_source": null
     },
     {
       "id": "401772821",
-      "week": 1,
+      "week": 13,
       "season": 2025,
       "home_team_id": "17",
       "away_team_id": "19",
@@ -4268,12 +4268,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.545866",
+      "last_updated": "2025-11-18T23:05:57.690088",
       "odds_source": null
     },
     {
       "id": "401772947",
-      "week": 1,
+      "week": 14,
       "season": 2025,
       "home_team_id": "8",
       "away_team_id": "6",
@@ -4290,12 +4290,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.719466",
+      "last_updated": "2025-11-18T23:05:57.778696",
       "odds_source": null
     },
     {
       "id": "401772900",
-      "week": 1,
+      "week": 14,
       "season": 2025,
       "home_team_id": "1",
       "away_team_id": "26",
@@ -4312,12 +4312,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.719534",
+      "last_updated": "2025-11-18T23:05:57.778709",
       "odds_source": null
     },
     {
       "id": "401772898",
-      "week": 1,
+      "week": 14,
       "season": 2025,
       "home_team_id": "5",
       "away_team_id": "10",
@@ -4334,12 +4334,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.719587",
+      "last_updated": "2025-11-18T23:05:57.778713",
       "odds_source": null
     },
     {
       "id": "401772897",
-      "week": 1,
+      "week": 14,
       "season": 2025,
       "home_team_id": "9",
       "away_team_id": "3",
@@ -4356,12 +4356,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.719978",
+      "last_updated": "2025-11-18T23:05:57.778717",
       "odds_source": null
     },
     {
       "id": "401772899",
-      "week": 1,
+      "week": 14,
       "season": 2025,
       "home_team_id": "16",
       "away_team_id": "28",
@@ -4378,12 +4378,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.720052",
+      "last_updated": "2025-11-18T23:05:57.778721",
       "odds_source": null
     },
     {
       "id": "401772790",
-      "week": 1,
+      "week": 14,
       "season": 2025,
       "home_team_id": "20",
       "away_team_id": "15",
@@ -4400,12 +4400,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.720087",
+      "last_updated": "2025-11-18T23:05:57.778725",
       "odds_source": null
     },
     {
       "id": "401772792",
-      "week": 1,
+      "week": 14,
       "season": 2025,
       "home_team_id": "27",
       "away_team_id": "18",
@@ -4422,12 +4422,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.720107",
+      "last_updated": "2025-11-18T23:05:57.778728",
       "odds_source": null
     },
     {
       "id": "401772793",
-      "week": 1,
+      "week": 14,
       "season": 2025,
       "home_team_id": "30",
       "away_team_id": "11",
@@ -4444,12 +4444,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.720126",
+      "last_updated": "2025-11-18T23:05:57.778733",
       "odds_source": null
     },
     {
       "id": "401772791",
-      "week": 1,
+      "week": 14,
       "season": 2025,
       "home_team_id": "33",
       "away_team_id": "23",
@@ -4466,12 +4466,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.720142",
+      "last_updated": "2025-11-18T23:05:57.778736",
       "odds_source": null
     },
     {
       "id": "401772794",
-      "week": 1,
+      "week": 14,
       "season": 2025,
       "home_team_id": "13",
       "away_team_id": "7",
@@ -4488,12 +4488,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.720158",
+      "last_updated": "2025-11-18T23:05:57.778740",
       "odds_source": null
     },
     {
       "id": "401772902",
-      "week": 1,
+      "week": 14,
       "season": 2025,
       "home_team_id": "2",
       "away_team_id": "4",
@@ -4510,12 +4510,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.720174",
+      "last_updated": "2025-11-18T23:05:57.778743",
       "odds_source": null
     },
     {
       "id": "401772901",
-      "week": 1,
+      "week": 14,
       "season": 2025,
       "home_team_id": "22",
       "away_team_id": "14",
@@ -4532,12 +4532,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.720189",
+      "last_updated": "2025-11-18T23:05:57.778747",
       "odds_source": null
     },
     {
       "id": "401772932",
-      "week": 1,
+      "week": 14,
       "season": 2025,
       "home_team_id": "12",
       "away_team_id": "34",
@@ -4554,12 +4554,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.720205",
+      "last_updated": "2025-11-18T23:05:57.778750",
       "odds_source": null
     },
     {
       "id": "401772822",
-      "week": 1,
+      "week": 14,
       "season": 2025,
       "home_team_id": "24",
       "away_team_id": "21",
@@ -4576,12 +4576,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.720220",
+      "last_updated": "2025-11-18T23:05:57.778754",
       "odds_source": null
     },
     {
       "id": "401772948",
-      "week": 1,
+      "week": 15,
       "season": 2025,
       "home_team_id": "27",
       "away_team_id": "1",
@@ -4598,12 +4598,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.874252",
+      "last_updated": "2025-11-18T23:05:57.863445",
       "odds_source": null
     },
     {
       "id": "401772904",
-      "week": 1,
+      "week": 15,
       "season": 2025,
       "home_team_id": "3",
       "away_team_id": "5",
@@ -4620,12 +4620,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.874283",
+      "last_updated": "2025-11-18T23:05:57.863458",
       "odds_source": null
     },
     {
       "id": "401772796",
-      "week": 1,
+      "week": 15,
       "season": 2025,
       "home_team_id": "4",
       "away_team_id": "33",
@@ -4642,12 +4642,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.874302",
+      "last_updated": "2025-11-18T23:05:57.863462",
       "odds_source": null
     },
     {
       "id": "401772798",
-      "week": 1,
+      "week": 15,
       "season": 2025,
       "home_team_id": "12",
       "away_team_id": "24",
@@ -4664,12 +4664,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.874318",
+      "last_updated": "2025-11-18T23:05:57.863465",
       "odds_source": null
     },
     {
       "id": "401772795",
-      "week": 1,
+      "week": 15,
       "season": 2025,
       "home_team_id": "17",
       "away_team_id": "2",
@@ -4686,12 +4686,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.874333",
+      "last_updated": "2025-11-18T23:05:57.863469",
       "odds_source": null
     },
     {
       "id": "401772905",
-      "week": 1,
+      "week": 15,
       "season": 2025,
       "home_team_id": "19",
       "away_team_id": "28",
@@ -4708,12 +4708,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.874347",
+      "last_updated": "2025-11-18T23:05:57.863472",
       "odds_source": null
     },
     {
       "id": "401772906",
-      "week": 1,
+      "week": 15,
       "season": 2025,
       "home_team_id": "21",
       "away_team_id": "13",
@@ -4730,12 +4730,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.874361",
+      "last_updated": "2025-11-18T23:05:57.863476",
       "odds_source": null
     },
     {
       "id": "401772797",
-      "week": 1,
+      "week": 15,
       "season": 2025,
       "home_team_id": "30",
       "away_team_id": "20",
@@ -4752,12 +4752,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.874375",
+      "last_updated": "2025-11-18T23:05:57.863479",
       "odds_source": null
     },
     {
       "id": "401772903",
-      "week": 1,
+      "week": 15,
       "season": 2025,
       "home_team_id": "34",
       "away_team_id": "22",
@@ -4774,12 +4774,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.874388",
+      "last_updated": "2025-11-18T23:05:57.863482",
       "odds_source": null
     },
     {
       "id": "401772800",
-      "week": 1,
+      "week": 15,
       "season": 2025,
       "home_team_id": "7",
       "away_team_id": "9",
@@ -4796,12 +4796,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.874402",
+      "last_updated": "2025-11-18T23:05:57.863485",
       "odds_source": null
     },
     {
       "id": "401772909",
-      "week": 1,
+      "week": 15,
       "season": 2025,
       "home_team_id": "14",
       "away_team_id": "8",
@@ -4818,12 +4818,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.874415",
+      "last_updated": "2025-11-18T23:05:57.863488",
       "odds_source": null
     },
     {
       "id": "401772908",
-      "week": 1,
+      "week": 15,
       "season": 2025,
       "home_team_id": "18",
       "away_team_id": "29",
@@ -4840,12 +4840,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.874428",
+      "last_updated": "2025-11-18T23:05:57.863492",
       "odds_source": null
     },
     {
       "id": "401772907",
-      "week": 1,
+      "week": 15,
       "season": 2025,
       "home_team_id": "25",
       "away_team_id": "10",
@@ -4862,12 +4862,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.874441",
+      "last_updated": "2025-11-18T23:05:57.863495",
       "odds_source": null
     },
     {
       "id": "401772799",
-      "week": 1,
+      "week": 15,
       "season": 2025,
       "home_team_id": "26",
       "away_team_id": "11",
@@ -4884,12 +4884,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.874454",
+      "last_updated": "2025-11-18T23:05:57.863498",
       "odds_source": null
     },
     {
       "id": "401772933",
-      "week": 1,
+      "week": 15,
       "season": 2025,
       "home_team_id": "6",
       "away_team_id": "16",
@@ -4906,12 +4906,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.874467",
+      "last_updated": "2025-11-18T23:05:57.863501",
       "odds_source": null
     },
     {
       "id": "401772823",
-      "week": 1,
+      "week": 15,
       "season": 2025,
       "home_team_id": "23",
       "away_team_id": "15",
@@ -4928,12 +4928,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.874483",
+      "last_updated": "2025-11-18T23:05:57.863504",
       "odds_source": null
     },
     {
       "id": "401772949",
-      "week": 1,
+      "week": 16,
       "season": 2025,
       "home_team_id": "26",
       "away_team_id": "14",
@@ -4950,12 +4950,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.979042",
+      "last_updated": "2025-11-18T23:05:58.109280",
       "odds_source": null
     },
     {
       "id": "401772613",
-      "week": 1,
+      "week": 16,
       "season": 2025,
       "home_team_id": "3",
       "away_team_id": "9",
@@ -4972,12 +4972,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.979076",
+      "last_updated": "2025-11-18T23:05:58.109297",
       "odds_source": null
     },
     {
       "id": "401772612",
-      "week": 1,
+      "week": 16,
       "season": 2025,
       "home_team_id": "28",
       "away_team_id": "21",
@@ -4994,12 +4994,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.979099",
+      "last_updated": "2025-11-18T23:05:58.109303",
       "odds_source": null
     },
     {
       "id": "401772802",
-      "week": 1,
+      "week": 16,
       "season": 2025,
       "home_team_id": "5",
       "away_team_id": "2",
@@ -5016,12 +5016,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.979118",
+      "last_updated": "2025-11-18T23:05:58.109307",
       "odds_source": null
     },
     {
       "id": "401772910",
-      "week": 1,
+      "week": 16,
       "season": 2025,
       "home_team_id": "6",
       "away_team_id": "24",
@@ -5038,12 +5038,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.979135",
+      "last_updated": "2025-11-18T23:05:58.109311",
       "odds_source": null
     },
     {
       "id": "401772803",
-      "week": 1,
+      "week": 16,
       "season": 2025,
       "home_team_id": "10",
       "away_team_id": "12",
@@ -5060,12 +5060,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.979153",
+      "last_updated": "2025-11-18T23:05:58.109316",
       "odds_source": null
     },
     {
       "id": "401772801",
-      "week": 1,
+      "week": 16,
       "season": 2025,
       "home_team_id": "18",
       "away_team_id": "20",
@@ -5082,12 +5082,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.979170",
+      "last_updated": "2025-11-18T23:05:58.109319",
       "odds_source": null
     },
     {
       "id": "401772911",
-      "week": 1,
+      "week": 16,
       "season": 2025,
       "home_team_id": "19",
       "away_team_id": "16",
@@ -5104,12 +5104,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.979187",
+      "last_updated": "2025-11-18T23:05:58.109323",
       "odds_source": null
     },
     {
       "id": "401772912",
-      "week": 1,
+      "week": 16,
       "season": 2025,
       "home_team_id": "29",
       "away_team_id": "27",
@@ -5126,12 +5126,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.979205",
+      "last_updated": "2025-11-18T23:05:58.109327",
       "odds_source": null
     },
     {
       "id": "401772804",
-      "week": 1,
+      "week": 16,
       "season": 2025,
       "home_team_id": "33",
       "away_team_id": "17",
@@ -5148,12 +5148,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.979224",
+      "last_updated": "2025-11-18T23:05:58.109333",
       "odds_source": null
     },
     {
       "id": "401772913",
-      "week": 1,
+      "week": 16,
       "season": 2025,
       "home_team_id": "7",
       "away_team_id": "30",
@@ -5170,12 +5170,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.979290",
+      "last_updated": "2025-11-18T23:05:58.109337",
       "odds_source": null
     },
     {
       "id": "401772914",
-      "week": 1,
+      "week": 16,
       "season": 2025,
       "home_team_id": "22",
       "away_team_id": "1",
@@ -5192,12 +5192,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.979332",
+      "last_updated": "2025-11-18T23:05:58.109341",
       "odds_source": null
     },
     {
       "id": "401772806",
-      "week": 1,
+      "week": 16,
       "season": 2025,
       "home_team_id": "8",
       "away_team_id": "23",
@@ -5214,12 +5214,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.979359",
+      "last_updated": "2025-11-18T23:05:58.109345",
       "odds_source": null
     },
     {
       "id": "401772805",
-      "week": 1,
+      "week": 16,
       "season": 2025,
       "home_team_id": "34",
       "away_team_id": "13",
@@ -5236,12 +5236,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.979380",
+      "last_updated": "2025-11-18T23:05:58.109349",
       "odds_source": null
     },
     {
       "id": "401772934",
-      "week": 1,
+      "week": 16,
       "season": 2025,
       "home_team_id": "15",
       "away_team_id": "4",
@@ -5258,12 +5258,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.979399",
+      "last_updated": "2025-11-18T23:05:58.109353",
       "odds_source": null
     },
     {
       "id": "401772824",
-      "week": 1,
+      "week": 16,
       "season": 2025,
       "home_team_id": "11",
       "away_team_id": "25",
@@ -5280,12 +5280,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:01.979419",
+      "last_updated": "2025-11-18T23:05:58.109357",
       "odds_source": null
     },
     {
       "id": "401772710",
-      "week": 1,
+      "week": 17,
       "season": 2025,
       "home_team_id": "28",
       "away_team_id": "6",
@@ -5302,12 +5302,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.296971",
+      "last_updated": "2025-11-18T23:05:58.200210",
       "odds_source": null
     },
     {
       "id": "401772711",
-      "week": 1,
+      "week": 17,
       "season": 2025,
       "home_team_id": "16",
       "away_team_id": "8",
@@ -5324,12 +5324,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.296996",
+      "last_updated": "2025-11-18T23:05:58.200223",
       "odds_source": null
     },
     {
       "id": "401772622",
-      "week": 1,
+      "week": 17,
       "season": 2025,
       "home_team_id": "12",
       "away_team_id": "7",
@@ -5346,12 +5346,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.297012",
+      "last_updated": "2025-11-18T23:05:58.200227",
       "odds_source": null
     },
     {
       "id": "401772954",
-      "week": 1,
+      "week": 17,
       "season": 2025,
       "home_team_id": "4",
       "away_team_id": "22",
@@ -5368,12 +5368,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.297025",
+      "last_updated": "2025-11-18T23:05:58.200231",
       "odds_source": null
     },
     {
       "id": "401772953",
-      "week": 1,
+      "week": 17,
       "season": 2025,
       "home_team_id": "9",
       "away_team_id": "33",
@@ -5390,12 +5390,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.297038",
+      "last_updated": "2025-11-18T23:05:58.200235",
       "odds_source": null
     },
     {
       "id": "401772950",
-      "week": 1,
+      "week": 17,
       "season": 2025,
       "home_team_id": "13",
       "away_team_id": "19",
@@ -5412,12 +5412,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.297050",
+      "last_updated": "2025-11-18T23:05:58.200238",
       "odds_source": null
     },
     {
       "id": "401772951",
-      "week": 1,
+      "week": 17,
       "season": 2025,
       "home_team_id": "24",
       "away_team_id": "34",
@@ -5434,12 +5434,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.297063",
+      "last_updated": "2025-11-18T23:05:58.200242",
       "odds_source": null
     },
     {
       "id": "401772952",
-      "week": 1,
+      "week": 17,
       "season": 2025,
       "home_team_id": "29",
       "away_team_id": "26",
@@ -5456,12 +5456,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.297075",
+      "last_updated": "2025-11-18T23:05:58.200246",
       "odds_source": null
     },
     {
       "id": "401772807",
-      "week": 1,
+      "week": 17,
       "season": 2025,
       "home_team_id": "5",
       "away_team_id": "23",
@@ -5478,12 +5478,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.297088",
+      "last_updated": "2025-11-18T23:05:58.200250",
       "odds_source": null
     },
     {
       "id": "401772809",
-      "week": 1,
+      "week": 17,
       "season": 2025,
       "home_team_id": "10",
       "away_team_id": "18",
@@ -5500,12 +5500,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.297099",
+      "last_updated": "2025-11-18T23:05:58.200253",
       "odds_source": null
     },
     {
       "id": "401772915",
-      "week": 1,
+      "week": 17,
       "season": 2025,
       "home_team_id": "11",
       "away_team_id": "30",
@@ -5522,12 +5522,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.297111",
+      "last_updated": "2025-11-18T23:05:58.200257",
       "odds_source": null
     },
     {
       "id": "401772916",
-      "week": 1,
+      "week": 17,
       "season": 2025,
       "home_team_id": "15",
       "away_team_id": "27",
@@ -5544,12 +5544,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.297124",
+      "last_updated": "2025-11-18T23:05:58.200260",
       "odds_source": null
     },
     {
       "id": "401772808",
-      "week": 1,
+      "week": 17,
       "season": 2025,
       "home_team_id": "20",
       "away_team_id": "17",
@@ -5566,12 +5566,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.297136",
+      "last_updated": "2025-11-18T23:05:58.200264",
       "odds_source": null
     },
     {
       "id": "401772917",
-      "week": 1,
+      "week": 17,
       "season": 2025,
       "home_team_id": "2",
       "away_team_id": "21",
@@ -5588,12 +5588,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.297149",
+      "last_updated": "2025-11-18T23:05:58.200267",
       "odds_source": null
     },
     {
       "id": "401772935",
-      "week": 1,
+      "week": 17,
       "season": 2025,
       "home_team_id": "25",
       "away_team_id": "3",
@@ -5610,12 +5610,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.297161",
+      "last_updated": "2025-11-18T23:05:58.200271",
       "odds_source": null
     },
     {
       "id": "401772825",
-      "week": 1,
+      "week": 17,
       "season": 2025,
       "home_team_id": "1",
       "away_team_id": "14",
@@ -5632,12 +5632,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.297174",
+      "last_updated": "2025-11-18T23:05:58.200274",
       "odds_source": null
     },
     {
       "id": "401772966",
-      "week": 1,
+      "week": 18,
       "season": 2025,
       "home_team_id": "1",
       "away_team_id": "18",
@@ -5654,12 +5654,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.464576",
+      "last_updated": "2025-11-18T23:05:58.289388",
       "odds_source": null
     },
     {
       "id": "401772967",
-      "week": 1,
+      "week": 18,
       "season": 2025,
       "home_team_id": "2",
       "away_team_id": "20",
@@ -5676,12 +5676,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.464607",
+      "last_updated": "2025-11-18T23:05:58.289405",
       "odds_source": null
     },
     {
       "id": "401772965",
-      "week": 1,
+      "week": 18,
       "season": 2025,
       "home_team_id": "3",
       "away_team_id": "8",
@@ -5698,12 +5698,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.464625",
+      "last_updated": "2025-11-18T23:05:58.289412",
       "odds_source": null
     },
     {
       "id": "401772964",
-      "week": 1,
+      "week": 18,
       "season": 2025,
       "home_team_id": "4",
       "away_team_id": "5",
@@ -5720,12 +5720,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.464641",
+      "last_updated": "2025-11-18T23:05:58.289419",
       "odds_source": null
     },
     {
       "id": "401772956",
-      "week": 1,
+      "week": 18,
       "season": 2025,
       "home_team_id": "7",
       "away_team_id": "24",
@@ -5742,12 +5742,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.464654",
+      "last_updated": "2025-11-18T23:05:58.289425",
       "odds_source": null
     },
     {
       "id": "401772957",
-      "week": 1,
+      "week": 18,
       "season": 2025,
       "home_team_id": "13",
       "away_team_id": "12",
@@ -5764,12 +5764,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.464668",
+      "last_updated": "2025-11-18T23:05:58.289431",
       "odds_source": null
     },
     {
       "id": "401772955",
-      "week": 1,
+      "week": 18,
       "season": 2025,
       "home_team_id": "14",
       "away_team_id": "22",
@@ -5786,12 +5786,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.464682",
+      "last_updated": "2025-11-18T23:05:58.289438",
       "odds_source": null
     },
     {
       "id": "401772968",
-      "week": 1,
+      "week": 18,
       "season": 2025,
       "home_team_id": "16",
       "away_team_id": "9",
@@ -5808,12 +5808,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.464694",
+      "last_updated": "2025-11-18T23:05:58.289444",
       "odds_source": null
     },
     {
       "id": "401772958",
-      "week": 1,
+      "week": 18,
       "season": 2025,
       "home_team_id": "17",
       "away_team_id": "15",
@@ -5830,12 +5830,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.464707",
+      "last_updated": "2025-11-18T23:05:58.289451",
       "odds_source": null
     },
     {
       "id": "401772963",
-      "week": 1,
+      "week": 18,
       "season": 2025,
       "home_team_id": "19",
       "away_team_id": "6",
@@ -5852,12 +5852,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.464720",
+      "last_updated": "2025-11-18T23:05:58.289457",
       "odds_source": null
     },
     {
       "id": "401772959",
-      "week": 1,
+      "week": 18,
       "season": 2025,
       "home_team_id": "21",
       "away_team_id": "28",
@@ -5874,12 +5874,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.464733",
+      "last_updated": "2025-11-18T23:05:58.289463",
       "odds_source": null
     },
     {
       "id": "401772960",
-      "week": 1,
+      "week": 18,
       "season": 2025,
       "home_team_id": "23",
       "away_team_id": "33",
@@ -5896,12 +5896,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.464745",
+      "last_updated": "2025-11-18T23:05:58.289469",
       "odds_source": null
     },
     {
       "id": "401772961",
-      "week": 1,
+      "week": 18,
       "season": 2025,
       "home_team_id": "25",
       "away_team_id": "26",
@@ -5918,12 +5918,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.464757",
+      "last_updated": "2025-11-18T23:05:58.289475",
       "odds_source": null
     },
     {
       "id": "401772969",
-      "week": 1,
+      "week": 18,
       "season": 2025,
       "home_team_id": "27",
       "away_team_id": "29",
@@ -5940,12 +5940,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.464770",
+      "last_updated": "2025-11-18T23:05:58.289482",
       "odds_source": null
     },
     {
       "id": "401772970",
-      "week": 1,
+      "week": 18,
       "season": 2025,
       "home_team_id": "30",
       "away_team_id": "10",
@@ -5962,12 +5962,12 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.464782",
+      "last_updated": "2025-11-18T23:05:58.289488",
       "odds_source": null
     },
     {
       "id": "401772962",
-      "week": 1,
+      "week": 18,
       "season": 2025,
       "home_team_id": "34",
       "away_team_id": "11",
@@ -5984,7 +5984,7 @@
       "override_away_score": null,
       "override_home_moneyline": null,
       "override_away_moneyline": null,
-      "last_updated": "2025-11-18T21:59:02.464794",
+      "last_updated": "2025-11-18T23:05:58.289494",
       "odds_source": null
     }
   ]

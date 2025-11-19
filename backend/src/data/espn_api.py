@@ -159,7 +159,7 @@ class ESPNAPIClient:
 
                 for event in events:
                     try:
-                        game = self._parse_scoreboard_game(event)
+                        game = self._parse_scoreboard_game(event, expected_week=week)
                         if game:
                             all_games.append(game)
                     except Exception as e:
@@ -206,7 +206,7 @@ class ESPNAPIClient:
             games = []
             for event in events:
                 try:
-                    game = self._parse_scoreboard_game(event)
+                    game = self._parse_scoreboard_game(event, expected_week=week)
                     if game:
                         games.append(game)
                 except Exception as e:
@@ -305,12 +305,13 @@ class ESPNAPIClient:
             self.logger.warning(f"Failed to parse game details: {e}")
             return None
 
-    def _parse_scoreboard_game(self, event: dict) -> Optional[Game]:
+    def _parse_scoreboard_game(self, event: dict, expected_week: Optional[int] = None) -> Optional[Game]:
         """
         Parse a game from scoreboard data.
 
         Args:
             event: Event dictionary from scoreboard
+            expected_week: Optional expected week number to use as fallback
 
         Returns:
             Game object or None if parsing fails
@@ -332,12 +333,17 @@ class ESPNAPIClient:
                     week_ref = week_data.get("$ref", "")
                     if week_ref and "/weeks/" in week_ref:
                         week = int(week_ref.split("/weeks/")[-1].split("?")[0])
+                    elif expected_week is not None:
+                        week = expected_week
                     else:
                         self.logger.warning(f"Could not extract week from game {game_id}")
                         week = 1
             except (ValueError, IndexError) as e:
-                self.logger.warning(f"Failed to parse week number for game {game_id}: {e}")
-                week = 1
+                if expected_week is not None:
+                    week = expected_week
+                else:
+                    self.logger.warning(f"Failed to parse week number for game {game_id}: {e}")
+                    week = 1
 
             competitions = event.get("competitions", [])
             if not competitions:
