@@ -211,7 +211,7 @@ class MainWindow(QMainWindow):
         # Get cache info
         cache_info = self.cache_manager.get_cache_info()
 
-        # Cache info returns dict with keys: "schedule", "results", "odds", "teams"
+        # Cache info returns dict with keys: "schedule", "results", "teams"
         # Each value is a dict with "exists", "age_seconds", "last_modified"
         schedule_info = cache_info.get("schedule")
 
@@ -287,7 +287,7 @@ class MainWindow(QMainWindow):
             "About NFL Monte Carlo Simulation",
             "<h3>NFL Monte Carlo Simulation</h3>"
             "<p>A desktop application for estimating NFL playoff probabilities "
-            "using Monte Carlo simulations based on Vegas odds.</p>"
+            "using Monte Carlo simulations with unbiased 50/50 coin flips.</p>"
             "<p><b>Phase 4:</b> GUI Foundation</p>"
             "<p>Built with PySide6 and Python</p>",
         )

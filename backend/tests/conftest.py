@@ -65,8 +65,6 @@ def sample_game():
         away_team_id="2",
         date=datetime(2025, 9, 7, 13, 0),
         is_completed=False,
-        home_moneyline=-150,
-        away_moneyline=130,
     )
 
 
@@ -167,33 +165,3 @@ def mock_espn_game_detail():
     }
 
 
-@pytest.fixture
-def mock_odds_api_response():
-    """Mock Odds API response."""
-    return [
-        {
-            "id": "abc123def456",
-            "sport_key": "americanfootball_nfl",
-            "sport_title": "NFL",
-            "commence_time": "2025-09-07T17:00:00Z",
-            "home_team": "Atlanta Falcons",
-            "away_team": "Buffalo Bills",
-            "bookmakers": [
-                {
-                    "key": "draftkings",
-                    "title": "DraftKings",
-                    "last_update": "2025-09-03T18:30:15Z",
-                    "markets": [
-                        {
-                            "key": "h2h",
-                            "last_update": "2025-09-03T18:30:15Z",
-                            "outcomes": [
-                                {"name": "Atlanta Falcons", "price": -150},
-                                {"name": "Buffalo Bills", "price": 130},
-                            ],
-                        }
-                    ],
-                }
-            ],
-        }
-    ]

@@ -1,88 +1,39 @@
 # API Setup Guide
 
-## The Odds API
+The application now relies exclusively on ESPN's public scoreboard endpoints for schedules, scores, and standings. There are **no third-party betting APIs** or API keys to configure.
 
-### Step 1: Sign Up
+## ESPN Data Sources
 
-1. Visit https://the-odds-api.com/
-2. Click "Get Free API Key"
-3. Enter your email and create an account
-4. Verify your email
+- **Schedule / Scores**: [site.api.espn.com](https://site.api.espn.com/apis/site/v2)
+- **Core Team Metadata**: [sports.core.api.espn.com](https://sports.core.api.espn.com/v2)
 
-### Step 2: Get Your API Key
+These endpoints are publicly accessible and do not require authentication. We aggressively cache all responses on disk (`data/` directory) so the app can run offline after the first sync.
 
-1. Log in to your account
-2. Navigate to the Dashboard
-3. Copy your API key
+## Environment Variables
 
-### Step 3: Configure the Application
+Create a `.env` (optional) if you want to override defaults:
 
-1. Create a `.env` file in the project root (copy from `.env.example`):
-   ```bash
-   cp .env.example .env
-   ```
+```
+LOG_LEVEL=INFO
+CACHE_DIRECTORY=data
+```
 
-2. Edit `.env` and add your API key:
-   ```
-   ODDS_API_KEY=your_actual_api_key_here
-   ```
+If the file is absent, sensible defaults are used.
 
-### API Quota
+## Testing Connectivity
 
-**Free Tier**:
-- 500 requests per month
-- Resets on the 1st of each month
-- Sufficient for weekly odds updates throughout the season
-
-**Usage Strategy**:
-- Cache odds data aggressively (default: 1 hour TTL)
-- Update once per week (≈16-20 calls per update)
-- 500 calls/month = 25-30 weekly updates (covers entire season)
-
-**Paid Tier** ($30/month):
-- 20,000 requests per month
-- Use if you need more frequent updates
-
-### Monitoring Usage
-
-- Check remaining quota in dashboard
-- App displays remaining requests after each API call
-- Use `client.get_requests_remaining()` to check programmatically
-
-## ESPN API
-
-**No setup required!**
-
-ESPN's API is free and does not require an API key.
-
-## Testing API Connections
-
-Run the test suite with real API calls:
+Run the Python test suite normally:
 
 ```bash
-# Run all API tests (requires valid ODDS_API_KEY in .env)
-pytest -m api
-
-# Run without API tests
-pytest -m "not api"
+cd backend
+pytest
 ```
+
+All tests are self-contained and do not hit live APIs—fixtures and cached JSON files provide deterministic data.
 
 ## Troubleshooting
 
-### "Odds API key not configured"
+- **ESPN API not responding**: ESPN occasionally rate-limits or returns 5xx errors. Re-run later; cached data will continue to work in the meantime.
+- **Stale data**: Delete the relevant cache via the GUI or remove files inside `data/` (e.g., `schedule_2025.json`, `results_current.json`) and re-run the refresh flow.
 
-Make sure your `.env` file exists and contains:
-```
-ODDS_API_KEY=your_actual_key
-```
-
-### "API quota exceeded"
-
-You've used all 500 free monthly requests. Either:
-- Wait until next month (resets on 1st)
-- Upgrade to paid tier
-- Use cached odds data
-
-### ESPN API not responding
-
-ESPN's API is unofficial and may occasionally be unavailable. The app will use cached data when possible.
+That's it! No additional setup is needed beyond Python/Node dependencies.

@@ -3,12 +3,11 @@
 Phase 1 Demonstration Script
 
 This script demonstrates the functionality of Phase 1:
-- Loading configuration
-- Fetching teams from ESPN
-- Fetching schedule from ESPN
-- Caching data
-- Loading from cache
-- Fetching odds from The Odds API (if configured)
+ - Loading configuration
+ - Fetching teams from ESPN
+ - Fetching schedule from ESPN
+ - Caching data
+ - Loading from cache
 """
 
 import sys
@@ -22,7 +21,6 @@ from dotenv import load_dotenv
 from src.utils.logger import setup_logger
 from src.utils.config import Config
 from src.data.espn_api import ESPNAPIClient
-from src.data.odds_api import OddsAPIClient
 from src.data.cache_manager import CacheManager
 from src.data.schedule_loader import ScheduleLoader
 
@@ -42,7 +40,6 @@ def main():
     config = Config.load()
     logger.info(f"   Cache directory: {config.CACHE_DIRECTORY}")
     logger.info(f"   ESPN API URL: {config.ESPN_API_BASE_URL}")
-    logger.info(f"   Odds API configured: {'Yes' if config.ODDS_API_KEY and config.ODDS_API_KEY != 'your_api_key_here' else 'No'}")
 
     # Validate configuration
     errors = config.validate()
@@ -55,7 +52,6 @@ def main():
     # Initialize clients
     logger.info("\n2. Initializing API clients...")
     espn_client = ESPNAPIClient(config.ESPN_API_BASE_URL, config.ESPN_CORE_API_BASE_URL)
-    odds_client = OddsAPIClient(config.ODDS_API_KEY, config.ODDS_API_BASE_URL)
     cache_manager = CacheManager(config.CACHE_DIRECTORY)
     schedule_loader = ScheduleLoader(espn_client, cache_manager)
 
@@ -110,32 +106,8 @@ def main():
         logger.error(f"   Error fetching schedule: {e}")
         schedule = []
 
-    # Fetch odds (if API key configured)
-    if config.ODDS_API_KEY and config.ODDS_API_KEY != "your_api_key_here":
-        logger.info("\n8. Fetching current NFL odds...")
-        try:
-            odds = odds_client.fetch_nfl_odds()
-            logger.info(f"   Fetched odds for {len(odds)} games")
-            if odds_client.get_requests_remaining():
-                logger.info(f"   API requests remaining: {odds_client.get_requests_remaining()}")
-
-            # Display sample odds
-            if odds:
-                sample_game = list(odds.values())[0]
-                logger.info(f"\n   Sample odds:")
-                logger.info(f"      {sample_game['away_team']} @ {sample_game['home_team']}")
-                logger.info(f"      Home: {sample_game['home_odds']}")
-                logger.info(f"      Away: {sample_game['away_odds']}")
-                logger.info(f"      Bookmaker: {sample_game['bookmaker']}")
-        except Exception as e:
-            logger.error(f"   Error fetching odds: {e}")
-    else:
-        logger.info("\n8. Skipping odds fetch (no API key configured)")
-        logger.info("   To enable: Get free API key from https://the-odds-api.com/")
-        logger.info("   Then add to .env: ODDS_API_KEY=your_key_here")
-
     # Cache information
-    logger.info("\n9. Cache information:")
+    logger.info("\n8. Cache information:")
     cache_info = cache_manager.get_cache_info()
     for cache_type, info in cache_info.items():
         if info["exists"]:

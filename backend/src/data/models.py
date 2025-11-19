@@ -58,22 +58,13 @@ class Game:
     home_score: Optional[int] = None
     away_score: Optional[int] = None
 
-    # Odds (if upcoming)
-    home_moneyline: Optional[int] = None  # American odds (e.g., -150)
-    away_moneyline: Optional[int] = None  # American odds (e.g., +130)
-    home_win_probability: Optional[float] = None  # Calculated probability
-    away_win_probability: Optional[float] = None  # Calculated probability
-
     # Overrides
     is_overridden: bool = False
     override_home_score: Optional[int] = None
     override_away_score: Optional[int] = None
-    override_home_moneyline: Optional[int] = None
-    override_away_moneyline: Optional[int] = None
 
     # Metadata
     last_updated: Optional[datetime] = None
-    odds_source: Optional[str] = None  # e.g., "DraftKings", "FanDuel"
 
     def get_winner_id(self) -> Optional[str]:
         """
@@ -142,16 +133,6 @@ class Game:
             return (self.override_home_score, self.override_away_score)
         return (self.home_score, self.away_score)
 
-    def get_effective_odds(self) -> tuple[Optional[int], Optional[int]]:
-        """
-        Return effective odds (override or actual).
-
-        Returns:
-            Tuple of (home_moneyline, away_moneyline)
-        """
-        if self.is_overridden and self.override_home_moneyline is not None:
-            return (self.override_home_moneyline, self.override_away_moneyline)
-        return (self.home_moneyline, self.away_moneyline)
 
 
 @dataclass

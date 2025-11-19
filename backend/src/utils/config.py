@@ -19,8 +19,6 @@ class Config:
     def __init__(self):
         """Initialize configuration with default values."""
         # API Configuration
-        self.ODDS_API_KEY: str = ""
-        self.ODDS_API_BASE_URL: str = "https://api.the-odds-api.com/v4"
         self.ESPN_API_BASE_URL: str = "https://site.api.espn.com/apis/site/v2"
         self.ESPN_CORE_API_BASE_URL: str = "https://sports.core.api.espn.com/v2"
 
@@ -28,7 +26,6 @@ class Config:
         self.CACHE_DIRECTORY: Path = Path("data")
         self.CACHE_MAX_AGE_SCHEDULE: int = 86400  # 24 hours
         self.CACHE_MAX_AGE_RESULTS: int = 3600  # 1 hour
-        self.CACHE_MAX_AGE_ODDS: int = 3600  # 1 hour
 
         # Logging
         self.LOG_LEVEL: str = "INFO"
@@ -58,10 +55,6 @@ class Config:
         config = cls()
 
         # API Configuration
-        config.ODDS_API_KEY = os.getenv("ODDS_API_KEY", config.ODDS_API_KEY)
-        config.ODDS_API_BASE_URL = os.getenv(
-            "ODDS_API_BASE_URL", config.ODDS_API_BASE_URL
-        )
         config.ESPN_API_BASE_URL = os.getenv(
             "ESPN_API_BASE_URL", config.ESPN_API_BASE_URL
         )
@@ -79,10 +72,6 @@ class Config:
         config.CACHE_MAX_AGE_RESULTS = int(
             os.getenv("CACHE_MAX_AGE_RESULTS", config.CACHE_MAX_AGE_RESULTS)
         )
-        config.CACHE_MAX_AGE_ODDS = int(
-            os.getenv("CACHE_MAX_AGE_ODDS", config.CACHE_MAX_AGE_ODDS)
-        )
-
         # Logging
         config.LOG_LEVEL = os.getenv("LOG_LEVEL", config.LOG_LEVEL)
         config.LOG_FILE = os.getenv("LOG_FILE", config.LOG_FILE)
@@ -133,9 +122,6 @@ class Config:
             errors.append("CACHE_MAX_AGE_SCHEDULE must be positive")
         if self.CACHE_MAX_AGE_RESULTS <= 0:
             errors.append("CACHE_MAX_AGE_RESULTS must be positive")
-        if self.CACHE_MAX_AGE_ODDS <= 0:
-            errors.append("CACHE_MAX_AGE_ODDS must be positive")
-
         # Validate log level
         try:
             get_log_level(self.LOG_LEVEL)
@@ -148,7 +134,6 @@ class Config:
         """Return string representation of configuration."""
         return (
             f"Config("
-            f"ODDS_API_KEY={'***' if self.ODDS_API_KEY else 'Not Set'}, "
             f"CACHE_DIRECTORY={self.CACHE_DIRECTORY}, "
             f"LOG_LEVEL={self.LOG_LEVEL}, "
             f"DEVELOPMENT_MODE={self.DEVELOPMENT_MODE}"

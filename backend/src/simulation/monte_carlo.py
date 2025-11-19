@@ -2,7 +2,7 @@
 Monte Carlo simulation engine for NFL season outcomes.
 
 Uses vectorized NumPy operations for high performance simulation of
-thousands of season outcomes based on game probabilities.
+thousands of season outcomes using unbiased 50/50 coin flips for every remaining game.
 Phase 3 includes tiebreaker-based playoff seeding.
 """
 
@@ -14,7 +14,6 @@ import numpy as np
 
 from ..data.models import Game, Team, Standing
 from ..utils.logger import setup_logger
-from .probabilities import get_game_probabilities
 from .scores import generate_game_score, DEFAULT_POINTS_MEAN
 from .standings import calculate_standings
 from .tiebreakers import seed_conference_playoffs, determine_division_winners
@@ -124,8 +123,6 @@ def simulate_season(
     teams: List[Team],
     num_simulations: int = 10000,
     random_seed: Optional[int] = None,
-    remove_vig: bool = True,
-    use_odds: bool = True,
     progress_callback: Optional[Callable[[int], None]] = None,
 ) -> SimulationResult:
     """
@@ -133,7 +130,7 @@ def simulate_season(
 
     This is the main entry point for simulations. It:
     1. Separates completed games (use actual results) from remaining games
-    2. Extracts win probabilities for remaining games
+    2. Treats each remaining matchup as a 50/50 coin flip
     3. Generates random outcomes for all remaining games across all simulations
     4. Calculates standings for each simulation
     5. Aggregates results into statistics
@@ -143,8 +140,6 @@ def simulate_season(
         teams: List of all teams
         num_simulations: Number of Monte Carlo simulations to run (default: 10000)
         random_seed: Optional random seed for reproducibility
-        remove_vig: If True, remove bookmaker's vig from probabilities (default: True)
-        use_odds: If True, use game odds for probabilities. If False, use 50/50 (default: True)
         progress_callback: Optional callback function receiving percentage complete (0-100)
 
     Returns:
@@ -174,31 +169,15 @@ def simulate_season(
     )
 
     # Extract probabilities for remaining games
-    probabilities = []
-    game_home_teams = []
-    game_away_teams = []
-
-    for game in remaining_games:
-        if use_odds:
-            prob_home, prob_away = get_game_probabilities(game, remove_vig_flag=remove_vig)
-        else:
-            # 50/50 coin toss
-            prob_home, prob_away = 0.5, 0.5
-            
-        probabilities.append(prob_home)
-        game_home_teams.append(game.home_team_id)
-        game_away_teams.append(game.away_team_id)
+    # No per-game weighting is required—every matchup is treated as 50/50.
 
     # Create probability matrix: (num_simulations × num_games)
     if remaining_games:
-        probs_array = np.array(probabilities)
-        probs_matrix = np.tile(probs_array, (num_simulations, 1))
-
         # Generate ALL random outcomes at once (vectorized)
         random_matrix = np.random.random((num_simulations, len(remaining_games)))
 
         # Home wins = 1, Away wins = 0
-        home_wins_matrix = (random_matrix < probs_matrix).astype(int)
+        home_wins_matrix = (random_matrix < 0.5).astype(int)
 
         # Generate ALL random scores at once (vectorized)
         # Generate random poisson scores for all games in all simulations

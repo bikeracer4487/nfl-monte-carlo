@@ -1,7 +1,7 @@
 """
 Cache manager for storing and retrieving API data locally.
 
-Minimizes API calls by caching schedule, results, odds, and teams data.
+Minimizes API calls by caching schedule, results, and teams data.
 """
 
 import json
@@ -31,7 +31,6 @@ class CacheManager:
         # Cache file paths
         self.schedule_cache = self.cache_dir / "schedule_{season}.json"
         self.results_cache = self.cache_dir / "results_current.json"
-        self.odds_cache = self.cache_dir / "odds_current.json"
         self.teams_cache = self.cache_dir / "teams.json"
         self.overrides_cache = self.cache_dir / "user_overrides.json"
 
@@ -151,74 +150,6 @@ class CacheManager:
         """
         return self._is_cache_valid(self.results_cache, max_age_seconds)
 
-    # Odds caching
-    def save_odds(self, odds_data: dict) -> None:
-        """
-        Save odds data to cache.
-
-        Args:
-            odds_data: Dictionary of odds from OddsAPIClient
-        """
-        serializable_odds = {}
-        for key, value in odds_data.items():
-            serializable_odds[key] = value.copy()
-            commence = value.get("commence_time")
-            last_update = value.get("last_update")
-            if isinstance(commence, datetime):
-                serializable_odds[key]["commence_time"] = commence.isoformat()
-            if isinstance(last_update, datetime):
-                serializable_odds[key]["last_update"] = last_update.isoformat()
-
-        data = {
-            "cached_at": datetime.now().isoformat(),
-            "game_count": len(odds_data),
-            "odds": serializable_odds,
-        }
-
-        self._write_json(self.odds_cache, data)
-        self.logger.info(f"Saved odds for {len(odds_data)} games to cache")
-
-    def load_odds(self) -> Optional[dict]:
-        """
-        Load odds from cache.
-
-        Returns:
-            Dictionary of odds or None if cache invalid/missing
-        """
-        if not self.odds_cache.exists():
-            return None
-
-        data = self._read_json(self.odds_cache)
-        if not data:
-            return None
-
-        odds = data.get("odds", {})
-        for value in odds.values():
-            commence = value.get("commence_time")
-            last_update = value.get("last_update")
-            try:
-                if isinstance(commence, str):
-                    value["commence_time"] = datetime.fromisoformat(commence)
-                if isinstance(last_update, str):
-                    value["last_update"] = datetime.fromisoformat(last_update)
-            except ValueError:
-                # Leave as string if parsing fails
-                continue
-
-        self.logger.info(f"Loaded odds for {len(odds)} games from cache")
-        return odds
-
-    def is_odds_cached(self, max_age_seconds: int = 3600) -> bool:
-        """
-        Check if valid cached odds exist.
-
-        Args:
-            max_age_seconds: Maximum age in seconds (default: 1 hour)
-
-        Returns:
-            True if valid cache exists
-        """
-        return self._is_cache_valid(self.odds_cache, max_age_seconds)
 
     # Teams caching
     def save_teams(self, teams: list[Team]) -> None:
@@ -296,13 +227,12 @@ class CacheManager:
         Clear cache files.
 
         Args:
-            cache_type: Specific cache to clear ("schedule", "results", "odds", "teams")
+            cache_type: Specific cache to clear ("schedule", "results", "teams")
                        If None, clears all caches (except user_overrides)
         """
         cache_map = {
             "schedule": self.schedule_cache,
             "results": self.results_cache,
-            "odds": self.odds_cache,
             "teams": self.teams_cache,
         }
 
@@ -346,7 +276,6 @@ class CacheManager:
         cache_files = {
             "schedule": self.cache_dir / "schedule_2025.json",
             "results": self.results_cache,
-            "odds": self.odds_cache,
             "teams": self.teams_cache,
             "overrides": self.overrides_cache,
         }
@@ -412,19 +341,12 @@ class CacheManager:
             "is_completed": game.is_completed,
             "home_score": game.home_score,
             "away_score": game.away_score,
-            "home_moneyline": game.home_moneyline,
-            "away_moneyline": game.away_moneyline,
-            "home_win_probability": game.home_win_probability,
-            "away_win_probability": game.away_win_probability,
             "is_overridden": game.is_overridden,
             "override_home_score": game.override_home_score,
             "override_away_score": game.override_away_score,
-            "override_home_moneyline": game.override_home_moneyline,
-            "override_away_moneyline": game.override_away_moneyline,
             "last_updated": game.last_updated.isoformat()
             if game.last_updated
             else None,
-            "odds_source": game.odds_source,
         }
 
     def _deserialize_game(self, data: dict) -> Game:
@@ -439,19 +361,12 @@ class CacheManager:
             is_completed=data["is_completed"],
             home_score=data.get("home_score"),
             away_score=data.get("away_score"),
-            home_moneyline=data.get("home_moneyline"),
-            away_moneyline=data.get("away_moneyline"),
-            home_win_probability=data.get("home_win_probability"),
-            away_win_probability=data.get("away_win_probability"),
             is_overridden=data.get("is_overridden", False),
             override_home_score=data.get("override_home_score"),
             override_away_score=data.get("override_away_score"),
-            override_home_moneyline=data.get("override_home_moneyline"),
-            override_away_moneyline=data.get("override_away_moneyline"),
             last_updated=datetime.fromisoformat(data["last_updated"])
             if data.get("last_updated")
             else None,
-            odds_source=data.get("odds_source"),
         )
 
     def _serialize_team(self, team: Team) -> dict:

@@ -15,8 +15,6 @@ from src.utils.logger import setup_logger
 from src.utils.config import Config
 from src.data.cache_manager import CacheManager
 from src.data.espn_api import ESPNAPIClient
-from src.data.odds_api import OddsAPIClient
-from src.data.odds_matching import match_odds_to_games
 from src.data.models import Team, Game
 from src.simulation.monte_carlo import simulate_season, SimulationResult
 from src.simulation.standings import calculate_standings
@@ -32,10 +30,6 @@ class AppState:
         self.espn_client = ESPNAPIClient(
             base_url=self.config.ESPN_API_BASE_URL,
             core_api_url=self.config.ESPN_API_BASE_URL # Assuming same base for now
-        )
-        self.odds_client = OddsAPIClient(
-            api_key=self.config.ODDS_API_KEY,
-            base_url="https://api.the-odds-api.com/v4"
         )
         self.teams: List[Team] = []
         self.games: List[Game] = []
@@ -68,30 +62,6 @@ async def lifespan(app: FastAPI):
             logger.error(f"Failed to load schedule: {e}")
             state.games = []
             
-    # Load odds
-    odds_data = state.cache_manager.load_odds()
-    if not odds_data and state.config.ODDS_API_KEY:
-        try:
-            logger.info("Fetching odds from API...")
-            odds_data = state.odds_client.fetch_nfl_odds()
-            if odds_data:
-                state.cache_manager.save_odds(odds_data)
-        except Exception as e:
-            logger.error(f"Failed to fetch odds: {e}")
-    
-    # Match odds to games
-    if odds_data and state.games:
-        matched_count, unmatched_games, _ = match_odds_to_games(
-            state.games, state.teams, odds_data
-        )
-        if unmatched_games:
-            logger.info(
-                "Odds API covered %d matchups; %d upcoming games had no odds data (showing first 5): %s",
-                matched_count,
-                len(unmatched_games),
-                unmatched_games[:5],
-            )
-            
     # Load overrides
     overrides = state.cache_manager.load_overrides()
     if overrides:
@@ -103,8 +73,6 @@ async def lifespan(app: FastAPI):
                 game.is_overridden = True
                 game.override_home_score = override_data.get("home_score")
                 game.override_away_score = override_data.get("away_score")
-                game.override_home_moneyline = override_data.get("home_moneyline")
-                game.override_away_moneyline = override_data.get("away_moneyline")
                 # Add other override fields as needed
 
     logger.info(f"Loaded {len(state.teams)} teams and {len(state.games)} games")
@@ -187,8 +155,6 @@ async def get_schedule(week: Optional[int] = None):
 class SimulateRequest(BaseModel):
     num_simulations: int = 10000
     random_seed: Optional[int] = None
-    remove_vig: bool = True
-    use_odds: bool = True
 
 @app.post("/simulate")
 async def run_simulation(request: SimulateRequest, background_tasks: BackgroundTasks):
@@ -204,8 +170,6 @@ async def run_simulation(request: SimulateRequest, background_tasks: BackgroundT
             teams=state.teams,
             num_simulations=request.num_simulations,
             random_seed=request.random_seed,
-            remove_vig=request.remove_vig,
-            use_odds=request.use_odds
         )
         state.simulation_result = result
         
@@ -235,8 +199,6 @@ class OverrideRequest(BaseModel):
     game_id: str
     home_score: Optional[int] = None
     away_score: Optional[int] = None
-    home_moneyline: Optional[int] = None
-    away_moneyline: Optional[int] = None
     is_overridden: bool = True
 
 @app.post("/override")
@@ -250,8 +212,6 @@ async def set_override(request: OverrideRequest):
     if request.is_overridden:
         game.override_home_score = request.home_score
         game.override_away_score = request.away_score
-        game.override_home_moneyline = request.home_moneyline
-        game.override_away_moneyline = request.away_moneyline
     
     # Save overrides to cache
     overrides = state.cache_manager.load_overrides()
@@ -259,8 +219,6 @@ async def set_override(request: OverrideRequest):
         overrides[request.game_id] = {
             "home_score": request.home_score,
             "away_score": request.away_score,
-            "home_moneyline": request.home_moneyline,
-            "away_moneyline": request.away_moneyline
         }
     else:
         overrides.pop(request.game_id, None)

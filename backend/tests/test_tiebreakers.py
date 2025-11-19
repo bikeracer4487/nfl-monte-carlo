@@ -337,11 +337,26 @@ class TestIntegrationWithMonteCarlo:
 
         # Create simple game schedule
         games = [
-            Game(id="g1", week=1, season=2025, home_team_id="1", away_team_id="2",
-                 date=datetime(2025, 9, 7), is_completed=True, home_score=24, away_score=17),
-            Game(id="g2", week=2, season=2025, home_team_id="1", away_team_id="3",
-                 date=datetime(2025, 9, 14), is_completed=False,
-                 home_moneyline=-150, away_moneyline=130),
+            Game(
+                id="g1",
+                week=1,
+                season=2025,
+                home_team_id="1",
+                away_team_id="2",
+                date=datetime(2025, 9, 7),
+                is_completed=True,
+                home_score=24,
+                away_score=17,
+            ),
+            Game(
+                id="g2",
+                week=2,
+                season=2025,
+                home_team_id="1",
+                away_team_id="3",
+                date=datetime(2025, 9, 14),
+                is_completed=False,
+            ),
         ]
 
         result = simulate_season(games, sample_teams, num_simulations=10, random_seed=42)
@@ -358,9 +373,15 @@ class TestIntegrationWithMonteCarlo:
         from src.simulation.monte_carlo import simulate_season
 
         games = [
-            Game(id="g1", week=1, season=2025, home_team_id="1", away_team_id="2",
-                 date=datetime(2025, 9, 7), is_completed=False,
-                 home_moneyline=-200, away_moneyline=175),
+            Game(
+                id="g1",
+                week=1,
+                season=2025,
+                home_team_id="1",
+                away_team_id="2",
+                date=datetime(2025, 9, 7),
+                is_completed=False,
+            ),
         ]
 
         result = simulate_season(games, sample_teams, num_simulations=100, random_seed=42)
