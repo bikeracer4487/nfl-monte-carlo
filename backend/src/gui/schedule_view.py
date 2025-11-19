@@ -27,7 +27,6 @@ class ScheduleView(QWidget):
             "<li>Full season schedule table</li>"
             "<li>Filter by week/team</li>"
             "<li>Override game outcomes</li>"
-            "<li>Override betting odds</li>"
             "<li>Reset overrides</li>"
             "<li>'What If' scenario builder</li>"
             "</ul>"

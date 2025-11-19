@@ -112,32 +112,6 @@ class TestGame:
         assert home_score == 30
         assert away_score == 20
 
-    def test_get_effective_odds_no_override(self, sample_game):
-        """Test get_effective_odds() without override."""
-        home_odds, away_odds = sample_game.get_effective_odds()
-        assert home_odds == -150
-        assert away_odds == 130
-
-    def test_get_effective_odds_with_override(self):
-        """Test get_effective_odds() with override."""
-        game = Game(
-            id="401234572",
-            week=1,
-            season=2025,
-            home_team_id="1",
-            away_team_id="2",
-            date=datetime(2025, 9, 7, 13, 0),
-            is_completed=False,
-            home_moneyline=-150,
-            away_moneyline=130,
-            is_overridden=True,
-            override_home_moneyline=-200,
-            override_away_moneyline=180,
-        )
-        home_odds, away_odds = game.get_effective_odds()
-        assert home_odds == -200
-        assert away_odds == 180
-
     def test_get_winner_with_override(self):
         """Test that overrides affect winner determination."""
         game = Game(

@@ -165,7 +165,7 @@ class TestSimulateSeason:
                 home_score=24,
                 away_score=17,
             ),
-            # Remaining game with odds
+            # Remaining game
             Game(
                 id="game2",
                 week=2,
@@ -174,8 +174,6 @@ class TestSimulateSeason:
                 away_team_id="1",
                 date=datetime(2025, 9, 14, 13, 0),
                 is_completed=False,
-                home_moneyline=-150,
-                away_moneyline=130,
             ),
         ]
 
@@ -211,9 +209,9 @@ class TestSimulateSeason:
         # Team 2 can have 0 or 1 wins depending on game 2 simulation
         assert all(wins <= 1 for wins in stats_team2.wins_distribution)
 
-    def test_simulate_season_probability_distribution(self, sample_teams):
-        """Test that simulated outcomes match expected probability distribution."""
-        # Create a single game with 70/30 odds
+    def test_simulate_season_coin_flip_distribution(self, sample_teams):
+        """Test that simulated outcomes default to 50/50 coin flips."""
+        # Create a single incomplete game
         games = [
             Game(
                 id="game1",
@@ -223,8 +221,6 @@ class TestSimulateSeason:
                 away_team_id="2",
                 date=datetime(2025, 9, 7, 13, 0),
                 is_completed=False,
-                home_moneyline=-233,  # ~70% probability
-                away_moneyline=190,  # ~30% probability (after vig removal)
             )
         ]
 
@@ -234,14 +230,14 @@ class TestSimulateSeason:
 
         stats_team1 = result.get_team_stats("1")
 
-        # Team 1 should win ~70% of simulations
+        # Team 1 should win ~50% of simulations (coin flip)
         wins = sum(1 for w in stats_team1.wins_distribution if w == 1)
         win_rate = wins / 10000
 
         # Allow some statistical variance (~2 standard deviations)
-        # Expected: 0.70, stddev ≈ sqrt(0.7*0.3/10000) ≈ 0.0046
-        # 95% confidence: 0.70 ± 2*0.0046 = [0.691, 0.709]
-        assert 0.68 < win_rate < 0.72, f"Win rate {win_rate} outside expected range"
+        # Expected: 0.50, stddev ≈ sqrt(0.5*0.5/10000) ≈ 0.005
+        # 95% confidence: 0.50 ± 2*0.005 = [0.49, 0.51]
+        assert 0.48 < win_rate < 0.52, f"Win rate {win_rate} outside expected range"
 
     def test_simulate_season_no_remaining_games(self, sample_teams):
         """Test simulation when all games are completed."""
@@ -279,33 +275,6 @@ class TestSimulateSeason:
         assert all(wins == 1 for wins in stats_team1.wins_distribution)
         assert all(wins == 1 for wins in stats_team2.wins_distribution)
 
-    def test_simulate_season_missing_odds(self, sample_teams):
-        """Test simulation with missing odds defaults to 50/50."""
-        games = [
-            Game(
-                id="game1",
-                week=1,
-                season=2025,
-                home_team_id="1",
-                away_team_id="2",
-                date=datetime(2025, 9, 7, 13, 0),
-                is_completed=False,
-                home_moneyline=None,
-                away_moneyline=None,
-            )
-        ]
-
-        result = simulate_season(
-            games, sample_teams, num_simulations=10000, random_seed=42
-        )
-
-        stats_team1 = result.get_team_stats("1")
-        wins = sum(1 for w in stats_team1.wins_distribution if w == 1)
-        win_rate = wins / 10000
-
-        # Should be close to 50% (±2%)
-        assert 0.48 < win_rate < 0.52
-
     def test_simulate_season_performance(self, sample_teams):
         """Test that 10,000 simulations complete in reasonable time."""
         # Create a full season worth of games (17 per team, ~272 total for NFL)
@@ -326,8 +295,6 @@ class TestSimulateSeason:
                     away_team_id="2",
                     date=game_date,
                     is_completed=False,
-                    home_moneyline=-150,
-                    away_moneyline=130,
                 )
             )
 

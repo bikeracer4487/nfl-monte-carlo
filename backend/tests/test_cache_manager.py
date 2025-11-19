@@ -71,23 +71,6 @@ class TestCacheManager:
         assert loaded_games[0].home_score == 24
         assert loaded_games[0].away_score == 17
 
-    def test_save_and_load_odds(self, cache_manager):
-        """Test saving and loading odds."""
-        odds_data = {
-            "team1_vs_team2": {
-                "home_team": "Team 1",
-                "away_team": "Team 2",
-                "home_odds": -150,
-                "away_odds": 130,
-            }
-        }
-        cache_manager.save_odds(odds_data)
-
-        loaded_odds = cache_manager.load_odds()
-        assert loaded_odds is not None
-        assert "team1_vs_team2" in loaded_odds
-        assert loaded_odds["team1_vs_team2"]["home_odds"] == -150
-
     def test_save_and_load_overrides(self, cache_manager):
         """Test user overrides persistence."""
         overrides = {"game_123": {"home_score": 30, "away_score": 20}}
@@ -160,7 +143,6 @@ class TestCacheManager:
         assert deserialized.id == sample_game.id
         assert deserialized.week == sample_game.week
         assert deserialized.is_completed == sample_game.is_completed
-        assert deserialized.home_moneyline == sample_game.home_moneyline
 
         # Test completed game
         serialized = cache_manager._serialize_game(sample_completed_game)

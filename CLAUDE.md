@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Desktop application using Monte Carlo simulations to estimate NFL playoff probabilities based on Vegas odds. Built with Python 3.11+, PySide6 (Qt), NumPy, and Numba. Currently through Phase 4 (data layer, simulation engine, tiebreaker logic, and GUI foundation complete).
+Desktop application using Monte Carlo simulations to estimate NFL playoff probabilities using unbiased 50/50 coin flips for remaining games. Built with Python 3.11+, PySide6 (Qt), NumPy, and Numba. Currently through Phase 4 (data layer, simulation engine, tiebreaker logic, and GUI foundation complete).
 
 ## Quick Commands
 
@@ -35,14 +35,13 @@ flake8 src/ tests/               # Lint
 
 **Data Layer** (`src/data/`)
 - ESPN API integration for schedule and game results
-- The Odds API integration for betting lines
 - Aggressive JSON-based caching to minimize API calls
 - Dataclass models: `Team`, `Game`, `Standing`
 - Override system for "what if" scenarios
 
 **Simulation Engine** (`src/simulation/`)
 - Monte Carlo simulation using NumPy vectorization (~1,000 sims/sec with tiebreakers)
-- American odds → probability conversion with optional vig removal
+- Treats all remaining games as unbiased 50/50 coin flips
 - Poisson-based score generation for point differential tiebreakers
 - Implements 11 of 12 NFL tiebreaker rules (skipped TD differential)
 - Playoff seeding (1-7 seeds per conference)
@@ -63,7 +62,7 @@ flake8 src/ tests/               # Lint
 
 1. **Initial Load**: CacheManager → Load cached teams/schedule → Populate GUI
 2. **Data Refresh**: ESPNAPIClient (background thread) → Update cache → Refresh views
-3. **Simulation**: Extract probabilities → NumPy vectorized random outcomes → Calculate standings with tiebreakers → Aggregate statistics
+3. **Simulation**: Treat each remaining matchup as 50/50 → NumPy vectorized random outcomes → Calculate standings with tiebreakers → Aggregate statistics
 4. **Overrides**: User edits game → Store in `Game.override_*` fields → Simulations use overrides when active
 
 ## Critical Design Patterns
@@ -76,7 +75,6 @@ The `CacheManager` is central to the app's offline capability and API quota mana
 # Cache files in data/ directory (gitignored):
 data/schedule_2025.json       # Fetch once per season
 data/results_current.json     # Update 2-3x per week
-data/odds_current.json        # Update weekly (respects free tier: 500 calls/month)
 data/teams.json               # Fetch once per season
 data/user_overrides.json      # User's "what if" scenarios
 ```
@@ -95,7 +93,6 @@ game.is_overridden          # Flag to use overrides
 
 # Use helper methods to get effective values
 home_score, away_score = game.get_effective_scores()
-home_odds, away_odds = game.get_effective_odds()
 ```
 
 **When implementing features**: Always respect overrides by using `get_effective_*()` methods.
@@ -203,7 +200,6 @@ The `tiebreakers.py` module implements NFL's complex tiebreaker rules. This is t
 ### Required Environment Variables (.env)
 
 ```bash
-ODDS_API_KEY=your_key_here  # Optional: for fetching betting lines
 LOG_LEVEL=INFO              # DEBUG, INFO, WARNING, ERROR
 ```
 
@@ -215,7 +211,6 @@ from src.utils.config import Config
 config = Config.load()
 config.CACHE_DIRECTORY        # pathlib.Path to data/ directory
 config.ESPN_API_BASE_URL      # ESPN API endpoint
-config.ODDS_API_KEY           # The Odds API key (optional)
 ```
 
 ## Common Workflows

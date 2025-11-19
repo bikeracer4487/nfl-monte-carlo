@@ -16,12 +16,6 @@ This directory stores cached API data to minimize API calls and enable offline f
 - **Update Frequency**: Weekly (after games complete)
 - **Max Age**: 1 hour
 
-### odds_current.json
-- **Purpose**: Current betting odds for upcoming games
-- **Source**: The Odds API
-- **Update Frequency**: Weekly (to conserve API quota)
-- **Max Age**: 1 hour
-
 ### teams.json
 - **Purpose**: NFL team information (names, divisions, conferences, logos)
 - **Source**: ESPN API
@@ -29,7 +23,7 @@ This directory stores cached API data to minimize API calls and enable offline f
 - **Never expires**
 
 ### user_overrides.json
-- **Purpose**: User-defined game result/odds overrides
+- **Purpose**: User-defined game result overrides
 - **Source**: User input (via GUI in future phases)
 - **Update Frequency**: On user change
 - **Never auto-deleted**
@@ -52,10 +46,6 @@ cache.clear_cache()
 ```
 
 ### Clear specific cache
-
-```python
-cache.clear_cache("odds")
-```
 
 ### Check cache status
 
@@ -82,7 +72,6 @@ CACHE_DIRECTORY=data
 
 - **Schedule**: Cached for 24 hours. The 2025 season schedule is fixed, so it rarely needs updating.
 - **Results**: Cached for 1 hour. During game days, results update frequently.
-- **Odds**: Cached for 1 hour. Odds change frequently, but we update weekly to conserve API quota.
 - **Teams**: Cached indefinitely. Team information doesn't change during a season.
 - **Overrides**: Never expire. User changes are permanent until manually cleared.
 

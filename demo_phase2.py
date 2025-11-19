@@ -24,7 +24,6 @@ from src.data.cache_manager import CacheManager
 from src.data.schedule_loader import ScheduleLoader
 from src.simulation.monte_carlo import simulate_season
 from src.simulation.standings import calculate_standings, get_conference_standings
-from src.simulation.probabilities import get_game_probabilities
 
 
 def main():
@@ -77,42 +76,21 @@ def main():
         logger.error(f"   Error loading schedule: {e}")
         return
 
-    # Demonstrate probability conversion
-    logger.info("\n5. Probability conversion demonstration:")
-    if remaining_games:
-        sample_game = remaining_games[0]
-        # Add sample odds for demonstration
-        if sample_game.home_moneyline is None:
-            sample_game.home_moneyline = -150
-            sample_game.away_moneyline = 130
-
-        prob_home, prob_away = get_game_probabilities(sample_game, remove_vig_flag=True)
-        home_team = next((t for t in teams if t.id == sample_game.home_team_id), None)
-        away_team = next((t for t in teams if t.id == sample_game.away_team_id), None)
-
-        if home_team and away_team:
-            logger.info(f"   Game: {away_team.abbreviation} @ {home_team.abbreviation}")
-            logger.info(f"   Odds: {sample_game.away_moneyline:+d} / {sample_game.home_moneyline:+d}")
-            logger.info(f"   Probabilities (vig removed): {away_team.abbreviation} {prob_away:.1%}, {home_team.abbreviation} {prob_home:.1%}")
-    else:
-        logger.info("   No remaining games to demonstrate (season complete)")
-
     # Run small simulation for demonstration
-    logger.info("\n6. Running Monte Carlo simulation (1,000 iterations)...")
+    logger.info("\n5. Running Monte Carlo simulation (1,000 iterations)...")
     try:
         result = simulate_season(
             schedule,
             teams,
             num_simulations=1000,
             random_seed=42,  # For reproducibility
-            remove_vig=True,
         )
 
         logger.info(f"   Completed in {result.execution_time_seconds:.3f}s")
         logger.info(f"   Performance: {result.num_simulations / result.execution_time_seconds:.0f} sims/sec")
 
         # Display sample results
-        logger.info("\n7. Sample simulation results:")
+        logger.info("\n6. Sample simulation results:")
 
         # Get a few interesting teams
         sample_team_abbrevs = ["KC", "SF", "BAL", "BUF", "PHI"]
@@ -133,14 +111,13 @@ def main():
         return
 
     # Run large simulation for performance benchmark
-    logger.info("\n8. Performance benchmark (10,000 iterations)...")
+    logger.info("\n7. Performance benchmark (10,000 iterations)...")
     try:
         result_large = simulate_season(
             schedule,
             teams,
             num_simulations=10000,
             random_seed=42,
-            remove_vig=True,
         )
 
         logger.info(f"   Completed in {result_large.execution_time_seconds:.3f}s")
@@ -162,7 +139,7 @@ def main():
         logger.error(f"   Error in performance benchmark: {e}")
 
     # Demonstrate standings calculation
-    logger.info("\n9. Standings calculation demonstration:")
+    logger.info("\n8. Standings calculation demonstration:")
     try:
         # Calculate standings from actual completed games
         standings_dict = calculate_standings(completed_games, teams)
@@ -199,8 +176,7 @@ def main():
     logger.info("=" * 60 + "\n")
 
     logger.info("Phase 2 Features Demonstrated:")
-    logger.info("  ✅ Odds-to-probability conversion")
-    logger.info("  ✅ Vig removal for accurate probabilities")
+    logger.info("  ✅ Unbiased 50/50 Monte Carlo simulation for remaining games")
     logger.info("  ✅ Vectorized NumPy Monte Carlo simulation")
     logger.info("  ✅ Performance: ~120,000 simulations/second")
     logger.info("  ✅ Standings calculation from game results")

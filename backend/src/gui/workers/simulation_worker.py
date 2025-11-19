@@ -32,9 +32,7 @@ class SimulationWorker(QObject):
         teams: List[Team],
         num_simulations: int,
         random_seed: Optional[int],
-        remove_vig: bool,
         selected_week: int,
-        use_odds: bool = True,
     ):
         """
         Initialize simulation worker.
@@ -44,26 +42,21 @@ class SimulationWorker(QObject):
             teams: List of all teams
             num_simulations: Number of simulations to run
             random_seed: Random seed for reproducibility (None for random)
-            remove_vig: Whether to remove vig from odds
             selected_week: Week to simulate from (-1 for current)
-            use_odds: Whether to use game odds (default: True)
         """
         super().__init__()
         self.games = games
         self.teams = teams
         self.num_simulations = num_simulations
         self.random_seed = random_seed
-        self.remove_vig = remove_vig
         self.selected_week = selected_week
-        self.use_odds = use_odds
 
     def run(self):
         """Run Monte Carlo simulation in background."""
         try:
             logger.info(
                 f"Starting simulation: {self.num_simulations} simulations, "
-                f"week {self.selected_week}, seed={self.random_seed}, "
-                f"remove_vig={self.remove_vig}"
+                f"week {self.selected_week}, seed={self.random_seed}"
             )
 
             # Emit started signal
@@ -93,8 +86,6 @@ class SimulationWorker(QObject):
                 teams=self.teams,
                 num_simulations=self.num_simulations,
                 random_seed=self.random_seed,
-                remove_vig=self.remove_vig,
-                use_odds=self.use_odds,
                 progress_callback=update_progress,
             )
 

@@ -3,7 +3,9 @@
 ## Project Overview
 
 ### Purpose
-Create a desktop application that uses Monte Carlo simulations to estimate NFL team playoff probabilities based on Vegas odds-weighted game outcomes. The application will allow users to explore "what if" scenarios, track current standings, and visualize the most likely playoff picture throughout the 2025-26 NFL season.
+Create a desktop application that uses Monte Carlo simulations to estimate NFL team playoff probabilities using unbiased 50/50 coin flips for every remaining matchup. The application will allow users to explore "what if" scenarios, track current standings, and visualize the most likely playoff picture throughout the 2025-26 NFL season.
+
+> **November 2025 Update:** Early phases experimented with weighting simulations by Vegas odds, but real-world lines proved too volatile beyond a week out. All betting-odds integrations have been removed in favor of deterministic 50/50 simulations.
 
 ### Target Users
 - NFL fans who want data-driven playoff projections
@@ -11,7 +13,7 @@ Create a desktop application that uses Monte Carlo simulations to estimate NFL t
 - Anyone wanting to understand how remaining games affect playoff chances
 
 ### Core Objectives
-1. Provide accurate, odds-based playoff probability estimates
+1. Provide accurate, unbiased playoff probability estimates
 2. Enable interactive "what if" scenario exploration
 3. Display comprehensive NFL standings and schedule data
 4. Deliver a polished, professional user experience
@@ -41,17 +43,15 @@ The application will contain three primary views:
 #### Schedule Editor View
 - Display all 18 weeks of the 2025-26 season
 - Dropdown selector to switch between weeks
-- Show: date, matchup, result (if completed), Vegas odds (if upcoming)
-- Edit capabilities for scores and odds
+- Show: date, matchup, result (if completed)
+- Edit capabilities for scores (overrides)
 - Visual indicators for completed vs upcoming games
 - Override status indicators
 
 ### 2. Vegas Odds Integration
 - Weight game outcomes in simulations by current betting lines
-- Convert American odds to win probabilities
-- Support manual odds adjustment
-- Display odds source and confidence
-- Handle missing odds gracefully (fallback to 50/50)
+- Present all remaining games as 50/50 coin flips
+- Support manual score overrides for "what if" scenarios
 
 ### 3. 2025-26 NFL Schedule
 - Hardcode the complete 272-game regular season schedule
@@ -61,14 +61,14 @@ The application will contain three primary views:
 
 ### 4. Data Refresh System
 - Fetch completed game results from ESPN API
-- Fetch current Vegas odds from The Odds API
-- Display "Last Updated" timestamps for results and odds
+- Refresh ESPN schedule/results on demand
+- Display "Last Updated" timestamps for results
 - Manual refresh button for both data types
 - Automatic refresh on app startup (optional)
 - Cache data locally to minimize API calls
 
 ### 5. Manual Adjustments & Overrides
-- Allow users to override any game result or odds
+- Allow users to override any future game result
 - Support both completed and upcoming games
 - Visual indicators showing which games have overrides
 - When refresh detects overridden games:
@@ -232,22 +232,8 @@ https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams
 - No support or SLA
 - Requires caching strategy
 
-#### The Odds API (Betting Lines)
-**Purpose:** Fetch current Vegas odds for upcoming games
-
-**Details:**
-- Free tier: 500 API calls/month
-- Paid tier: $30/month for 20,000 calls
-- Coverage: All major sportsbooks (DraftKings, FanDuel, etc.)
-- Data: Moneyline, spreads, totals
-
-**Usage Strategy:**
-- Cache odds data aggressively
-- Update once per week (≈16-20 calls per update)
-- 500 calls/month is sufficient for weekly updates
-- Store historical odds for analysis
-
-**API Key Required:** Yes (free tier available)
+#### Betting Lines (Deprecated)
+The original plan included ingesting sportsbook odds and converting them to win probabilities. This approach was removed in November 2025 because the available APIs were too volatile for games more than a week in advance. Future simulations now treat every upcoming matchup as a fair 50/50 coin flip, and no betting APIs are required.
 
 #### 2025-26 NFL Schedule
 **Source:** ESPN API (available after May 14, 2025 release)
@@ -265,7 +251,6 @@ https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams
 data/
 ├── schedule_2025.json          # Full season schedule (fetch once)
 ├── results_current.json        # Completed game results (update weekly)
-├── odds_current.json           # Current betting odds (update weekly)
 ├── teams.json                  # Team information and metadata
 └── user_overrides.json         # User-defined overrides
 ```
@@ -280,7 +265,6 @@ data/
 #### Update Frequency:
 - Schedule: Once per season
 - Results: After each game day (2-3x per week during season)
-- Odds: Weekly (Monday or Tuesday before games)
 - Teams: Once per season
 
 ---
@@ -303,19 +287,14 @@ data/
    - Fetch schedule
    - Parse JSON responses
    - Error handling
-5. Implement The Odds API wrapper
-   - Sign up for API key
-   - Fetch NFL odds
-   - Handle rate limits
+5. Finalize caching strategy
+   - Schedule/results/teams JSON snapshots
+   - Timestamp tracking and invalidation
 6. Create data models
    - Team class (name, abbreviation, division, conference)
-   - Game class (teams, date, week, result, odds)
+   - Game class (teams, date, week, result, override metadata)
    - Standing class (team, wins, losses, ties, etc.)
-7. Implement caching system
-   - Save/load JSON files
-   - Timestamp tracking
-   - Cache invalidation logic
-8. Write unit tests for data layer
+7. Write unit tests for data layer
 
 **Deliverables:**
 - Working API wrappers with error handling
@@ -329,18 +308,16 @@ data/
 
 **Goals:**
 - Implement basic simulation algorithm
-- Convert odds to probabilities
+- Simulate remaining games as unbiased 50/50 coin flips
 - Calculate simple standings (without tiebreakers)
 
 **Tasks:**
-1. Implement odds-to-probability conversion
-   - American odds → implied probability
-   - Handle favorites (negative odds)
-   - Handle underdogs (positive odds)
-   - Optional: remove vig for true probabilities
+1. Implement coin-flip probability handling
+   - Completed games use their actual results
+   - All remaining games default to 50/50 outcomes
 2. Create basic simulation function
    - Loop through games
-   - Generate random outcomes based on probabilities
+    - Generate random outcomes using unbiased coin flips
    - Track wins/losses for each team
 3. Implement vectorized simulation (NumPy)
    - Simulate all iterations at once
@@ -354,9 +331,8 @@ data/
    - Average wins
    - Win distribution percentiles
 6. Write unit tests
-   - Test probability conversion
    - Test simulation determinism (with seed)
-   - Validate probability distributions
+   - Validate 50/50 probability distributions
 
 **Deliverables:**
 - Working Monte Carlo simulation engine
@@ -521,8 +497,8 @@ data/
    - Week selector dropdown
 2. Implement edit capabilities
    - Double-click to edit scores
-   - Double-click to edit odds
-   - Validation (reasonable scores, valid odds format)
+   - Double-click to edit scores
+   - Validation (reasonable score ranges)
 3. Add override system
    - Mark games as overridden (visual indicator)
    - Store both override and true values
@@ -625,7 +601,7 @@ data/
    - Installation instructions
    - Feature overview
    - Troubleshooting guide
-   - API key setup instructions
+   - Data refresh instructions
 6. Create installation packages
    - Windows: Installer or ZIP
    - macOS: DMG with drag-to-install
@@ -646,36 +622,9 @@ data/
 
 ## Monte Carlo Simulation Details
 
-### Converting Odds to Probabilities
+### Win Probabilities
 
-#### American Odds Format:
-```python
-def american_odds_to_probability(odds):
-    """Convert American odds to implied win probability"""
-    if odds < 0:  # Favorite (e.g., -150)
-        return abs(odds) / (abs(odds) + 100)
-    else:  # Underdog (e.g., +120)
-        return 100 / (odds + 100)
-
-# Examples:
-# -150 (favorite) → 150/(150+100) = 0.60 = 60% implied probability
-# +120 (underdog) → 100/(120+100) = 0.455 = 45.5% implied probability
-```
-
-#### Removing the Vig (Optional):
-Sportsbook odds include a built-in margin (vig/juice), causing probabilities to sum > 100%. You can normalize to true probabilities:
-
-```python
-def remove_vig(prob_home, prob_away):
-    """Normalize probabilities to sum to 100%"""
-    total = prob_home + prob_away
-    return prob_home / total, prob_away / total
-
-# Example:
-# Home: -150 → 60%, Away: +120 → 45.5%
-# Total: 105.5% (5.5% vig)
-# After normalization: 56.9% home, 43.1% away
-```
+All future matchups are treated as 50/50 outcomes. Completed games (including manual overrides) lock in their final scores, while unfinished games are simulated via unbiased coin flips.
 
 ### Simulation Algorithm
 
@@ -683,7 +632,7 @@ def remove_vig(prob_home, prob_away):
 ```python
 import random
 
-def simulate_season_basic(games, odds, num_simulations=10000):
+def simulate_season_basic(games, num_simulations=10000):
     """Basic Monte Carlo simulation using loops"""
     results = {team: {'playoff_count': 0, 'wins': []} for team in teams}
 
@@ -692,26 +641,23 @@ def simulate_season_basic(games, odds, num_simulations=10000):
 
         # Simulate each game
         for game in games:
-            home_team = game['home']
-            away_team = game['away']
-            home_win_prob = odds[game['id']]['home_prob']
-
-            # Random outcome weighted by probability
-            if random.random() < home_win_prob:
-                team_wins[home_team] += 1
+            if game['is_completed']:
+                winner = game['winner']
             else:
-                team_wins[away_team] += 1
+                winner = 'home' if random.random() < 0.5 else 'away'
 
-        # Determine playoff teams using tiebreakers
+            if winner == 'home':
+                team_wins[game['home']] += 1
+            else:
+                team_wins[game['away']] += 1
+
         playoff_teams = determine_playoffs(team_wins, games)
 
-        # Record results
         for team in teams:
             results[team]['wins'].append(team_wins[team])
             if team in playoff_teams:
                 results[team]['playoff_count'] += 1
 
-    # Calculate statistics
     for team in results:
         wins_array = results[team]['wins']
         results[team]['avg_wins'] = sum(wins_array) / len(wins_array)
@@ -724,21 +670,17 @@ def simulate_season_basic(games, odds, num_simulations=10000):
 ```python
 import numpy as np
 
-def simulate_season_vectorized(games, odds, num_simulations=10000):
+def simulate_season_vectorized(games, num_simulations=10000):
     """Vectorized Monte Carlo simulation using NumPy"""
-    num_games = len(games)
+    remaining_games = [g for g in games if not g['is_completed']]
+    num_games = len(remaining_games)
 
-    # Create probability matrix: shape (num_simulations, num_games)
-    probs = np.array([odds[game['id']]['home_prob'] for game in games])
-    probs_matrix = np.tile(probs, (num_simulations, 1))
-
-    # Generate ALL random outcomes at once
+    # Generate ALL random outcomes at once (50/50 coin flips)
     random_matrix = np.random.random((num_simulations, num_games))
-    home_wins_matrix = (random_matrix < probs_matrix).astype(int)
+    home_wins_matrix = (random_matrix < 0.5).astype(int)
 
     # Process results (vectorized operations)
-    # This is 50-100x faster than the loop version
-    # ... (additional processing)
+    # ... (additional processing identical to current implementation)
 
     return results
 ```
@@ -786,7 +728,6 @@ nfl-monte-carlo/
 │   ├── data/
 │   │   ├── __init__.py
 │   │   ├── espn_api.py              # ESPN API wrapper
-│   │   ├── odds_api.py              # The Odds API wrapper
 │   │   ├── cache_manager.py         # Data caching and persistence
 │   │   ├── schedule_loader.py       # Load/parse schedule
 │   │   └── models.py                # Data models (Team, Game, Standing)
@@ -824,7 +765,6 @@ nfl-monte-carlo/
 ├── data/                             # Data cache directory
 │   ├── schedule_2025.json            # Cached schedule
 │   ├── results_current.json          # Cached game results
-│   ├── odds_current.json             # Cached odds
 │   ├── teams.json                    # Team information
 │   └── user_overrides.json           # User overrides
 │
@@ -922,16 +862,13 @@ Based on working evenings and weekends (10-15 hours per week):
 **Mitigation:** App should work offline with stale data
 
 ### Challenge 4: Data Freshness
-**Problem:** Need current odds and results without exceeding API limits.
+**Problem:** Need current results without overwhelming ESPN's unofficial endpoints.
 
 **Solution:**
-- Use The Odds API free tier (500 calls/month)
-- Update odds weekly (≈16-20 calls per update)
-- Cache results for entire season locally
+- Cache results for the entire season locally
 - Manual refresh button for user control
 - Display last update timestamp prominently
-
-**API Budget:** 500 calls = 25-30 weekly updates (sufficient for entire season)
+- Respect polite polling intervals (no rapid-fire refresh spam)
 
 ### Challenge 5: Cross-Platform Distribution
 **Problem:** Need to build executables on both Windows and macOS.
@@ -971,7 +908,6 @@ Based on working evenings and weekends (10-15 hours per week):
 
 ### Unit Tests
 **Coverage:**
-- Odds-to-probability conversion (all formats)
 - Each tiebreaker rule individually
 - Simulation randomness (with seed control)
 - API parsing logic
@@ -988,7 +924,7 @@ Based on working evenings and weekends (10-15 hours per week):
 
 ### Validation Tests
 **Coverage:**
-- Historical season validation (2024 season with actual odds)
+- Historical season validation (2024 season results)
 - Known tiebreaker scenarios from NFL history
 - Probability distribution sanity checks
 - Playoff seeding matches NFL official results
@@ -1058,7 +994,7 @@ Based on working evenings and weekends (10-15 hours per week):
 - Provide download instructions for slower connections
 
 ### Risk 6: API Rate Limit Exceeded
-**Impact:** Medium - Cannot get fresh odds
+**Impact:** Medium - Cannot refresh results
 **Probability:** Low
 **Mitigation:**
 - Cache aggressively
@@ -1095,7 +1031,7 @@ Based on working evenings and weekends (10-15 hours per week):
 
 5. **Advanced Statistics**
    - Strength of schedule charts
-   - Probability timelines (how odds change)
+   - Probability timelines (how projections change)
    - Division race visualizations
 
 6. **Mobile App**
@@ -1110,12 +1046,12 @@ Based on working evenings and weekends (10-15 hours per week):
 
 8. **Machine Learning**
    - Train model on historical data
-   - Adjust odds based on injuries, weather, etc.
+   - Adjust projection weights based on injuries, weather, etc.
    - More sophisticated probability estimates
 
 9. **Automated Updates**
    - Background data refresh
-   - Notifications when new odds available
+   - Notifications when new data is available
    - Auto-run simulations
 
 10. **Social Features**
@@ -1128,11 +1064,11 @@ Based on working evenings and weekends (10-15 hours per week):
 ## Success Criteria
 
 ### Must-Have (MVP Requirements)
-✅ Run Monte Carlo simulations with odds-weighted outcomes
+✅ Run Monte Carlo simulations with unbiased coin-flip outcomes
 ✅ Display playoff probabilities for all 32 teams
 ✅ Show current NFL standings
 ✅ Implement complete NFL tiebreaker logic
-✅ Allow manual override of game results and odds
+✅ Allow manual override of future game results
 ✅ Multiple views (standings, simulation, schedule)
 ✅ Light and dark mode themes
 ✅ Progress bar for simulations

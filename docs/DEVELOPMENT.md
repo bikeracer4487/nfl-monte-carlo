@@ -22,12 +22,9 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements-dev.txt
 ```
 
-### 4. Configure environment
+### 4. Configure environment (optional)
 
-```bash
-cp .env.example .env
-# Edit .env and add your ODDS_API_KEY
-```
+Create a `.env` if you want to override defaults such as `LOG_LEVEL` or `CACHE_DIRECTORY`. The application no longer requires any third-party API keys.
 
 ### 5. Run tests
 
@@ -72,11 +69,8 @@ pytest tests/test_models.py
 # Specific test
 pytest tests/test_models.py::TestTeam::test_team_creation
 
-# Skip slow/API tests
-pytest -m "not api and not slow"
-
-# Only API tests (requires valid API keys)
-pytest -m api
+# Skip slow tests
+pytest -m "not slow"
 ```
 
 ### Code Quality
@@ -110,7 +104,6 @@ LOG_LEVEL=DEBUG
 - [x] Configuration manager implemented
 - [x] Data models created (Team, Game, Standing)
 - [x] ESPN API wrapper implemented
-- [x] Odds API wrapper implemented
 - [x] Cache manager implemented
 - [x] Schedule loader implemented
 - [x] Unit tests written
@@ -130,7 +123,7 @@ After completing Phase 1, proceed to:
 
 **Phase 2**: Monte Carlo Simulation Engine
 - Implement basic simulation algorithm
-- Convert odds to probabilities
+- Simulate remaining games as unbiased coin flips
 - Calculate standings
 
 **Phase 3**: NFL Tiebreaker Logic
@@ -178,4 +171,3 @@ rm -rf data/*.json
 
 - [PySide6 Documentation](https://doc.qt.io/qtforpython-6/)
 - [NFL Tiebreaker Rules](https://operations.nfl.com/the-rules/nfl-tie-breaking-procedures/)
-- [The Odds API Docs](https://the-odds-api.com/liveapi/guides/v4/)

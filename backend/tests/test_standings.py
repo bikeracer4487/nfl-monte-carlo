@@ -423,8 +423,6 @@ class TestCalculateStandings:
                 away_team_id="2",
                 date=datetime(2025, 9, 7, 13, 0),
                 is_completed=False,  # Not completed
-                home_moneyline=-150,
-                away_moneyline=130,
             )
         ]
 

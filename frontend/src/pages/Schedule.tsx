@@ -25,25 +25,21 @@ export const Schedule = () => {
   }, [teams]);
 
   const overrideMutation = useMutation({
-    mutationFn: ({ gameId, homeScore, awayScore, homeMoneyline, awayMoneyline, isOverridden }: { gameId: string; homeScore?: number; awayScore?: number; homeMoneyline?: number; awayMoneyline?: number; isOverridden: boolean }) =>
-      setOverride(gameId, homeScore, awayScore, isOverridden, homeMoneyline, awayMoneyline),
+    mutationFn: ({ gameId, homeScore, awayScore, isOverridden }: { gameId: string; homeScore?: number; awayScore?: number; isOverridden: boolean }) =>
+      setOverride(gameId, homeScore, awayScore, isOverridden),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['schedule'] });
     },
   });
 
-  const handleOverride = (game: Game, homeScore: string, awayScore: string, homeMoneyline: string, awayMoneyline: string) => {
+  const handleOverride = (game: Game, homeScore: string, awayScore: string) => {
     const h = homeScore ? parseInt(homeScore) : undefined;
     const a = awayScore ? parseInt(awayScore) : undefined;
-    const hMl = homeMoneyline ? parseInt(homeMoneyline) : undefined;
-    const aMl = awayMoneyline ? parseInt(awayMoneyline) : undefined;
     
     overrideMutation.mutate({ 
       gameId: game.id, 
       homeScore: h, 
       awayScore: a, 
-      homeMoneyline: hMl,
-      awayMoneyline: aMl,
       isOverridden: true 
     });
   };
@@ -100,7 +96,7 @@ export const Schedule = () => {
             key={game.id} 
             game={game} 
             teamMap={teamMap}
-            onSave={(h, a, hMl, aMl) => handleOverride(game, h, a, hMl, aMl)}
+            onSave={(h, a) => handleOverride(game, h, a)}
             onClear={() => clearOverride(game.id)}
           />
         ))}
@@ -109,23 +105,17 @@ export const Schedule = () => {
   );
 };
 
-const GameCard = ({ game, teamMap, onSave, onClear }: { game: Game; teamMap: Record<string, Team>; onSave: (h: string, a: string, hMl: string, aMl: string) => void; onClear: () => void }) => {
+const GameCard = ({ game, teamMap, onSave, onClear }: { game: Game; teamMap: Record<string, Team>; onSave: (h: string, a: string) => void; onClear: () => void }) => {
   const [homeScore, setHomeScore] = useState(game.override_home_score?.toString() || game.home_score?.toString() || '');
   const [awayScore, setAwayScore] = useState(game.override_away_score?.toString() || game.away_score?.toString() || '');
-  const [homeMoneyline, setHomeMoneyline] = useState(game.override_home_moneyline?.toString() || game.home_moneyline?.toString() || '');
-  const [awayMoneyline, setAwayMoneyline] = useState(game.override_away_moneyline?.toString() || game.away_moneyline?.toString() || '');
   
   React.useEffect(() => {
       if (game.is_overridden) {
           setHomeScore(game.override_home_score?.toString() || '');
           setAwayScore(game.override_away_score?.toString() || '');
-          setHomeMoneyline(game.override_home_moneyline?.toString() || '');
-          setAwayMoneyline(game.override_away_moneyline?.toString() || '');
       } else {
           setHomeScore(game.home_score?.toString() || '');
           setAwayScore(game.away_score?.toString() || '');
-          setHomeMoneyline(game.home_moneyline?.toString() || '');
-          setAwayMoneyline(game.away_moneyline?.toString() || '');
       }
   }, [game]);
 
@@ -171,18 +161,6 @@ const GameCard = ({ game, teamMap, onSave, onClear }: { game: Game; teamMap: Rec
               onChange={(e) => setAwayScore(e.target.value)}
               className="w-16 bg-[#121212] border border-gray-700 rounded px-2 py-1 text-right text-white focus:border-blue-500 outline-none font-mono text-lg"
             />
-            {!isCompleted && (
-              <div className="relative group">
-                <input
-                  type="number"
-                  placeholder="ML"
-                  value={awayMoneyline}
-                  onChange={(e) => setAwayMoneyline(e.target.value)}
-                  className="w-16 bg-[#121212] border border-gray-800 rounded px-2 py-0.5 text-right text-gray-400 focus:border-blue-500 outline-none font-mono text-xs"
-                  title="Moneyline Odds"
-                />
-              </div>
-            )}
           </div>
         </div>
 
@@ -203,18 +181,6 @@ const GameCard = ({ game, teamMap, onSave, onClear }: { game: Game; teamMap: Rec
               onChange={(e) => setHomeScore(e.target.value)}
               className="w-16 bg-[#121212] border border-gray-700 rounded px-2 py-1 text-right text-white focus:border-blue-500 outline-none font-mono text-lg"
             />
-            {!isCompleted && (
-              <div className="relative group">
-                <input
-                  type="number"
-                  placeholder="ML"
-                  value={homeMoneyline}
-                  onChange={(e) => setHomeMoneyline(e.target.value)}
-                  className="w-16 bg-[#121212] border border-gray-800 rounded px-2 py-0.5 text-right text-gray-400 focus:border-blue-500 outline-none font-mono text-xs"
-                  title="Moneyline Odds"
-                />
-              </div>
-            )}
           </div>
         </div>
       </div>
@@ -230,7 +196,7 @@ const GameCard = ({ game, teamMap, onSave, onClear }: { game: Game; teamMap: Rec
           </button>
         )}
         <button
-          onClick={() => onSave(homeScore, awayScore, homeMoneyline, awayMoneyline)}
+          onClick={() => onSave(homeScore, awayScore)}
           className={clsx(
             "p-2 rounded transition-colors",
             isEdited 

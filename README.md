@@ -1,6 +1,6 @@
 # NFL Monte Carlo Simulation
 
-A modern desktop application that uses Monte Carlo simulations to estimate NFL team playoff probabilities based on Vegas odds-weighted game outcomes.
+A modern desktop application that uses Monte Carlo simulations to estimate NFL team playoff probabilities by treating every remaining matchup as an unbiased 50/50 coin flip.
 
 ## Architecture
 
@@ -16,7 +16,7 @@ This application uses a hybrid architecture:
 ## Features
 
 - **Monte Carlo Simulations**: Run thousands of season simulations to estimate playoff probabilities
-- **Vegas Odds Integration**: Weight game outcomes by current betting lines
+- **Unbiased Outcomes**: All remaining games are simulated as fair 50/50 coin flips for consistent projections
 - **Interactive UI**:
   - **Standings**: View current NFL standings with advanced stats
   - **Schedule**: View and edit schedule with manual overrides
