@@ -1,198 +1,85 @@
 # NFL Monte Carlo Simulation
 
-A desktop application that uses Monte Carlo simulations to estimate NFL team playoff probabilities based on Vegas odds-weighted game outcomes.
+A modern desktop application that uses Monte Carlo simulations to estimate NFL team playoff probabilities based on Vegas odds-weighted game outcomes.
+
+## Architecture
+
+This application uses a hybrid architecture:
+- **Backend**: Python (FastAPI) for heavy computation, data management, and Monte Carlo simulations (NumPy/Numba).
+- **Frontend**: Electron + React + TypeScript for a modern, responsive user interface.
 
 ## Project Status
 
-**Phase 1: Complete ✅** - Data Foundation & API Integration
-**Phase 2: Complete ✅** - Monte Carlo Simulation Engine
-**Phase 3: Complete ✅** - NFL Tiebreaker Logic
+**Phase 1-3: Complete ✅** - Data Foundation, Simulation Engine, Tiebreaker Logic
+**Phase 4: In Progress 🔄** - Modern GUI (Electron + React)
 
-## Features (Planned)
+## Features
 
 - **Monte Carlo Simulations**: Run thousands of season simulations to estimate playoff probabilities
 - **Vegas Odds Integration**: Weight game outcomes by current betting lines
-- **Multiple Views**:
-  - Simulation results (playoff odds, division odds, #1 seed odds)
-  - Current NFL standings
-  - Schedule editor with manual overrides
-- **"What If" Scenarios**: Override any game outcome to explore different scenarios
-- **Light/Dark Mode**: Toggle between themes
-- **Cross-Platform**: Windows and macOS executables
-
-## Technology Stack
-
-- **Language**: Python 3.11+
-- **GUI**: PySide6 (Qt for Python)
-- **Computation**: NumPy + Numba for performance
-- **APIs**:
-  - ESPN API (game results, schedule, teams)
-  - The Odds API (betting lines)
-
-## Phase 1: Data Foundation ✅
-
-Phase 1 is complete! The data layer is fully functional:
-
-- ✅ ESPN API wrapper for fetching schedule, results, and teams
-- ✅ The Odds API wrapper for fetching betting lines
-- ✅ Comprehensive caching system to minimize API calls
-- ✅ Data models for teams, games, and standings
-- ✅ Configuration management
-- ✅ Test suite with >80% coverage
-- ✅ Complete documentation
-
-## Phase 2: Monte Carlo Simulation Engine ✅
-
-Phase 2 is complete! The simulation engine is fully functional:
-
-- ✅ American odds to probability conversion
-- ✅ Bookmaker vig removal for accurate probabilities
-- ✅ Vectorized NumPy-based Monte Carlo simulation
-- ✅ Performance: ~120,000 simulations/second (simple mode)
-- ✅ Standings calculator with division/conference tracking
-- ✅ Comprehensive test suite (72 tests, 97%+ coverage for simulation modules)
-- ✅ Demo script showcasing all features
-
-## Phase 3: NFL Tiebreaker Logic ✅
-
-Phase 3 is complete! Full NFL tiebreaker rules are implemented:
-
-- ✅ All 11 tiebreaker rules implemented (skipped touchdown differential - rule 11 of 12)
-- ✅ Two-team tiebreakers (division and wild card scenarios)
-- ✅ Multi-team tiebreakers with cascading logic
-- ✅ Head-to-head records, strength of victory, strength of schedule calculations
-- ✅ Division winner determination with tiebreakers
-- ✅ Wild card team determination (3 per conference)
-- ✅ Complete playoff seeding (1-7 seeds per conference)
-- ✅ Poisson-based score generation for point differential tiebreakers
-- ✅ Performance: ~900-1,000 simulations/second (with full tiebreaker calculations)
-- ✅ Comprehensive test suite (21 new tests, 156 total tests passing)
-- ✅ Integration with Monte Carlo simulation
+- **Interactive UI**:
+  - **Standings**: View current NFL standings with advanced stats
+  - **Schedule**: View and edit schedule with manual overrides
+  - **Simulation**: Run simulations and view detailed probability breakdowns
+- **Cross-Platform**: Runs on Windows and macOS
 
 ## Quick Start
 
-### 1. Setup
+### Prerequisites
+- Node.js (v18+)
+- Python (v3.11+)
+
+### 1. Setup Backend
 
 ```bash
-# Clone repository
-git clone <your-repo-url>
-cd nfl-monte-carlo
-
-# Create virtual environment
-python3.11 -m venv venv
+cd backend
+python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Configure environment
-cp .env.example .env
-# Edit .env and add your ODDS_API_KEY (optional)
 ```
 
-### 2. Get API Key (Optional)
-
-To fetch betting odds:
-1. Sign up at https://the-odds-api.com/ (free tier: 500 calls/month)
-2. Get your API key
-3. Add to `.env`: `ODDS_API_KEY=your_key_here`
-
-ESPN API requires no setup - it's free and open!
-
-### 3. Run Demos
+### 2. Setup Frontend
 
 ```bash
-# Phase 1: Data layer demo
-python demo_phase1.py
-
-# Phase 2: Monte Carlo simulation demo
-python demo_phase2.py
+cd frontend
+npm install
 ```
 
-**Phase 1 demo** shows:
-- Fetching NFL teams and 2025 schedule from ESPN
-- Caching data locally
-- Fetching current odds (if configured)
-- Team organization and schedule summary
+### 3. Run Application
 
-**Phase 2 demo** shows:
-- Odds-to-probability conversion
-- Monte Carlo simulations (1,000 and 10,000 iterations)
-- Performance benchmarking (~120,000 sims/sec)
-- Standings calculation
-- Conference standings display
+**Development Mode:**
 
-### 4. Run Tests
-
+Terminal 1 (Backend):
 ```bash
-# All tests
-pytest
-
-# With coverage
-pytest --cov=src --cov-report=html
-
-# Skip API tests (faster)
-pytest -m "not api"
+cd backend
+source venv/bin/activate
+python api/server.py
 ```
+
+Terminal 2 (Frontend):
+```bash
+cd frontend
+npm start
+```
+(This runs both the Vite dev server and the Electron app)
 
 ## Project Structure
 
 ```
 nfl-monte-carlo/
-├── src/
-│   ├── data/           # Data layer (ESPN API, Odds API, caching)
-│   ├── utils/          # Utilities (logging, config)
-│   ├── gui/            # GUI components (Phase 4+)
-│   └── simulation/     # Monte Carlo engine (Phase 2+)
-├── tests/              # Comprehensive test suite
-├── data/               # Cache directory (gitignored)
-├── docs/               # Documentation
-└── resources/          # Team logos, fonts (Phase 6+)
+├── backend/            # Python Backend
+│   ├── api/            # FastAPI server
+│   ├── src/            # Core logic (Data, Simulation)
+│   └── tests/          # Python tests
+├── frontend/           # Electron + React Frontend
+│   ├── electron/       # Electron main process
+│   ├── src/            # React UI components
+│   └── ...
+└── ...
 ```
-
-## Development Roadmap
-
-### Phase 4: GUI Foundation (Next)
-- Create main window with PySide6
-- Implement standings table view
-- Add navigation controls
-
-### Phase 5: Simulation Integration
-- Connect simulation to GUI
-- Add progress bar and controls
-- Display results
-
-### Phase 6: Schedule Editor & Overrides
-- Implement schedule editing
-- Add override system
-- Handle refresh conflicts
-
-### Phase 7: Polish & Theming
-- Implement dark mode
-- Add team logos and branding
-- Final polish
-
-### Phase 8: Distribution
-- Create Windows/macOS executables
-- Code signing (optional)
-- Release packages
 
 ## Documentation
 
 - [API Setup Guide](docs/API_SETUP.md) - How to get API keys
 - [Development Guide](docs/DEVELOPMENT.md) - Development workflow
 - [Project Plan](PROJECT_PLAN.md) - Complete implementation plan
-
-## Contributing
-
-See [DEVELOPMENT.md](docs/DEVELOPMENT.md) for development setup and workflow.
-
-## License
-
-TBD
-
-## Acknowledgments
-
-- ESPN for providing free NFL data
-- The Odds API for betting lines
-- NFL for the game we love
