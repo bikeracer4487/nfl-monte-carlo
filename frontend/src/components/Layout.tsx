@@ -1,6 +1,7 @@
 import { Outlet, NavLink } from 'react-router-dom';
-import { LayoutDashboard, Calendar, Trophy, Settings } from 'lucide-react';
+import { LayoutDashboard, Calendar, Settings } from 'lucide-react';
 import clsx from 'clsx';
+import nflLogo from '../assets/nfl-logo.svg';
 
 const SidebarItem = ({ to, icon: Icon, label }: { to: string; icon: any; label: string }) => (
   <NavLink
@@ -25,10 +26,17 @@ export const Layout = () => {
       {/* Sidebar */}
       <div className="w-64 bg-[#1E1E1E] border-r border-gray-800 flex flex-col">
         <div className="p-6 border-b border-gray-800">
-          <h1 className="text-xl font-bold flex items-center gap-2">
-            <Trophy className="text-blue-500" />
-            NFL Monte Carlo
-          </h1>
+          <div className="flex items-center gap-3">
+            <img src={nflLogo} alt="NFL" className="h-10 w-auto" />
+            <div className="flex flex-col">
+              <h1 className="text-white font-bold leading-tight">
+                2025 NFL Playoffs
+              </h1>
+              <span className="text-xs text-gray-400 font-medium">
+                Monte Carlo Simulator
+              </span>
+            </div>
+          </div>
         </div>
         
         <nav className="flex-1 p-4 space-y-2">
