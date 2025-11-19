@@ -7,6 +7,8 @@ import fs from 'fs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Important: Disable node integration and enable context isolation for security
+// and to prevent conflicts with global 'module' or 'exports'.
 let mainWindow: BrowserWindow | null;
 let pythonProcess: ChildProcess | null = null;
 
