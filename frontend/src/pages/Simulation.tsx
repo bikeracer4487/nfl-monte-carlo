@@ -1,12 +1,24 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { runSimulation, getTeams, type SimulationResult, type Team } from '../lib/api';
-import { Play, Loader2 } from 'lucide-react';
+import { runSimulation, getTeams, type SimulationResult, type Team, type TeamSimulationStats } from '../lib/api';
+import { Play, Loader2, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 import clsx from 'clsx';
+
+type SortKey = 'team' | keyof Omit<TeamSimulationStats, 'seed_probabilities'>;
+type SortDirection = 'asc' | 'desc';
+
+interface SortConfig {
+  key: SortKey;
+  direction: SortDirection;
+}
 
 export const Simulation = () => {
   const [numSimulations, setNumSimulations] = useState(10000);
   const [result, setResult] = useState<SimulationResult | null>(null);
+  const [sortConfig, setSortConfig] = useState<SortConfig>({
+    key: 'playoff_probability',
+    direction: 'desc'
+  });
 
   const { data: teams } = useQuery({
     queryKey: ['teams'],
@@ -25,6 +37,52 @@ export const Simulation = () => {
       setResult(data);
     },
   });
+
+  const handleSort = (key: SortKey) => {
+    setSortConfig(current => ({
+      key,
+      direction: current.key === key && current.direction === 'desc' ? 'asc' : 'desc'
+    }));
+  };
+
+  const sortedData = React.useMemo(() => {
+    if (!result) return [];
+    
+    return Object.entries(result.team_stats).sort(([aId, aStats], [bId, bStats]) => {
+      const direction = sortConfig.direction === 'asc' ? 1 : -1;
+      
+      if (sortConfig.key === 'team') {
+        const aName = teamMap[aId]?.name || aId;
+        const bName = teamMap[bId]?.name || bId;
+        return aName.localeCompare(bName) * direction;
+      }
+      
+      const aValue = aStats[sortConfig.key as keyof TeamSimulationStats];
+      const bValue = bStats[sortConfig.key as keyof TeamSimulationStats];
+      
+      // Handle potential undefined values if types mismatch, though they shouldn't
+      if (typeof aValue === 'number' && typeof bValue === 'number') {
+        return (aValue - bValue) * direction;
+      }
+      return 0;
+    });
+  }, [result, sortConfig, teamMap]);
+
+  const SortHeader = ({ label, sortKey }: { label: string, sortKey: SortKey }) => (
+    <th 
+      className="px-6 py-4 cursor-pointer hover:bg-[#2A2A2A] transition-colors select-none"
+      onClick={() => handleSort(sortKey)}
+    >
+      <div className="flex items-center gap-2">
+        {label}
+        {sortConfig.key === sortKey ? (
+          sortConfig.direction === 'asc' ? <ArrowUp size={16} className="text-blue-500" /> : <ArrowDown size={16} className="text-blue-500" />
+        ) : (
+          <ArrowUpDown size={16} className="text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+        )}
+      </div>
+    </th>
+  );
 
   return (
     <div className="p-8">
@@ -76,38 +134,36 @@ export const Simulation = () => {
           <div className="overflow-x-auto rounded-lg border border-gray-800 bg-[#1E1E1E]">
             <table className="w-full text-left text-sm">
               <thead className="bg-[#252525] text-gray-400 uppercase font-semibold">
-                <tr>
-                  <th className="px-6 py-4">Team</th>
-                  <th className="px-6 py-4">Avg Wins</th>
-                  <th className="px-6 py-4">Playoff %</th>
-                  <th className="px-6 py-4">Division %</th>
-                  <th className="px-6 py-4">#1 Seed %</th>
+                <tr className="group">
+                  <SortHeader label="Team" sortKey="team" />
+                  <SortHeader label="Avg Wins" sortKey="average_wins" />
+                  <SortHeader label="Playoff %" sortKey="playoff_probability" />
+                  <SortHeader label="Division %" sortKey="division_win_probability" />
+                  <SortHeader label="#1 Seed %" sortKey="first_seed_probability" />
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-800">
-                {Object.entries(result.team_stats)
-                  .sort(([, a], [, b]) => b.playoff_probability - a.playoff_probability)
-                  .map(([teamId, stats]) => {
-                    const team = teamMap[teamId];
-                    return (
-                      <tr key={teamId} className="hover:bg-[#2A2A2A] transition-colors">
-                        <td className="px-6 py-4 font-medium text-white flex items-center gap-3">
-                          {team?.logo_url && <img src={team.logo_url} alt={team.abbreviation} className="w-6 h-6 object-contain" />}
-                          {team?.name || teamId}
-                        </td>
-                        <td className="px-6 py-4 text-gray-300">{stats.average_wins.toFixed(1)}</td>
-                        <td className="px-6 py-4">
-                          <ProbabilityBar value={stats.playoff_probability} />
-                        </td>
-                        <td className="px-6 py-4">
-                          <ProbabilityBar value={stats.division_win_probability} />
-                        </td>
-                        <td className="px-6 py-4">
-                          <ProbabilityBar value={stats.first_seed_probability} />
-                        </td>
-                      </tr>
-                    );
-                  })}
+                {sortedData.map(([teamId, stats]) => {
+                  const team = teamMap[teamId];
+                  return (
+                    <tr key={teamId} className="hover:bg-[#2A2A2A] transition-colors">
+                      <td className="px-6 py-4 font-medium text-white flex items-center gap-3">
+                        {team?.logo_url && <img src={team.logo_url} alt={team.abbreviation} className="w-6 h-6 object-contain" />}
+                        {team?.name || teamId}
+                      </td>
+                      <td className="px-6 py-4 text-gray-300">{stats.average_wins.toFixed(1)}</td>
+                      <td className="px-6 py-4">
+                        <ProbabilityBar value={stats.playoff_probability} />
+                      </td>
+                      <td className="px-6 py-4">
+                        <ProbabilityBar value={stats.division_win_probability} />
+                      </td>
+                      <td className="px-6 py-4">
+                        <ProbabilityBar value={stats.first_seed_probability} />
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
