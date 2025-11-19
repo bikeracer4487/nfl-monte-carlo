@@ -14,8 +14,6 @@ interface SortConfig {
 
 export const Simulation = () => {
   const [numSimulations, setNumSimulations] = useState(10000);
-  const [useOdds, setUseOdds] = useState(true);
-  const [removeVig, setRemoveVig] = useState(true);
   const [result, setResult] = useState<SimulationResult | null>(null);
   const [sortConfig, setSortConfig] = useState<SortConfig>({
     key: 'playoff_probability',
@@ -34,7 +32,7 @@ export const Simulation = () => {
   }, [teams]);
 
   const mutation = useMutation({
-    mutationFn: () => runSimulation(numSimulations, useOdds, removeVig),
+    mutationFn: () => runSimulation(numSimulations),
     onSuccess: (data) => {
       setResult(data);
     },
@@ -91,7 +89,7 @@ export const Simulation = () => {
       <h2 className="text-2xl font-bold mb-6 text-white">Monte Carlo Simulation</h2>
 
       <div className="bg-[#1E1E1E] p-6 rounded-lg border border-gray-800 mb-8">
-        <div className="flex items-end gap-4">
+        <div className="flex flex-wrap items-end gap-4">
           <div className="flex-1 max-w-xs">
             <label className="block text-sm font-medium text-gray-400 mb-2">
               Number of Simulations
@@ -105,31 +103,6 @@ export const Simulation = () => {
               <option value={10000}>10,000 (Standard)</option>
               <option value={100000}>100,000 (High Precision)</option>
             </select>
-          </div>
-
-          <div className="flex flex-col justify-end gap-2 mb-1">
-            <label className="flex items-center gap-2 cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={useOdds}
-                onChange={(e) => setUseOdds(e.target.checked)}
-                className="w-4 h-4 rounded border-gray-700 bg-[#121212] text-blue-600 focus:ring-blue-500/50"
-              />
-              <span className="text-sm text-gray-300">Use Game Odds</span>
-            </label>
-            <label className="flex items-center gap-2 cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={removeVig}
-                onChange={(e) => setRemoveVig(e.target.checked)}
-                disabled={!useOdds}
-                className={clsx(
-                  "w-4 h-4 rounded border-gray-700 bg-[#121212] text-blue-600 focus:ring-blue-500/50",
-                  !useOdds && "opacity-50 cursor-not-allowed"
-                )}
-              />
-              <span className={clsx("text-sm text-gray-300", !useOdds && "opacity-50")}>Remove Vig</span>
-            </label>
           </div>
           
           <button
