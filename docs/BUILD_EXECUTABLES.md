@@ -67,10 +67,12 @@ All commands below assume you start in the repository root (`/Users/douglas.maso
      --onefile `
      --windowed `
      --name NFLMonteCarlo `
+     --icon "..\final_icon.png" `
      --paths .\src `
      --collect-all numba `
      --collect-all numpy `
      --add-data "src\gui\fonts;src/gui/fonts" `
+     --add-data "..\final_icon.png;." `
      main.py
    ```
    **What the flags do**
@@ -114,11 +116,13 @@ All commands below assume you start in the repository root (`/Users/douglas.maso
      --onefile \
      --windowed \
      --name NFLMonteCarlo \
+     --icon "../icon.icns" \
      --osx-bundle-identifier "com.nflmontecarlo.simulator" \
      --target-arch universal2 \
      --collect-all numba \
      --collect-all numpy \
      --add-data "src/gui/fonts:src/gui/fonts" \
+     --add-data "../final_icon.png:." \
      main.py
    ```
    - `--target-arch universal2` requires Xcode command line tools. If you only need an Apple Silicon build, omit the flag; PyInstaller will target the host CPU.
