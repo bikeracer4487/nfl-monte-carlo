@@ -1,11 +1,10 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
 import { spawn, ChildProcess } from 'child_process';
-import { fileURLToPath } from 'url';
 import fs from 'fs';
 
-const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 
 // Important: Disable node integration and enable context isolation for security
 // and to prevent conflicts with global 'module' or 'exports'.
