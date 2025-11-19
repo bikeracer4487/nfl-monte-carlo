@@ -46,22 +46,28 @@ function startPythonBackend() {
     console.log('Backend Script:', backendPath);
     
     // Determine python executable
-    let pythonExecutable = 'python'; // Default fallback for Windows
+    let pythonExecutable = process.platform === 'win32' ? 'python' : 'python3';
     
-    // Check for venv
-    const venvPythonWin = path.join(rootDir, 'venv', 'Scripts', 'python.exe');
-    const venvPythonUnix = path.join(rootDir, 'venv', 'bin', 'python');
-    
-    if (process.platform === 'win32') {
-        if (fs.existsSync(venvPythonWin)) {
-            pythonExecutable = venvPythonWin;
+    const possiblePaths = process.platform === 'win32' ? [
+        path.join(rootDir, 'venv', 'Scripts', 'python.exe'),
+        path.join(rootDir, '.venv', 'Scripts', 'python.exe'),
+    ] : [
+        path.join(rootDir, 'venv', 'bin', 'python'),
+        path.join(rootDir, '.venv', 'bin', 'python'),
+    ];
+
+    let found = false;
+    for (const p of possiblePaths) {
+        if (fs.existsSync(p)) {
+            pythonExecutable = p;
+            found = true;
+            break;
         }
-    } else {
-        if (fs.existsSync(venvPythonUnix)) {
-            pythonExecutable = venvPythonUnix;
-        } else {
-            pythonExecutable = 'python3';
-        }
+    }
+
+    if (!found) {
+        console.log('Virtual environment not found. Checked paths:', possiblePaths);
+        console.log(`Falling back to system python: ${pythonExecutable}`);
     }
 
     console.log(`Starting Python backend with: ${pythonExecutable}`);
