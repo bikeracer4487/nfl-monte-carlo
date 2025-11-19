@@ -31,11 +31,13 @@ This application uses a hybrid architecture:
 
 ### 1. Setup Backend
 
+**Important:** Create the virtual environment in the **project root** directory, not inside `backend/`.
+
 ```bash
-cd backend
+# From project root:
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
+pip install -r backend/requirements.txt
 ```
 
 ### 2. Setup Frontend
@@ -49,19 +51,20 @@ npm install
 
 **Development Mode:**
 
-Terminal 1 (Backend):
-```bash
-cd backend
-source venv/bin/activate
-python api/server.py
-```
+Run the following command in the `frontend` directory:
 
-Terminal 2 (Frontend):
 ```bash
 cd frontend
 npm start
 ```
-(This runs both the Vite dev server and the Electron app)
+This single command will:
+1. Start the Vite development server (frontend)
+2. **Automatically launch the Python backend** (using the venv detected in root)
+3. Launch the Electron application
+
+**Troubleshooting:**
+- If you see port errors (e.g., `[winerror 10048]`), ensure no other instances of the backend are running.
+- The backend logs will appear in the Electron console window.
 
 ## Project Structure
 

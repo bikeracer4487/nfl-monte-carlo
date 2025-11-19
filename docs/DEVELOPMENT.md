@@ -12,14 +12,17 @@ cd nfl-monte-carlo
 ### 2. Create virtual environment
 
 ```bash
-python3.11 -m venv venv
+# From project root:
+python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
 ### 3. Install dependencies
 
 ```bash
-pip install -r requirements-dev.txt
+pip install -r backend/requirements.txt
+# Optional: install dev dependencies
+# pip install -r backend/requirements-dev.txt
 ```
 
 ### 4. Configure environment (optional)

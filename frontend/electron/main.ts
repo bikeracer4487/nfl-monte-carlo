@@ -48,6 +48,11 @@ function startPythonBackend() {
     // Determine python executable
     let pythonExecutable = process.platform === 'win32' ? 'python' : 'python3';
     
+    // Kill any existing python processes started by us (cleanup)
+    // Note: This is harder to do robustly without PID tracking, but we'll rely on the
+    // 'will-quit' handler for cleanup. The user might need to manually kill zombie processes
+    // if the app crashed previously.
+
     const possiblePaths = process.platform === 'win32' ? [
         path.join(rootDir, 'venv', 'Scripts', 'python.exe'),
         path.join(rootDir, '.venv', 'Scripts', 'python.exe'),
@@ -72,9 +77,19 @@ function startPythonBackend() {
 
     console.log(`Starting Python backend with: ${pythonExecutable}`);
     
+    // Check if port 8000 is in use (basic check, better would be to find an open port)
+    // For now, we just launch and let it fail if bound, but we can catch the error in the logs.
+
+    const backendPort = process.env.PORT || '8000';
+
     pythonProcess = spawn(pythonExecutable, [backendPath], {
       cwd: rootDir,
-      stdio: 'inherit' // Pipe output to console
+      stdio: 'inherit', // Pipe output to console
+      env: {
+        ...process.env,
+        PORT: backendPort,
+        PYTHONUNBUFFERED: '1' // Force stdout flush for better logging
+      }
     });
 
     pythonProcess.on('error', (err) => {
