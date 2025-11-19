@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.so
+debug_*.py
 .Python
 build/
 develop-eggs/
@@ -71,3 +72,4 @@ Desktop.ini
 node_modules/
 frontend/dist/
 frontend/dist-electron/
+frontend/.vite/

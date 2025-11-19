@@ -73,6 +73,8 @@ async def lifespan(app: FastAPI):
                 game.is_overridden = True
                 game.override_home_score = override_data.get("home_score")
                 game.override_away_score = override_data.get("away_score")
+                game.override_home_moneyline = override_data.get("home_moneyline")
+                game.override_away_moneyline = override_data.get("away_moneyline")
                 # Add other override fields as needed
 
     logger.info(f"Loaded {len(state.teams)} teams and {len(state.games)} games")
@@ -201,6 +203,8 @@ class OverrideRequest(BaseModel):
     game_id: str
     home_score: Optional[int] = None
     away_score: Optional[int] = None
+    home_moneyline: Optional[int] = None
+    away_moneyline: Optional[int] = None
     is_overridden: bool = True
 
 @app.post("/override")
@@ -214,13 +218,17 @@ async def set_override(request: OverrideRequest):
     if request.is_overridden:
         game.override_home_score = request.home_score
         game.override_away_score = request.away_score
+        game.override_home_moneyline = request.home_moneyline
+        game.override_away_moneyline = request.away_moneyline
     
     # Save overrides to cache
     overrides = state.cache_manager.load_overrides()
     if request.is_overridden:
         overrides[request.game_id] = {
             "home_score": request.home_score,
-            "away_score": request.away_score
+            "away_score": request.away_score,
+            "home_moneyline": request.home_moneyline,
+            "away_moneyline": request.away_moneyline
         }
     else:
         overrides.pop(request.game_id, None)

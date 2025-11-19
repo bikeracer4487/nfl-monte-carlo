@@ -238,14 +238,19 @@ class ESPNAPIClient:
 
             season = game_data.get("season", {}).get("year", 2025)
 
-            # Extract week number from $ref URL
+            # Extract week number
             try:
-                week_ref = game_data.get("week", {}).get("$ref", "")
-                if week_ref and "/weeks/" in week_ref:
-                    week = int(week_ref.split("/weeks/")[-1].split("?")[0])
+                week_data = game_data.get("week", {})
+                if "number" in week_data:
+                    week = int(week_data["number"])
                 else:
-                    self.logger.warning(f"Could not extract week from game {game_id}")
-                    week = 1
+                    # Fallback to extracting from $ref URL
+                    week_ref = week_data.get("$ref", "")
+                    if week_ref and "/weeks/" in week_ref:
+                        week = int(week_ref.split("/weeks/")[-1].split("?")[0])
+                    else:
+                        self.logger.warning(f"Could not extract week from game {game_id}")
+                        week = 1
             except (ValueError, IndexError) as e:
                 self.logger.warning(f"Failed to parse week number for game {game_id}: {e}")
                 week = 1
@@ -317,14 +322,19 @@ class ESPNAPIClient:
 
             season = event.get("season", {}).get("year", 2025)
 
-            # Extract week number from $ref URL
+            # Extract week number
             try:
-                week_ref = event.get("week", {}).get("$ref", "")
-                if week_ref and "/weeks/" in week_ref:
-                    week = int(week_ref.split("/weeks/")[-1].split("?")[0])
+                week_data = event.get("week", {})
+                if "number" in week_data:
+                    week = int(week_data["number"])
                 else:
-                    self.logger.warning(f"Could not extract week from game {game_id}")
-                    week = 1
+                    # Fallback to extracting from $ref URL
+                    week_ref = week_data.get("$ref", "")
+                    if week_ref and "/weeks/" in week_ref:
+                        week = int(week_ref.split("/weeks/")[-1].split("?")[0])
+                    else:
+                        self.logger.warning(f"Could not extract week from game {game_id}")
+                        week = 1
             except (ValueError, IndexError) as e:
                 self.logger.warning(f"Failed to parse week number for game {game_id}: {e}")
                 week = 1
