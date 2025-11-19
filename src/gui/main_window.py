@@ -126,7 +126,7 @@ class MainWindow(QMainWindow):
 
         # Create views
         self.standings_view = StandingsView(self.teams, self.games)
-        self.simulation_view = SimulationView()
+        self.simulation_view = SimulationView(self.teams, self.games)
         self.schedule_view = ScheduleView()
 
         # Add views to tabs
@@ -256,8 +256,9 @@ class MainWindow(QMainWindow):
         self.logger.info(f"Data refresh complete: {len(games)} games")
         self.games = games
 
-        # Update standings view with new data
+        # Update views with new data
         self.standings_view.update_data(self.games)
+        self.simulation_view.update_data(self.games)
 
         # Update status
         self.update_status_message("Data refresh complete")

@@ -5,5 +5,6 @@ Contains reusable widget components.
 """
 
 from .week_selector import WeekSelector
+from .simulation_controls import SimulationControls
 
-__all__ = ["WeekSelector"]
+__all__ = ["WeekSelector", "SimulationControls"]
