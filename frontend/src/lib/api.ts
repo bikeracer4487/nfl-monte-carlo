@@ -126,6 +126,11 @@ export const runSimulation = async (
   return response.data;
 };
 
+interface OverrideResponse {
+  status: string;
+  game: Game;
+}
+
 export const setOverride = async (
   gameId: string, 
   homeScore?: number, 
@@ -133,7 +138,7 @@ export const setOverride = async (
   isOverridden: boolean = true,
   homeMoneyline?: number,
   awayMoneyline?: number
-): Promise<any> => {
+): Promise<OverrideResponse> => {
   const response = await api.post('/override', {
     game_id: gameId,
     home_score: homeScore,

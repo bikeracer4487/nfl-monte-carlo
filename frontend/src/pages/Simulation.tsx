@@ -55,7 +55,7 @@ export const Simulation = () => {
       const job = await startSimulationJob(numSimulations);
       setJobData(job);
       setJobId(job.job_id);
-    } catch (error) {
+    } catch {
       setJobError('Failed to start simulation. Please try again.');
     }
   };
@@ -66,7 +66,7 @@ export const Simulation = () => {
       setIsCancelling(true);
       const updated = await cancelSimulationJob(jobData.job_id);
       setJobData(updated);
-    } catch (error) {
+    } catch {
       setJobError('Failed to cancel simulation. Please try again.');
       setIsCancelling(false);
     }
@@ -92,7 +92,7 @@ export const Simulation = () => {
           setJobError(latest.error ?? 'Simulation failed.');
           setJobId(null);
         }
-      } catch (error) {
+      } catch {
         if (!active) return;
         setJobError('Failed to fetch simulation progress.');
         setJobId(null);
@@ -144,22 +144,6 @@ export const Simulation = () => {
       return 0;
     });
   }, [result, sortConfig, teamMap]);
-
-  const SortHeader = ({ label, sortKey }: { label: string, sortKey: SortKey }) => (
-    <th 
-      className="px-6 py-4 cursor-pointer hover:bg-[#2A2A2A] transition-colors select-none"
-      onClick={() => handleSort(sortKey)}
-    >
-      <div className="flex items-center gap-2">
-        {label}
-        {sortConfig.key === sortKey ? (
-          sortConfig.direction === 'asc' ? <ArrowUp size={16} className="text-blue-500" /> : <ArrowDown size={16} className="text-blue-500" />
-        ) : (
-          <ArrowUpDown size={16} className="text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity" />
-        )}
-      </div>
-    </th>
-  );
 
   return (
     <div className="p-8">
@@ -275,11 +259,11 @@ export const Simulation = () => {
             <table className="w-full text-left text-sm">
               <thead className="bg-[#252525] text-gray-400 uppercase font-semibold">
                 <tr className="group">
-                  <SortHeader label="Team" sortKey="team" />
-                  <SortHeader label="Avg Wins" sortKey="average_wins" />
-                  <SortHeader label="Playoff %" sortKey="playoff_probability" />
-                  <SortHeader label="Division %" sortKey="division_win_probability" />
-                  <SortHeader label="#1 Seed %" sortKey="first_seed_probability" />
+                  <SortHeader label="Team" sortKey="team" sortConfig={sortConfig} onSort={handleSort} />
+                  <SortHeader label="Avg Wins" sortKey="average_wins" sortConfig={sortConfig} onSort={handleSort} />
+                  <SortHeader label="Playoff %" sortKey="playoff_probability" sortConfig={sortConfig} onSort={handleSort} />
+                  <SortHeader label="Division %" sortKey="division_win_probability" sortConfig={sortConfig} onSort={handleSort} />
+                  <SortHeader label="#1 Seed %" sortKey="first_seed_probability" sortConfig={sortConfig} onSort={handleSort} />
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-800">
@@ -312,6 +296,29 @@ export const Simulation = () => {
     </div>
   );
 };
+
+interface SortHeaderProps {
+  label: string;
+  sortKey: SortKey;
+  sortConfig: SortConfig;
+  onSort: (key: SortKey) => void;
+}
+
+const SortHeader: React.FC<SortHeaderProps> = ({ label, sortKey, sortConfig, onSort }) => (
+  <th 
+    className="px-6 py-4 cursor-pointer hover:bg-[#2A2A2A] transition-colors select-none"
+    onClick={() => onSort(sortKey)}
+  >
+    <div className="flex items-center gap-2">
+      {label}
+      {sortConfig.key === sortKey ? (
+        sortConfig.direction === 'asc' ? <ArrowUp size={16} className="text-blue-500" /> : <ArrowDown size={16} className="text-blue-500" />
+      ) : (
+        <ArrowUpDown size={16} className="text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+      )}
+    </div>
+  </th>
+);
 
 const ProbabilityBar = ({ value }: { value: number }) => {
   const percentage = (value * 100).toFixed(1);

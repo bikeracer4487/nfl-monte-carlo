@@ -1,9 +1,9 @@
 import { Outlet, NavLink } from 'react-router-dom';
-import { LayoutDashboard, Calendar, Settings } from 'lucide-react';
+import { LayoutDashboard, Calendar, Settings, type LucideIcon } from 'lucide-react';
 import clsx from 'clsx';
 import nflLogo from '../assets/nfl-logo.svg';
 
-const SidebarItem = ({ to, icon: Icon, label }: { to: string; icon: any; label: string }) => (
+const SidebarItem = ({ to, icon: Icon, label }: { to: string; icon: LucideIcon; label: string }) => (
   <NavLink
     to={to}
     className={({ isActive }) =>

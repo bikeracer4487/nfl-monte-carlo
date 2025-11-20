@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { getStandings, getTeams, type Team, type Standing } from '../lib/api';
+import { getStandings, getTeams, type Team } from '../lib/api';
 import clsx from 'clsx';
 
 type ViewMode = 'division' | 'conference' | 'league';

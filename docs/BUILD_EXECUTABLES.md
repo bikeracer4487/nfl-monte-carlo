@@ -54,14 +54,14 @@ This step compiles the Python code into a standalone executable.
 # From project root, with venv activated
 pyinstaller backend/api.spec
 ```
-*Output:* `backend/dist/nfl_api_server.exe`
+*Output:* `dist/nfl_api_server.exe`
 
 **macOS:**
 ```bash
 # From project root, with venv activated
 pyinstaller backend/api.spec
 ```
-*Output:* `backend/dist/nfl_api_server`
+*Output:* `dist/nfl_api_server`
 
 ### Step 2: Build Electron Application
 
@@ -86,7 +86,7 @@ npm run electron:build
 ## 3. How It Works
 
 1.  **PyInstaller** analyzes `backend/api/server.py` and bundles it along with all Python dependencies (NumPy, Numba, FastAPI, etc.) into a single executable.
-2.  **Electron Builder** (configured in `frontend/package.json`) takes this executable from `backend/dist/` and places it into the `resources` directory of the final Electron app.
+2.  **Electron Builder** (configured in `frontend/package.json`) takes this executable from the repository-level `dist/` folder and places it into the `resources` directory of the final Electron app.
 3.  **At Runtime**: The Electron main process (`main.cjs`) detects it is in production mode, locates the Python executable in `process.resourcesPath`, and spawns it as a child process.
 
 ## 4. Troubleshooting
@@ -97,7 +97,7 @@ npm run electron:build
 -   Try running the generated executable manually: `.\backend\dist\nfl_api_server.exe` to see if it starts successfully.
 
 ### Frontend Build Fails
--   Ensure the backend executable exists at `../backend/dist/nfl_api_server.exe` (Windows) or `../backend/dist/nfl_api_server` (Mac) before running `npm run electron:build`.
+-   Ensure the backend executable exists at `../dist/nfl_api_server.exe` (Windows) or `../dist/nfl_api_server` (Mac) before running `npm run electron:build`.
 -   Check for permission issues.
 
 ### App Starts but "Backend not found"

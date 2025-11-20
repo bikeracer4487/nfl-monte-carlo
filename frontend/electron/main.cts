@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, Menu, dialog } from 'electron';
 import path from 'path';
 import { spawn, ChildProcess } from 'child_process';
 import fs from 'fs';
@@ -9,6 +9,8 @@ let mainWindow: BrowserWindow | null;
 let pythonProcess: ChildProcess | null = null;
 
 function createWindow() {
+  const isDev = !app.isPackaged;
+
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 800,
@@ -21,7 +23,9 @@ function createWindow() {
     backgroundColor: "#121212", // Dark theme background
   });
 
-  if (process.env.NODE_ENV === 'development') {
+  Menu.setApplicationMenu(null);
+
+  if (isDev) {
     mainWindow.loadURL('http://localhost:5173');
     mainWindow.webContents.openDevTools();
   } else {
@@ -34,7 +38,9 @@ function createWindow() {
 }
 
 function startPythonBackend() {
-  if (process.env.NODE_ENV === 'development') {
+  const isDev = !app.isPackaged;
+
+  if (isDev) {
     // Navigate from dist-electron/main.js to project root
     // dist-electron -> frontend -> root
     const rootDir = path.join(__dirname, '../../'); 
@@ -150,6 +156,11 @@ function startPythonBackend() {
     } else {
         console.error('Could not find Python backend executable.');
         console.error('Checked resources path:', process.resourcesPath);
+        dialog.showErrorBox(
+          'Backend Not Found',
+          'The packaged Python backend executable was not found. Please rerun the backend build step before packaging the Electron app.'
+        );
+        app.quit();
     }
   }
 }
