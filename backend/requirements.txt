@@ -14,8 +14,8 @@ numpy>=1.24.0
 pandas>=2.0.0
 numba>=0.58.0
 
-# GUI framework (Legacy - to be removed)
-PySide6>=6.6.0
+# GUI framework (Removed)
+# PySide6>=6.6.0
 
 # Environment variables
 python-dotenv>=1.0.0

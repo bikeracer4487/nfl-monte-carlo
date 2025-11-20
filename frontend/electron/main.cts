@@ -99,7 +99,58 @@ function startPythonBackend() {
     });
   } else {
     // Production logic (executable)
-    // TODO: Implement production path handling
+    const possibleNames = [
+        'nfl_api_server.exe',
+        'nfl_api_server'
+    ];
+    
+    let binaryPath = '';
+    
+    // 1. Check process.resourcesPath (where extraResources are placed)
+    for (const name of possibleNames) {
+        const p = path.join(process.resourcesPath, name);
+        if (fs.existsSync(p)) {
+            binaryPath = p;
+            break;
+        }
+    }
+
+    // 2. Fallback: check adjacent to executable (dev builds sometimes)
+    if (!binaryPath) {
+        for (const name of possibleNames) {
+             const p = path.join(path.dirname(app.getPath('exe')), name);
+             if (fs.existsSync(p)) {
+                 binaryPath = p;
+                 break;
+             }
+        }
+    }
+    
+    if (binaryPath) {
+        console.log(`Starting production Python backend: ${binaryPath}`);
+        const backendPort = process.env.PORT || '8000';
+        
+        pythonProcess = spawn(binaryPath, [], {
+            stdio: 'inherit',
+            env: {
+                ...process.env,
+                PORT: backendPort,
+                PYTHONUNBUFFERED: '1'
+            }
+        });
+        
+         pythonProcess.on('error', (err) => {
+          console.error('Failed to start Python backend:', err);
+        });
+        
+        pythonProcess.on('exit', (code, signal) => {
+            console.log(`Python backend exited with code ${code} and signal ${signal}`);
+        });
+
+    } else {
+        console.error('Could not find Python backend executable.');
+        console.error('Checked resources path:', process.resourcesPath);
+    }
   }
 }
 

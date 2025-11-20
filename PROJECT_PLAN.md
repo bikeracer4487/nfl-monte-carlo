@@ -160,23 +160,17 @@ Implement complete NFL tiebreaker logic for accurate standings:
 - Easy to maintain and extend
 - Good performance when optimized
 
-#### GUI Framework: PySide6 (Qt for Python)
+#### GUI Framework: Electron + React + TypeScript
 **Rationale:**
-- Professional, native-looking UI across platforms
-- Rich widget library (200+ components)
-- Excellent table/grid support (QTableView with model-view architecture)
-- Complete theming control via Qt Style Sheets
-- LGPL license (free for all use)
-- Mature, stable, well-documented
-- Handles large datasets efficiently
+- Modern, responsive user interface
+- Rich ecosystem of UI libraries (Tailwind, Shadcn/UI)
+- Separates UI concerns from simulation logic
+- easier to style and animate than Qt
+- Web technologies allow for potential future web deployment
 
-**Key Widgets:**
-- `QTableView`: Efficient standings/results tables
-- `QComboBox`: Week selection dropdown
-- `QProgressBar`: Simulation progress
-- `QStackedWidget` or `QTabWidget`: Multiple views
-- `QLabel`: Team logos and headers
-- `QPushButton`: Refresh, simulate, toggle controls
+#### Backend: Python 3.11+ (FastAPI)
+- Exposes simulation engine via REST API
+- continues to use NumPy/Numba for performance
 
 #### Computation: NumPy + Numba
 **Rationale:**
@@ -188,8 +182,8 @@ Implement complete NFL tiebreaker logic for accurate standings:
 
 #### Packaging: PyInstaller
 **Rationale:**
-- Creates standalone executables for Windows and macOS
-- Well-tested with PySide6
+- Creates standalone executable for the Python backend
+- Integrates well with Electron Builder
 - Single command to build
 - Reasonable executable sizes (60-150 MB)
 - Active development and community support
@@ -282,7 +276,7 @@ data/
 **Tasks:**
 1. Initialize project structure
 2. Set up Python virtual environment
-3. Install dependencies (PySide6, NumPy, requests, pandas, numba)
+3. Install dependencies (NumPy, requests, pandas, numba)
 4. Implement ESPN API wrapper
    - Fetch schedule
    - Parse JSON responses
@@ -393,47 +387,34 @@ data/
 ### Phase 4: GUI Foundation (Week 4-5)
 
 **Goals:**
-- Create main application window
-- Implement standings table view
+- Create main application window (Electron)
+- Implement standings table view (React)
 - Add navigation controls
-- Basic styling (light mode)
+- Basic styling (Tailwind CSS)
 
 **Tasks:**
-1. Create main window with PySide6
-   - Application setup
-   - Window size and layout
-   - Menu bar
-   - Status bar
-2. Implement standings table
-   - QTableView with custom model
+1. Initialize Electron + React project
+   - Set up Vite, TypeScript, Tailwind
+   - Configure Electron main process to launch Python backend
+2. Implement Standings View
+   - Use TanStack Table for data display
    - Columns: Team, W, L, T, PCT, DIV, CONF
    - Sort by column
-   - Team logos in table
-3. Add week selector dropdown
-   - QComboBox with weeks 1-18
-   - "Current Week" option
-   - Update data on selection
-4. Create view switcher
-   - Tabs or stacked widget
-   - Standings view
-   - Simulation results view (placeholder)
-   - Schedule editor view (placeholder)
-5. Implement basic styling
-   - Professional appearance
-   - Readable fonts
-   - NFL-style color scheme
-   - Team logo integration
-6. Add data refresh button
-   - Connect to API wrappers
-   - Update UI after refresh
-   - Show last updated timestamp
+3. Add Navigation
+   - Sidebar or Tab navigation
+   - Route setup (Standings, Simulation, Schedule)
+4. Create Basic Layout
+   - Responsive design
+   - Dark theme base (using Tailwind colors)
+5. Connect to Backend API
+   - Implement API client in TypeScript
+   - Fetch teams and schedule data
 
 **Deliverables:**
-- Working main window with navigation
-- Functional standings table with sorting
-- Week selector dropdown
-- Multiple view framework
-- Clean, professional appearance
+- Working Electron shell
+- Python backend integration
+- Standings view with real data
+- Navigation between views
 
 ---
 
@@ -533,8 +514,8 @@ data/
 
 **Tasks:**
 1. Implement dark mode theme
-   - Create dark mode Qt Style Sheet
-   - Toggle button in menu bar
+   - Configure Tailwind dark mode
+   - Toggle button in header
    - Adjust team colors for dark background
    - Save theme preference
 2. Integrate team logos
@@ -580,8 +561,8 @@ data/
 **Tasks:**
 1. Set up PyInstaller
    - Create build spec file
-   - Configure for PySide6
-   - Include data files (schedule, logos)
+   - Configure for FastAPI backend
+   - Include data files
    - Test build process
 2. Create Windows executable
    - Build on Windows machine
@@ -714,16 +695,7 @@ def calculate_tiebreakers(wins, losses, head_to_head_matrix):
 nfl-monte-carlo/
 │
 ├── src/
-│   ├── main.py                      # Application entry point
-│   │
-│   ├── gui/
-│   │   ├── __init__.py
-│   │   ├── main_window.py           # Main application window
-│   │   ├── standings_view.py        # Standings table widget
-│   │   ├── simulation_view.py       # Simulation controls and results
-│   │   ├── schedule_view.py         # Schedule editor widget
-│   │   ├── theme_manager.py         # Light/dark mode management
-│   │   └── styles.py                # Qt Style Sheets (QSS)
+│   ├── main.py                      # Application entry point (FastAPI)
 │   │
 │   ├── data/
 │   │   ├── __init__.py
@@ -744,23 +716,17 @@ nfl-monte-carlo/
 │       ├── config.py                # Configuration management
 │       └── logger.py                # Logging setup
 │
-├── resources/
-│   ├── logos/
-│   │   ├── arizona_cardinals.png
-│   │   ├── atlanta_falcons.png
-│   │   └── ... (all 32 teams)
-│   │
-│   ├── fonts/
-│   │   └── nfl_fonts.ttf
-│   │
-│   ├── styles/
-│   │   ├── light_theme.qss          # Light mode stylesheet
-│   │   └── dark_theme.qss           # Dark mode stylesheet
-│   │
-│   └── icons/
-│       ├── app_icon.png
-│       ├── refresh.png
-│       └── simulate.png
+├── frontend/                         # Electron + React Frontend
+│   ├── electron/
+│   │   ├── main.cts                  # Main process
+│   │   └── preload.cts
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── lib/
+│   │   └── App.tsx
+│   └── package.json
+│
 │
 ├── data/                             # Data cache directory
 │   ├── schedule_2025.json            # Cached schedule
@@ -979,7 +945,7 @@ Based on working evenings and weekends (10-15 hours per week):
 **Impact:** Medium - App doesn't work on one platform
 **Probability:** Low
 **Mitigation:**
-- Use well-tested, cross-platform libraries (PySide6)
+- Use well-tested, cross-platform libraries (Electron, React)
 - Test early and often on both platforms
 - Avoid platform-specific code paths
 - Use virtual machines for testing
@@ -1099,7 +1065,7 @@ Based on working evenings and weekends (10-15 hours per week):
 
 ## Conclusion
 
-This project is ambitious but achievable with the recommended technology stack and phased approach. The combination of Python + PySide6 provides the best balance of development speed, professional appearance, and adequate performance.
+This project is ambitious but achievable with the recommended technology stack and phased approach. The combination of Python + Electron + React provides the best balance of development speed, professional appearance, and adequate performance.
 
 ### Key Success Factors:
 1. **Start simple, add complexity gradually** - Get basic simulation working first

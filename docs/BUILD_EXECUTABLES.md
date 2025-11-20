@@ -1,186 +1,105 @@
 # Building Production Executables
 
-This guide explains how to produce **single-file, dependency-free executables** for the PySide6 desktop application using PyInstaller. The resulting binaries embed the Python interpreter, standard library, third-party packages (NumPy, Numba, PySide6, etc.), fonts, and application code so end users only need to download a single artifact per platform.
+This guide explains how to produce **production-ready executables** for the NFL Monte Carlo application. The application consists of two parts:
+1.  **Python Backend**: A FastAPI server compiled into a single executable using PyInstaller.
+2.  **Electron Frontend**: A React application bundled with Electron, which manages the backend process.
 
-- **Windows output**: `NFLMonteCarlo.exe`
-- **macOS output**: `NFLMonteCarlo.app` (bundle) + `Contents/MacOS/NFLMonteCarlo` single-file binary suitable for CLI distribution
-
-> **Important**: PyInstaller does not support true cross-compilation. Build the Windows executable on Windows and the macOS bundle on a Mac (Ventura or newer recommended).
-
----
-
-## 1. Shared Build Preparation
-
-All commands below assume you start in the repository root (`/Users/douglas.mason/Documents/GitHub/nfl-monte-carlo` on macOS or the equivalent path on Windows) and that you have Python 3.11+ available.
-
-1. **Create a clean build environment**
-   ```bash
-   cd /Users/douglas.mason/Documents/GitHub/nfl-monte-carlo
-   python3.11 -m venv .venv-build
-   source .venv-build/bin/activate      # Windows: .\.venv-build\Scripts\activate
-   python -m pip install --upgrade pip setuptools wheel
-   ```
-
-2. **Install runtime dependencies plus PyInstaller tooling**
-   ```bash
-   pip install -r backend/requirements.txt
-   pip install pyinstaller==6.11.0 pyinstaller-hooks-contrib==2025.5
-   ```
-
-3. **(Optional but recommended) Run the GUI smoke test before packaging**
-   ```bash
-   cd backend
-   python main.py
-   cd ..
-   ```
-
-4. **(Optional) Override cache location for production builds**  
-   By default the app writes caches to a `data/` folder next to the executable. To prefer per-user storage, create a `.env` before running PyInstaller:
-   ```bash
-   cat <<'EOF' > backend/.env
-   CACHE_DIRECTORY=%LOCALAPPDATA%/NFLMonteCarlo/data   # Windows
-   # CACHE_DIRECTORY=$HOME/Library/Application Support/NFLMonteCarlo/data  # macOS
-   EOF
-   ```
-   Adjust the path for the target OS, then delete or edit the file once the build is complete.
+The final output is a single installer or executable (depending on platform) that contains everything needed to run the app.
 
 ---
 
-## 2. Windows 10/11 Single-File Executable
+## Prerequisites
 
-1. Launch **PowerShell** (x64) and activate the build virtual environment:
-   ```powershell
-   Set-Location C:\path\to\nfl-monte-carlo
-   .\.venv-build\Scripts\Activate.ps1
-   ```
+-   **Node.js** (v18+)
+-   **Python** (v3.11+)
+-   **Git**
 
-2. Change into the backend directory so PyInstaller can find `main.py` and the `src/` package:
-   ```powershell
-   Set-Location .\backend
-   ```
+## 1. Build Environment Setup
 
-3. Run PyInstaller with single-file and GUI-friendly flags. Use `;` when mapping data on Windows:
-   ```powershell
-   pyinstaller `
-     --noconfirm `
-     --clean `
-     --onefile `
-     --windowed `
-     --name NFLMonteCarlo `
-     --icon "..\final_icon.png" `
-     --paths .\src `
-     --collect-all numba `
-     --collect-all numpy `
-     --add-data "src\gui\fonts;src/gui/fonts" `
-     --add-data "..\final_icon.png;." `
-     main.py
-   ```
-   **What the flags do**
-   - `--onefile`: pack everything into `NFLMonteCarlo.exe`
-   - `--windowed`: hide the console when the GUI launches
-   - `--paths .\src`: ensures relative imports resolve without hacking `sys.path`
-   - `--collect-all numba/numpy`: pulls in dynamic extensions those packages load at runtime
-   - `--add-data`: bundles the Inter font files so Qt can load them from the PyInstaller temp directory
+### Backend Setup
+Create a virtual environment and install dependencies:
 
-4. When the command finishes you will have:
-   ```
-   backend/dist/NFLMonteCarlo.exe      # deliver this file
-   backend/build/                      # intermediate files (safe to delete)
-   backend/NFLMonteCarlo.spec          # auto-generated spec (commit if you want reproducible builds)
-   ```
+```bash
+# In project root
+python -m venv venv
+# Activate it:
+# Windows: .\venv\Scripts\activate
+# Mac/Linux: source venv/bin/activate
 
-5. **Smoke test**
-   ```powershell
-   .\dist\NFLMonteCarlo.exe
-   ```
-   The app should create a fresh `data` folder next to the executable (or the directory you set in `.env`) on first launch.
+pip install -r backend/requirements.txt
+pip install pyinstaller
+```
+
+### Frontend Setup
+Install Node.js dependencies:
+
+```bash
+cd frontend
+npm install
+cd ..
+```
 
 ---
 
-## 3. macOS (Apple Silicon + Intel) Universal Bundle
+## 2. Build Process
 
-> Apple requires that GUI apps be delivered as `.app` bundles. PyInstaller still builds a single self-extracting binary inside the bundle, so distribution remains "single download". The `--onefile` flag speeds up launches by packaging dependencies into that binary.
+The build process is a two-step operation: first build the backend, then build the frontend which bundles the backend.
 
-1. Open **Terminal** and activate the build environment:
-   ```bash
-   cd /Users/douglas.mason/Documents/GitHub/nfl-monte-carlo
-   source .venv-build/bin/activate
-   cd backend
-   ```
+### Step 1: Build Python Backend
 
-2. Build a universal (arm64 + x86_64) app bundle:
-   ```bash
-   pyinstaller \
-     --noconfirm \
-     --clean \
-     --onefile \
-     --windowed \
-     --name NFLMonteCarlo \
-     --icon "../icon.icns" \
-     --osx-bundle-identifier "com.nflmontecarlo.simulator" \
-     --target-arch universal2 \
-     --collect-all numba \
-     --collect-all numpy \
-     --add-data "src/gui/fonts:src/gui/fonts" \
-     --add-data "../final_icon.png:." \
-     main.py
-   ```
-   - `--target-arch universal2` requires Xcode command line tools. If you only need an Apple Silicon build, omit the flag; PyInstaller will target the host CPU.
-   - `--osx-bundle-identifier` populates the bundle metadata so signing/notarization works later.
+This step compiles the Python code into a standalone executable.
 
-3. Results:
-   ```
-   backend/dist/NFLMonteCarlo.app                 # drag-and-drop app bundle
-   backend/dist/NFLMonteCarlo                     # CLI-friendly single binary (inside the .app)
-   backend/build/
-   backend/NFLMonteCarlo.spec
-   ```
+**Windows:**
+```powershell
+# From project root, with venv activated
+pyinstaller backend/api.spec
+```
+*Output:* `backend/dist/nfl_api_server.exe`
 
-4. **Smoke test**
-   ```bash
-   open dist/NFLMonteCarlo.app
-   ```
-   or run the single-file binary directly:
-   ```bash
-   dist/NFLMonteCarlo
-   ```
+**macOS:**
+```bash
+# From project root, with venv activated
+pyinstaller backend/api.spec
+```
+*Output:* `backend/dist/nfl_api_server`
 
-5. **(Optional) Strip quarantine & sign**
-   ```bash
-   xattr -cr dist/NFLMonteCarlo.app
-   codesign --deep --force --sign - dist/NFLMonteCarlo.app
-   ```
-   Replace `-` with your Developer ID to satisfy Gatekeeper before distributing publicly.
+### Step 2: Build Electron Application
+
+This step packages the React app and bundles the Python executable created in Step 1.
+
+**Windows:**
+```powershell
+cd frontend
+npm run electron:build
+```
+*Output:* `frontend/dist/NFL Monte Carlo Setup X.X.X.exe` (Installer) and `frontend/dist/win-unpacked/`
+
+**macOS:**
+```bash
+cd frontend
+npm run electron:build
+```
+*Output:* `frontend/dist/NFL Monte Carlo-X.X.X.dmg`
 
 ---
 
-## 4. Post-Build Checklist
+## 3. How It Works
 
-- ✅ Launch the executable/bundle once to ensure fonts render and the cache directory is created.
-- ✅ Verify the simulated season controls work and that API calls succeed without needing Python installed.
-- ✅ Zip the artifact before sharing (`Compress "NFLMonteCarlo.app"` on macOS, `Compress-Archive` or 7-Zip on Windows) so browsers keep the file intact.
-- ✅ If you created a temporary `.env` for cache redirection, either bake the desired values into version control or delete the file to avoid leaking local paths.
+1.  **PyInstaller** analyzes `backend/api/server.py` and bundles it along with all Python dependencies (NumPy, Numba, FastAPI, etc.) into a single executable.
+2.  **Electron Builder** (configured in `frontend/package.json`) takes this executable from `backend/dist/` and places it into the `resources` directory of the final Electron app.
+3.  **At Runtime**: The Electron main process (`main.cjs`) detects it is in production mode, locates the Python executable in `process.resourcesPath`, and spawns it as a child process.
 
----
+## 4. Troubleshooting
 
-## 5. Troubleshooting
+### Backend Build Fails
+-   Ensure all dependencies are installed in your venv.
+-   Check `backend/build/nfl_api_server/warn-nfl_api_server.txt` for missing imports.
+-   Try running the generated executable manually: `.\backend\dist\nfl_api_server.exe` to see if it starts successfully.
 
-- **`ModuleNotFoundError` for PySide6 plugins**  
-  Make sure you ran `pip install pyinstaller-hooks-contrib` before building; PyInstaller relies on those hooks to bundle Qt plugins.
+### Frontend Build Fails
+-   Ensure the backend executable exists at `../backend/dist/nfl_api_server.exe` (Windows) or `../backend/dist/nfl_api_server` (Mac) before running `npm run electron:build`.
+-   Check for permission issues.
 
-- **`Failed to execute script main`**  
-  Run with `pyinstaller --log-level DEBUG ...` and inspect `dist/NFLMonteCarlo.exe --debug all` to see which dependency is missing. Most issues are resolved by adding `--collect-all <package>` or `--hidden-import <module>`.
-
-- **Fonts missing in the packaged app**  
-  Double-check the `--add-data` mapping. On macOS the separator must be a colon (`:`); on Windows it must be a semicolon (`;`).
-
-- **macOS says the app is damaged or untrusted**  
-  Remove the quarantine bit with `xattr -cr dist/NFLMonteCarlo.app`, or codesign/notarize the bundle when distributing to non-developers.
-
-- **Large file size**  
-  PyInstaller’s single-file mode always extracts to a temp directory at launch. Use `pyinstaller --onedir ...` during development for faster iterations, but keep `--onefile` + `--windowed` for production drops.
-
----
-
-Following the steps above ensures Windows and macOS users receive a single, double-clickable artifact that contains Python, native extensions, Qt plugins, fonts, and the simulation engine without installing any external runtimes.
-
+### App Starts but "Backend not found"
+-   Check the application logs (console) if possible.
+-   Ensure the `extraResources` configuration in `package.json` matches the actual filename of your Python executable.

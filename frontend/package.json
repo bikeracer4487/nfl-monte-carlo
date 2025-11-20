@@ -45,5 +45,34 @@
     "typescript-eslint": "^8.46.3",
     "vite": "^7.2.2",
     "wait-on": "^9.0.3"
+  },
+  "build": {
+    "appId": "com.nflmontecarlo.simulator",
+    "productName": "NFL Monte Carlo",
+    "directories": {
+      "output": "dist"
+    },
+    "extraResources": [
+      {
+        "from": "../backend/dist",
+        "to": ".",
+        "filter": [
+          "nfl_api_server*",
+          "data/**/*"
+        ]
+      }
+    ],
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "../final_icon.png"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "../icon.icns"
+    }
   }
 }
