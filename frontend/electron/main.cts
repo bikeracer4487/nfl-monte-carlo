@@ -7,10 +7,18 @@ import fs from 'fs';
 // and to prevent conflicts with global 'module' or 'exports'.
 let mainWindow: BrowserWindow | null;
 let pythonProcess: ChildProcess | null = null;
+const isDev = !app.isPackaged;
+
+function attachProcessLogging(proc: ChildProcess) {
+  proc.stdout?.on('data', (data) => {
+    console.log(`[backend] ${data.toString().trim()}`);
+  });
+  proc.stderr?.on('data', (data) => {
+    console.error(`[backend] ${data.toString().trim()}`);
+  });
+}
 
 function createWindow() {
-  const isDev = !app.isPackaged;
-
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 800,
@@ -38,13 +46,12 @@ function createWindow() {
 }
 
 function startPythonBackend() {
-  const isDev = !app.isPackaged;
-
   if (isDev) {
     // Navigate from dist-electron/main.js to project root
     // dist-electron -> frontend -> root
     const rootDir = path.join(__dirname, '../../'); 
     const backendPath = path.join(rootDir, 'backend/api/server.py');
+    const cacheDir = path.join(rootDir, 'backend', 'data');
     
     console.log('Project Root:', rootDir);
     console.log('Backend Script:', backendPath);
@@ -88,13 +95,17 @@ function startPythonBackend() {
 
     pythonProcess = spawn(pythonExecutable, [backendPath], {
       cwd: rootDir,
-      stdio: 'inherit', // Pipe output to console
+      windowsHide: true,
+      stdio: ['ignore', 'pipe', 'pipe'],
       env: {
         ...process.env,
         PORT: backendPort,
-        PYTHONUNBUFFERED: '1' // Force stdout flush for better logging
+        PYTHONUNBUFFERED: '1', // Force stdout flush for better logging
+        CACHE_DIRECTORY: cacheDir
       }
     });
+
+    attachProcessLogging(pythonProcess);
 
     pythonProcess.on('error', (err) => {
       console.error('Failed to start Python backend:', err);
@@ -135,15 +146,22 @@ function startPythonBackend() {
     if (binaryPath) {
         console.log(`Starting production Python backend: ${binaryPath}`);
         const backendPort = process.env.PORT || '8000';
+        const binaryDir = path.dirname(binaryPath);
+        const cacheDir = path.join(binaryDir, 'data');
         
         pythonProcess = spawn(binaryPath, [], {
-            stdio: 'inherit',
+            cwd: binaryDir,
+            windowsHide: true,
+            stdio: ['ignore', 'pipe', 'pipe'],
             env: {
                 ...process.env,
                 PORT: backendPort,
-                PYTHONUNBUFFERED: '1'
+                PYTHONUNBUFFERED: '1',
+                CACHE_DIRECTORY: cacheDir
             }
         });
+
+        attachProcessLogging(pythonProcess);
         
          pythonProcess.on('error', (err) => {
           console.error('Failed to start Python backend:', err);
