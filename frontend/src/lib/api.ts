@@ -150,6 +150,21 @@ export const setOverride = async (
   return response.data;
 };
 
+export const resetOverrides = async (): Promise<{ status: string; message: string }> => {
+  const response = await api.post('/overrides/reset');
+  return response.data;
+};
+
+export interface ScheduleStatus {
+  has_overrides: boolean;
+  last_updated: string | null;
+}
+
+export const getScheduleStatus = async (): Promise<ScheduleStatus> => {
+  const response = await api.get('/schedule/status');
+  return response.data;
+};
+
 export const startSimulationJob = async (
   numSimulations: number,
   randomSeed?: number

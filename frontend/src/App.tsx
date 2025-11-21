@@ -4,21 +4,24 @@ import { Layout } from './components/Layout';
 import { Standings } from './pages/Standings';
 import { Schedule } from './pages/Schedule';
 import { Simulation } from './pages/Simulation';
+import { SimulationProvider } from './context/SimulationContext';
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <HashRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Standings />} />
-            <Route path="schedule" element={<Schedule />} />
-            <Route path="simulation" element={<Simulation />} />
-          </Route>
-        </Routes>
-      </HashRouter>
+      <SimulationProvider>
+        <HashRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Standings />} />
+              <Route path="schedule" element={<Schedule />} />
+              <Route path="simulation" element={<Simulation />} />
+            </Route>
+          </Routes>
+        </HashRouter>
+      </SimulationProvider>
     </QueryClientProvider>
   );
 }

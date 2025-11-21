@@ -2,16 +2,14 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
   getTeams,
-  startSimulationJob,
-  getSimulationJob,
-  cancelSimulationJob,
+  getScheduleStatus,
   type SimulationResult,
   type Team,
   type TeamSimulationStats,
-  type SimulationJob,
 } from '../lib/api';
-import { Play, Loader2, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
+import { Play, Loader2, ArrowUpDown, ArrowUp, ArrowDown, AlertTriangle, AlertCircle } from 'lucide-react';
 import clsx from 'clsx';
+import { useSimulation } from '../context/SimulationContext';
 
 type SortKey = 'team' | keyof Omit<TeamSimulationStats, 'seed_probabilities'>;
 type SortDirection = 'asc' | 'desc';
@@ -23,19 +21,29 @@ interface SortConfig {
 
 export const Simulation = () => {
   const [numSimulations, setNumSimulations] = React.useState(10000);
-  const [result, setResult] = React.useState<SimulationResult | null>(null);
   const [sortConfig, setSortConfig] = React.useState<SortConfig>({
     key: 'playoff_probability',
     direction: 'desc'
   });
-  const [jobData, setJobData] = React.useState<SimulationJob | null>(null);
-  const [jobId, setJobId] = React.useState<string | null>(null);
-  const [jobError, setJobError] = React.useState<string | null>(null);
-  const [isCancelling, setIsCancelling] = React.useState(false);
+
+  const {
+    result,
+    jobData,
+    jobError,
+    isCancelling,
+    simulatedAt,
+    startSimulation,
+    cancelSimulation,
+  } = useSimulation();
 
   const { data: teams } = useQuery({
     queryKey: ['teams'],
     queryFn: getTeams,
+  });
+
+  const { data: scheduleStatus } = useQuery({
+    queryKey: ['scheduleStatus'],
+    queryFn: getScheduleStatus,
   });
 
   const teamMap = React.useMemo(() => {
@@ -47,73 +55,13 @@ export const Simulation = () => {
   const isJobActive = jobData?.status === 'pending' || jobData?.status === 'running';
   const progressValue = jobData ? jobData.progress ?? 0 : 0;
 
-  const handleStartSimulation = async () => {
-    if (isJobActive) return;
-    try {
-      setJobError(null);
-      setResult(null);
-      const job = await startSimulationJob(numSimulations);
-      setJobData(job);
-      setJobId(job.job_id);
-    } catch {
-      setJobError('Failed to start simulation. Please try again.');
-    }
+  const handleStartSimulation = () => {
+    startSimulation(numSimulations);
   };
 
-  const handleCancelSimulation = async () => {
-    if (!jobData) return;
-    try {
-      setIsCancelling(true);
-      const updated = await cancelSimulationJob(jobData.job_id);
-      setJobData(updated);
-    } catch {
-      setJobError('Failed to cancel simulation. Please try again.');
-      setIsCancelling(false);
-    }
+  const handleCancelSimulation = () => {
+    cancelSimulation();
   };
-
-  React.useEffect(() => {
-    if (!jobId) return;
-
-    let active = true;
-
-    const pollStatus = async () => {
-      try {
-        const latest = await getSimulationJob(jobId);
-        if (!active) return;
-        setJobData(latest);
-
-        if (latest.status === 'completed') {
-          setResult(latest.result ?? null);
-          setJobId(null);
-        } else if (latest.status === 'cancelled') {
-          setJobId(null);
-        } else if (latest.status === 'error') {
-          setJobError(latest.error ?? 'Simulation failed.');
-          setJobId(null);
-        }
-      } catch {
-        if (!active) return;
-        setJobError('Failed to fetch simulation progress.');
-        setJobId(null);
-      }
-    };
-
-    pollStatus();
-    const intervalId = window.setInterval(pollStatus, 1000);
-
-    return () => {
-      active = false;
-      window.clearInterval(intervalId);
-    };
-  }, [jobId]);
-
-  React.useEffect(() => {
-    if (!jobData) return;
-    if (jobData.status !== 'pending' && jobData.status !== 'running') {
-      setIsCancelling(false);
-    }
-  }, [jobData]);
 
   const handleSort = (key: SortKey) => {
     setSortConfig(current => ({
@@ -137,7 +85,6 @@ export const Simulation = () => {
       const aValue = aStats[sortConfig.key as keyof TeamSimulationStats];
       const bValue = bStats[sortConfig.key as keyof TeamSimulationStats];
       
-      // Handle potential undefined values if types mismatch, though they shouldn't
       if (typeof aValue === 'number' && typeof bValue === 'number') {
         return (aValue - bValue) * direction;
       }
@@ -145,9 +92,29 @@ export const Simulation = () => {
     });
   }, [result, sortConfig, teamMap]);
 
+  const isOutOfDate = React.useMemo(() => {
+    if (!result || !simulatedAt || !scheduleStatus?.last_updated) return false;
+    const lastUpdate = new Date(scheduleStatus.last_updated);
+    return lastUpdate > simulatedAt;
+  }, [result, simulatedAt, scheduleStatus]);
+
   return (
     <div className="p-8">
       <h2 className="text-2xl font-bold mb-6 text-white">Monte Carlo Simulation</h2>
+
+      {scheduleStatus?.has_overrides && (
+        <div className="mb-6 bg-blue-500/10 border border-blue-500/20 text-blue-400 px-4 py-3 rounded-lg flex items-center gap-3">
+          <AlertCircle size={20} />
+          <span className="font-medium">Custom schedule overrides active</span>
+        </div>
+      )}
+
+      {isOutOfDate && (
+        <div className="mb-6 bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 px-4 py-3 rounded-lg flex items-center gap-3">
+          <AlertTriangle size={20} />
+          <span className="font-medium">Results out of date due to schedule changes. Run a new simulation.</span>
+        </div>
+      )}
 
       <div className="bg-[#1E1E1E] p-6 rounded-lg border border-gray-800 mb-8">
         <div className="flex flex-wrap items-end gap-4">

@@ -221,7 +221,44 @@ class CacheManager:
         self.logger.info(f"Loaded {len(overrides)} overrides")
         return overrides
 
+    def clear_overrides(self) -> None:
+        """Clear user overrides."""
+        if self.overrides_cache.exists():
+            self.overrides_cache.unlink()
+            self.logger.info("Cleared user overrides")
+
     # Utilities
+    def get_last_schedule_update(self, season: int = 2025) -> Optional[datetime]:
+        """
+        Get the timestamp of the last schedule update (including overrides).
+
+        Args:
+            season: Season year
+
+        Returns:
+            Datetime of last update or None if no data exists
+        """
+        schedule_path = Path(str(self.schedule_cache).format(season=season))
+
+        schedule_mtime = None
+        if schedule_path.exists():
+            schedule_mtime = schedule_path.stat().st_mtime
+
+        overrides_mtime = None
+        if self.overrides_cache.exists():
+            overrides_mtime = self.overrides_cache.stat().st_mtime
+
+        if schedule_mtime is None and overrides_mtime is None:
+            return None
+
+        if schedule_mtime is None:
+            return datetime.fromtimestamp(overrides_mtime)
+
+        if overrides_mtime is None:
+            return datetime.fromtimestamp(schedule_mtime)
+
+        return datetime.fromtimestamp(max(schedule_mtime, overrides_mtime))
+
     def clear_cache(self, cache_type: Optional[str] = None) -> None:
         """
         Clear cache files.

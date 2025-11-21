@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { getStandings, getTeams, type Team } from '../lib/api';
+import { getStandings, getTeams, getScheduleStatus, type Team } from '../lib/api';
 import clsx from 'clsx';
+import { AlertCircle } from 'lucide-react';
 
 type ViewMode = 'division' | 'conference' | 'league';
 
@@ -11,6 +12,11 @@ export const Standings = () => {
   const { data: standings, isLoading: isLoadingStandings, error: standingsError } = useQuery({
     queryKey: ['standings'],
     queryFn: getStandings,
+  });
+
+  const { data: scheduleStatus } = useQuery({
+    queryKey: ['scheduleStatus'],
+    queryFn: getScheduleStatus,
   });
 
   const { data: teams, isLoading: isLoadingTeams } = useQuery({
@@ -76,6 +82,13 @@ export const Standings = () => {
 
   return (
     <div className="p-8">
+      {scheduleStatus?.has_overrides && (
+        <div className="mb-6 bg-blue-500/10 border border-blue-500/20 text-blue-400 px-4 py-3 rounded-lg flex items-center gap-3">
+          <AlertCircle size={20} />
+          <span className="font-medium">Custom schedule overrides active</span>
+        </div>
+      )}
+
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-white">Standings</h2>
         

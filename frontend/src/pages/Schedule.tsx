@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getSchedule, getTeams, setOverride, type Game, type Team } from '../lib/api';
-import { ChevronLeft, ChevronRight, Save, RotateCcw, Calendar, CheckCircle2 } from 'lucide-react';
+import { getSchedule, getTeams, setOverride, resetOverrides, getScheduleStatus, type Game, type Team } from '../lib/api';
+import { ChevronLeft, ChevronRight, Save, RotateCcw, Calendar, CheckCircle2, Trash2 } from 'lucide-react';
 import clsx from 'clsx';
 
 export const Schedule = () => {
@@ -11,6 +11,11 @@ export const Schedule = () => {
   const { data: games, isLoading: isLoadingGames } = useQuery({
     queryKey: ['schedule', week],
     queryFn: () => getSchedule(week),
+  });
+
+  const { data: scheduleStatus } = useQuery({
+    queryKey: ['scheduleStatus'],
+    queryFn: getScheduleStatus,
   });
 
   const { data: teams } = useQuery({
@@ -29,6 +34,15 @@ export const Schedule = () => {
       setOverride(gameId, homeScore, awayScore, isOverridden),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['schedule'] });
+      queryClient.invalidateQueries({ queryKey: ['scheduleStatus'] });
+    },
+  });
+
+  const resetMutation = useMutation({
+    mutationFn: resetOverrides,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['schedule'] });
+      queryClient.invalidateQueries({ queryKey: ['scheduleStatus'] });
     },
   });
 
@@ -54,39 +68,51 @@ export const Schedule = () => {
     <div className="p-8">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-white">Schedule</h2>
-        <div className="flex items-center gap-4 bg-[#1E1E1E] rounded-lg p-1 border border-gray-800">
-          <button
-            onClick={() => setWeek(w => Math.max(1, w - 1))}
-            className="p-2 hover:bg-gray-700 rounded-md text-gray-400 hover:text-white disabled:opacity-50"
-            disabled={week === 1}
-          >
-            <ChevronLeft size={20} />
-          </button>
-          
-          <div className="relative">
-            <select
-              value={week}
-              onChange={(e) => setWeek(Number(e.target.value))}
-              className="appearance-none bg-transparent text-white font-medium py-1 pl-2 pr-8 text-center outline-none cursor-pointer hover:text-blue-400 transition-colors"
-            >
-              {Array.from({ length: 18 }, (_, i) => i + 1).map((w) => (
-                <option key={w} value={w} className="bg-[#1E1E1E] text-white">
-                  Week {w}
-                </option>
-              ))}
-            </select>
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
-              <ChevronRight size={12} className="rotate-90" />
-            </div>
-          </div>
+        <div className="flex items-center gap-4">
+          {scheduleStatus?.has_overrides && (
+             <button
+                onClick={() => resetMutation.mutate()}
+                className="flex items-center gap-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-400/10 px-3 py-2 rounded-lg transition-colors border border-red-500/20"
+             >
+                <Trash2 size={16} />
+                Reset All
+             </button>
+          )}
 
-          <button
-            onClick={() => setWeek(w => Math.min(18, w + 1))}
-            className="p-2 hover:bg-gray-700 rounded-md text-gray-400 hover:text-white disabled:opacity-50"
-            disabled={week === 18}
-          >
-            <ChevronRight size={20} />
-          </button>
+          <div className="flex items-center gap-4 bg-[#1E1E1E] rounded-lg p-1 border border-gray-800">
+            <button
+              onClick={() => setWeek(w => Math.max(1, w - 1))}
+              className="p-2 hover:bg-gray-700 rounded-md text-gray-400 hover:text-white disabled:opacity-50"
+              disabled={week === 1}
+            >
+              <ChevronLeft size={20} />
+            </button>
+            
+            <div className="relative">
+              <select
+                value={week}
+                onChange={(e) => setWeek(Number(e.target.value))}
+                className="appearance-none bg-transparent text-white font-medium py-1 pl-2 pr-8 text-center outline-none cursor-pointer hover:text-blue-400 transition-colors"
+              >
+                {Array.from({ length: 18 }, (_, i) => i + 1).map((w) => (
+                  <option key={w} value={w} className="bg-[#1E1E1E] text-white">
+                    Week {w}
+                  </option>
+                ))}
+              </select>
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
+                <ChevronRight size={12} className="rotate-90" />
+              </div>
+            </div>
+
+            <button
+              onClick={() => setWeek(w => Math.min(18, w + 1))}
+              className="p-2 hover:bg-gray-700 rounded-md text-gray-400 hover:text-white disabled:opacity-50"
+              disabled={week === 18}
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
         </div>
       </div>
 

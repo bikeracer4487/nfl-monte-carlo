@@ -154,6 +154,17 @@ async def get_schedule(week: Optional[int] = None):
     # Serialize games
     return [state.cache_manager._serialize_game(g) for g in games]
 
+@app.get("/schedule/status")
+async def get_schedule_status():
+    """Get schedule status including overrides and last update time."""
+    overrides = state.cache_manager.load_overrides()
+    last_updated = state.cache_manager.get_last_schedule_update()
+    
+    return {
+        "has_overrides": bool(overrides),
+        "last_updated": last_updated.isoformat() if last_updated else None
+    }
+
 class SimulateRequest(BaseModel):
     num_simulations: int = 10000
     random_seed: Optional[int] = None
@@ -273,6 +284,24 @@ async def set_override(request: OverrideRequest):
     state.cache_manager.save_overrides(overrides)
     
     return {"status": "success", "game": state.cache_manager._serialize_game(game)}
+
+@app.post("/overrides/reset")
+async def reset_overrides():
+    """Reset all user overrides."""
+    state.cache_manager.clear_overrides()
+    
+    # Reload schedule to clear overrides in memory
+    state.games = state.cache_manager.load_schedule()
+    if not state.games:
+         # Fallback if cache is missing
+         try:
+            state.games = state.espn_client.fetch_schedule()
+            state.cache_manager.save_schedule(state.games)
+         except Exception as e:
+            logger.error(f"Failed to reload schedule after reset: {e}")
+            raise HTTPException(status_code=500, detail="Failed to reload schedule")
+
+    return {"status": "success", "message": "All overrides reset"}
 
 if __name__ == "__main__":
     import uvicorn

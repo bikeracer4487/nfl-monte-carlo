@@ -1,7 +1,7 @@
 {
   "name": "nfl-monte-carlo-gui",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Electron + React desktop app for NFL Monte Carlo playoff simulations",
   "author": "NFL Monte Carlo",
   "type": "module",
